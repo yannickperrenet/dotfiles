@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+command -v brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    echo "WARNING: Make sure brew is installed"
+	exit 1
+fi
+
 # Profiles
 ln -s -f ~/.config/profiles/profile ~/.profile
 ln -s -f ~/.config/profiles/zprofile ~/.zprofile
@@ -15,10 +24,10 @@ ln -s -f ~/.config/tmux/tmux.conf.local ~/.tmux.conf.local
 echo "Installed [tmux]"
 
 # Run the vim script
-./vim.sh
+bash vim.sh
 echo "Installed [vim]"
 
 # Run the Homebrew script
-./homebrew.sh
+bash homebrew.sh
 echo "Installed [brew]"
 

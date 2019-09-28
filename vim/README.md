@@ -1,25 +1,8 @@
 # TODO
-- [ ] Change the repo such that it can also be cloned without ssh
-    - [ ] Link in the readme to install
-    - [ ] git submodule url without ssh but with https
 - [ ] Maybe per plugin list all the important keys. For example on how to open something in a split. 
 
 # Vim Dotfiles
-Here you will find an up-to-date version of my vim-dotfiles. My special thanks go out to the [Ultimate Vim configuration](https://github.com/amix/vimrc) by amix, on which I based 80% of my configurations.
-
-# Installation 
-```bash
-git clone --recursive git@github.com:yannickperrenet/vim-configs.git ~/.vim_configs
-sh ~/.vim_configs/install_vimrc.sh
-```
-Then inside vim calling `:PluginInstall` to let Vundle install and manage all the plugins.
-
-To keep everything up to date it is as simple as
-```bash
-cd ~/.vim_configs
-git pull --rebase
-```
-In addition, plugins can be kept up to date using Vundle `:PluginUpdate`.
+Here you will find an up-to-date version of my vim-dotfiles.
 
 # Included Plugins
 The following plugins will automatically be setup when cloning this repo

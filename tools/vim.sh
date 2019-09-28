@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
 
 cp -rf ~/.config/vim/plugins_forked/vimwiki-styling ~/Google\ Drive/vimwiki/

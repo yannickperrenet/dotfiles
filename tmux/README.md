@@ -3,3 +3,9 @@ In case I ever feel like updating the tmux configurations, I should not forget t
 ```
 if '[ -f ~/.config/tmux.conf.extra ]' 'source ~/.config/tmux.conf.extra'
 ```
+
+## Custom mappings
+...
+
+tpm
+* `prefix + Alt + u` to uninstall no-longer-listed plugins
