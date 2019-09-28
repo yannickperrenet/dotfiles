@@ -1,0 +1,5 @@
+alias ctags="`brew --prefix`/bin/ctags"
+alias ll="ls -la"
+
+# Search the web
+alias wsg="web_search google"
