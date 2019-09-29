@@ -4,6 +4,8 @@
 
 This repository was created with the intend of giving an overview of my dotfiles as well as installing applications and such on a new machine.
 
+I was inspired by [CoreyMSchafer/dotfiles](https://github.com/CoreyMSchafer/dotfiles) and [LukeSmithxyz/voidrice](https://github.com/LukeSmithxyz/voidrice).
+
 ## Installation 
 Make sure you have [Homebrew](https://brew.sh/) installed, if not, run
 ```bash
@@ -32,7 +34,7 @@ Activating Dracula theme, as can be found on the official [Dracula theme](https:
 4. Select the _Dracula.itermcolors_ file (which is located at `~/.config/iterm2/dracula/`
 5. Select the _Dracula_ from the _Color Presets..._
 
-### vim
+### Vim
  My special thanks go out to the [Ultimate Vim configuration](https://github.com/amix/vimrc) by amix, on which I based 80% of my configurations.
 
 Use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage packages, run `:PluginInstall` to install the plugins (once inside Vim).

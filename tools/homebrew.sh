@@ -8,5 +8,7 @@ brew install python
 brew install tree
 
 # Install MacOS Applications
-brew cask install spotify
+brew cask install brave-browser
+brew cask install google-backup-and-sync
 brew cask install iTerm2
+brew cask install spotify
