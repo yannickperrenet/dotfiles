@@ -25,11 +25,11 @@ git submodule update --init
 ```
 
 ### iTerm2
-Activating Dracula theme, as can be found on the official [dracula theme](https://draculatheme.com/iterm/) website
+Activating Dracula theme, as can be found on the official [Dracula theme](https://draculatheme.com/iterm/) website
 1. _iTerm2 > Preferences > Profiles > Colors Tab_
 2. Open the _Color Presets..._ drop-down in the bottom right corner
 3. Select _Import..._ from the list
-4. Select the `Dracula.itermcolors` file (which is located at `~/.config/iterm2/dracula/`
+4. Select the _Dracula.itermcolors_ file (which is located at `~/.config/iterm2/dracula/`
 5. Select the _Dracula_ from the _Color Presets..._
 
 ### vim
@@ -40,6 +40,9 @@ Use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage packages, run `:
 ### oh-my-zsh
 [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
+The theme should be set up automatically. Note that the `ZSH_THEME` variable is set to `"refined"`, however the theme is actually called [Pure](https://github.com/sindresorhus/pure). 
+This is due to naming conflicts in OMZ and therefore to activate Pure the theme has to be set to `"refined"`.
+
 After installing, plugins still have to be set inside the `.zshrc` file
 ```zsh
 plugins=(
@@ -48,9 +51,6 @@ plugins=(
   web-search
 )
 ```
-
-#### TODO
-- [ ] Add automated [Pure](https://github.com/sindresorhus/pure) theme installation. Even thought I have it currently running it says it is incompatible when `vi-mode` is active in oh-my-zsh.
 
 ### tmux
 Basically a clone of [Oh My Tmux!](https://github.com/gpakosz/.tmux)
