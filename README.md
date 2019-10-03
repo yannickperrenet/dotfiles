@@ -31,7 +31,7 @@ Activating Dracula theme, as can be found on the official [Dracula theme](https:
 1. _iTerm2 > Preferences > Profiles > Colors Tab_
 2. Open the _Color Presets..._ drop-down in the bottom right corner
 3. Select _Import..._ from the list
-4. Select the _Dracula.itermcolors_ file (which is located at `~/.config/iterm2/dracula/`
+4. Select the _Dracula.itermcolors_ file (which is located at `~/.config/iterm2/dracula/`)
 5. Select the _Dracula_ from the _Color Presets..._
 
 ### Vim

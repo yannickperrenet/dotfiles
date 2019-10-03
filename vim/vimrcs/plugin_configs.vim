@@ -4,6 +4,50 @@
 set background=dark
 colorscheme peaksea
 
+" OMG, without this the signcolumn is displayed as DarkGreen
+" ... so ugly
+highlight SignColumn ctermfg=none ctermbg=none
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install https://github.com/palantir/python-language-server
+" into your virtualenv to use this, and requires to start vim
+" at the root of your project.
+call ale#linter#Define('python-lsp', {
+  \   'name': 'pyls',
+  \   'lsp': 'stdio',
+  \   'executable': '$VIRTUAL_ENV/bin/pyls',
+  \   'command': '%e run',
+  \   'project_root': getcwd()
+  \})
+
+let g:ale_linters = {
+\   'javascript': ['jshint'],
+\   'python': ['flake8', 'pyls'],
+\   'go': ['go', 'golint', 'errcheck']
+\}
+
+nmap <silent> <leader>a <Plug>(ale_next_wrap)
+nmap <leader>gd <Plug>(ale_go_to_definition)
+nmap <leader>fr <Plug>(ale_find_references)
+
+let g:ale_set_highlights = 1
+let g:ale_completion_enabled = 1
+
+let g:ale_python_pyls_executable = 'pyls'
+
+" Linting
+let g:ale_lint_on_text_changed = 'never'
+" Ignore: line length
+let g:ale_python_flake8_options = '--ignore=E501'
+
+" Otherwise the linting might trigger and 'de-trigger' the 
+" signcolumn 24/7, making the screen go from left to right
+" to left to right to left....
+let g:ale_sign_column_always = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline

@@ -40,6 +40,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'dense-analysis/ale'
 
 Plugin 'vimwiki/vimwiki'
 

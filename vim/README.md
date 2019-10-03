@@ -46,8 +46,6 @@ Window movement, tab management and buffers
 * `<leader>te` to open a new tab with the current buffer's path. Great when editing files in the same directory
 * `<leader>cd` switch CWD to the directory of the open buffer
 * `<leader>q` quickly opens a new buffer for scribble
-> * `<leader>bc` close the current buffer
-> * `<leader>ba` close all the buffers
 * `<leader>l` go to the previous buffer
 * `<leader>h` go to the next buffer
 

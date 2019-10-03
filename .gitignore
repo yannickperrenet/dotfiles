@@ -1,5 +1,15 @@
-# macOS
-.DS_Store
+# Ignore everything
+*
 
-# Running `npm` yields this directory
-configstore
+# Except these files
+!LICENSE.MIT
+!LICENSE.WTFPLv2
+!README.md
+!aliasrc
+!bash_prompt
+!iterm2
+!oh-my-zsh
+!profiles
+!tmux
+!tools
+!vim

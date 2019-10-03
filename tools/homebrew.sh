@@ -3,6 +3,7 @@
 # Install Brew Packages
 brew install ack
 brew install ctags
+brew install flake8
 brew install htop
 brew install python
 brew install tree

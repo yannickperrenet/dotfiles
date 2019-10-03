@@ -44,3 +44,12 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal nocursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+" Preview window settings.
+set completeopt=menu,menuone,noinsert,preview
+set previewheight=10
+set splitbelow
+
+" set signcolumn=yes
+set numberwidth=1
+
