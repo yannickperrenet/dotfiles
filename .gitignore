@@ -1,5 +1,6 @@
+# Blacklist files/folders in same directory as the .gitignore file
 # Ignore everything
-*
+/*
 
 # Except these files
 !LICENSE.MIT
@@ -7,9 +8,9 @@
 !README.md
 !aliasrc
 !bash_prompt
-!iterm2
-!oh-my-zsh
-!profiles
-!tmux
-!tools
-!vim
+!iterm2/
+!oh-my-zsh/
+!profiles/
+!tmux/
+!tools/
+!vim/
