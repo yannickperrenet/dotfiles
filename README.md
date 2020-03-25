@@ -16,7 +16,7 @@ Installation is as simple as cloning this repository and then, if applicable, us
 More information can be found in the designated sections.
 ```bash
 git clone --recursive https://github.com/yannickperrenet/dotfiles.git ~/.config
-sh ~/.config/tools/install.sh
+sh ~/.config/tools/install_macos.sh
 ```
 
 To keep everything up to date it is as simple as
@@ -48,10 +48,15 @@ This is due to naming conflicts in OMZ and therefore to activate Pure the theme 
 After installing, plugins still have to be set inside the `.zshrc` file
 ```zsh
 plugins=(
+  osx
   python
   vi-mode
-  web-search
 )
+```
+Lastly, the `ZSH_CUSTOM` variable is also set automatically to point to the custom configurations. Although it is
+alsways good to know what the value should be in case things do not work as expected.
+```zsh
+ZSH_CUSTOM=$HOME/.config/oh-my-zsh
 ```
 
 ### tmux

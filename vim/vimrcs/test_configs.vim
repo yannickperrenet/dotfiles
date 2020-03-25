@@ -46,7 +46,7 @@ augroup CursorLine
 augroup END
 
 " Preview window settings.
-set completeopt=menu,menuone,noinsert,preview
+set completeopt=menu,menuone,preview
 set previewheight=10
 set splitbelow
 

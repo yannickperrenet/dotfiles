@@ -28,21 +28,24 @@ call vundle#begin('~/.config/vim/plugins')
 Plugin 'VundleVim/Vundle.vim'
 
 " Additional Plugins
-" Styling
+" Styling and filetypes
+Plugin 'dense-analysis/ale'
 Plugin 'itchyny/lightline.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'scrooloose/nerdtree'
-Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+" Searching
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'dense-analysis/ale'
+Plugin 'scrooloose/nerdtree'
 
+" Other
+Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vimwiki/vimwiki'
+Plugin 'maxbrunsfeld/vim-yankstack'
 
 " All of your Plugins must be added before the following line
 call vundle#end()

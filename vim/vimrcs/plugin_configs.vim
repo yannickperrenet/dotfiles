@@ -23,9 +23,13 @@ call ale#linter#Define('python-lsp', {
   \   'project_root': getcwd()
   \})
 
+" Python
+" - flake8: pep8 check
+" - pyls: use the language server defined above (name is pyls)
+" - mypy: enable linting for type checking on annotated files
 let g:ale_linters = {
 \   'javascript': ['jshint'],
-\   'python': ['flake8', 'pyls'],
+\   'python': ['flake8', 'pyls', 'mypy'],
 \   'go': ['go', 'golint', 'errcheck']
 \}
 
@@ -40,8 +44,9 @@ let g:ale_python_pyls_executable = 'pyls'
 
 " Linting
 let g:ale_lint_on_text_changed = 'never'
-" Ignore: line length
-let g:ale_python_flake8_options = '--ignore=E501'
+
+" See: https://flake8.pycqa.org/en/latest/user/options.html
+let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=74'
 
 " Otherwise the linting might trigger and 'de-trigger' the 
 " signcolumn 24/7, making the screen go from left to right
@@ -105,9 +110,9 @@ map <leader>nn :NERDTreeToggle<cr>
 " => Vimwiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Register a vimwiki different from the default
-let g:vimwiki_list = [{'path': '~/Google\ Drive/vimwiki/', 
-    \ 'path_html': '~/Google\ Drive/vimwiki/vimwiki-html/',
-    \ 'template_path': '~/Google\ Drive/vimwiki/vimwiki-styling/',
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 
+    \ 'path_html': '~/Documents/vimwiki/vimwiki-html/',
+    \ 'template_path': '~/Documents/vimwiki/vimwiki-styling/',
     \ 'template_default': 'default',
     \ 'template_ext': '.html',
     \ 'auto_export': 0,
@@ -166,3 +171,13 @@ let g:yankstack_yank_keys = ['y', 'd']
 
 nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-n> <Plug>yankstack_substitute_newer_paste
+
+
+""""""""""""""""""""""""""""""
+" => comfortable motion
+""""""""""""""""""""""""""""""
+" Otherwise the <C-f> will overwrite the CtrlP mapping
+let g:comfortable_motion_no_default_key_mappings = 1
+
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
