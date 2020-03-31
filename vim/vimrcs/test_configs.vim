@@ -1,6 +1,9 @@
 " Show line numbers, allows for faster movement inside file.
 set relativenumber
 
+" Linebreak on 100 characters
+set tw=100
+
 " Great for Python or structuring note taking
 if has('folding')
     set foldmethod=indent
@@ -10,7 +13,7 @@ endif
 " Copy file content to clipboard
 if has("mac") || has("macunix")
     nmap <silent> <leader>cf :! pbcopy < %<CR>
-elseif has("linux")
+elseif has("unix")
     nmap <silent> <leader>cf :! cat % \| xclip -selection c<CR>
 endif
 

@@ -45,8 +45,17 @@ let g:ale_python_pyls_executable = 'pyls'
 " Linting
 let g:ale_lint_on_text_changed = 'never'
 
+" flake8 configurations.
 " See: https://flake8.pycqa.org/en/latest/user/options.html
-let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=74'
+" Some configuration options have been introduced at a later
+" version and thus need to be disabled for lower version.
+" Otherwise ale does not work in its entirety for python.
+let g:flake8_version = system('echo $(flake8 --version | grep -o "^\S*" | tr -d ".")')
+if g:flake8_version < 379
+    let g:ale_python_flake8_options = '--max-line-length=88'
+else
+    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=74'
+endif
 
 " Otherwise the linting might trigger and 'de-trigger' the 
 " signcolumn 24/7, making the screen go from left to right
