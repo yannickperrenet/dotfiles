@@ -1,0 +1,7 @@
+# These are screen settings to get Ubuntu to output to a 4k resolution 
+# on an external display (running on i3-wm)
+# The sleeps are mandatory, but can be reduced based on how fast your
+# pc starts up. The sleeps make sure everything is loaded before the
+# scaling is executed.
+sleep 4
+xrandr --output DisplayPort-0 --scale 1.5x1.5 --panning 5760x3240

@@ -1,0 +1,3 @@
+# Enable Vi-mode in the terminal.
+set editing-mode vi
+set keymap vi-command

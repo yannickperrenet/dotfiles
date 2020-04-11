@@ -1,0 +1,2 @@
+# Also needed for i3-wm to scale to 4k resolution.
+Xft.dpi: 192
