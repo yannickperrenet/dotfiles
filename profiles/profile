@@ -34,6 +34,7 @@ export LANG=en_US.UTF-8
 #     source ~/.bashrc
 # fi
 
-# Source the appropriate display setting
+# Source the appropriate display setting. You might need to re-log.
 # source ~/.config/profiles/4k-profile-i3wm
 # source ~/.config/profiles/4k-profile-ubuntu
+# source ~/.config/profiles/profile-rotated-screen
