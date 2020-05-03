@@ -31,5 +31,3 @@ set -g @resurrect-strategy-vim 'session'
 
 # # initialize TMUX plugin manager (keep this line at the very bottom)
 # run -b '~/.config/tmux/plugins/tpm/tpm'
-
-

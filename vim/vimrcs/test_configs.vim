@@ -56,3 +56,9 @@ set splitbelow
 " set signcolumn=yes
 set numberwidth=1
 
+" Make fold configuration persistent as long as the file is within buffers
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave * mkview
+"   autocmd BufWinEnter * silent loadview
+" augroup END
