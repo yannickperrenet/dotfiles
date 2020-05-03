@@ -355,6 +355,13 @@ try
 catch
 endtry
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Set paths to temp_dirs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set directory=~/.config/vim/temp_dirs/swap
+set backupdir=~/.config/vim/temp_dirs/backup
+set viewdir=~/.config/vim/temp_dirs/view
+set viminfo+=n~/.config/vim/temp_dirs/viminfo
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

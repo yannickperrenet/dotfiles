@@ -5,16 +5,17 @@
 # Except these files
 !.gitignore
 !LICENSE.MIT
-!LICENSE.WTFPLv2
 !README.md
 !aliasrc
-!bash_prompt
+!inputrc
+!Xresources
+!bash/
+!i3/
 !iterm2/
 !oh-my-zsh/
 !profiles/
+!python/
 !tmux/
 !tools/
 !vim/
-!i3/
-!Xresources
-!inputrc
+!zsh/

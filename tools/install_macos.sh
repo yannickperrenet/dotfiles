@@ -15,9 +15,11 @@ echo "Installed [profiles]"
 
 
 # oh-my-zsh.
+export ZSH="/opt/oh-my-zsh"
 export ZSH_THEME="refined"
-export ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+export ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh"
+export KEEP_ZSHRC="yes"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 npm install --global pure-prompt    # Pure theme
 echo "Installed [oh-my-zsh]"
 

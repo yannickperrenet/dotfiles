@@ -140,7 +140,8 @@ let g:ctrlp_working_path_mode = 0
 
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee\|^\venv'
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
+            \^\.coffee\|^\venv\|^\.mypy_cache\|^\.egg-info'
 
 " Customize the mappings inside the CtrlP's prompt
 let g:ctrlp_pompt_mappings = {
@@ -161,7 +162,8 @@ let g:ackhighlight = 1
 
 " Options --color and --group disable the function to follow links,
 " which is obvisouly undesired
-let g:ack_default_options = " -s -H --nogroup --ignore-dir=venv"
+let g:ack_default_options = ' -s -H --nogroup
+                    \ --ignore-dir={venv,.egg-info,.mypy_cache}'
 
 let g:ack_qhandler = "botright copen 10"
 
