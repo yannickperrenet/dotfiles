@@ -36,6 +36,9 @@ let g:ale_linters = {
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
 nmap <leader>gd <Plug>(ale_go_to_definition)
 nmap <leader>fr <Plug>(ale_find_references)
+" show documentation
+" nmap <leader>sd <Plug>(ale_documentation) --> only for tsserver
+nmap <leader>sd <Plug>(ale_hover)
 
 let g:ale_set_highlights = 1
 let g:ale_completion_enabled = 1
@@ -54,7 +57,7 @@ let g:flake8_version = system('echo $(flake8 --version | grep -o "^\S*" | tr -d 
 if g:flake8_version < 379
     let g:ale_python_flake8_options = '--max-line-length=88'
 else
-    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=74'
+    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=72'
 endif
 
 " Otherwise the linting might trigger and 'de-trigger' the 
@@ -125,7 +128,8 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
     \ 'template_default': 'default',
     \ 'template_ext': '.html',
     \ 'auto_export': 0,
-    \ 'nested_syntaxes': {'python': 'python'}}]
+    \ 'nested_syntaxes': {'python': 'python'},
+    \ 'automatic_nested_syntaxes': 1}]
 
 " Parse open vimwiki to html 
 nmap <leader>wc <Plug>Vimwiki2HTML
