@@ -7,7 +7,7 @@ set tw=100
 " Great for Python or structuring note taking
 if has('folding')
     set foldmethod=indent
-    set foldlevelstart=1
+    set foldlevelstart=0
 endif
 
 " Copy file content to clipboard
