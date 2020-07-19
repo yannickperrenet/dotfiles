@@ -101,11 +101,11 @@ let g:lightline.tab = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden = 0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize = 35
-map <leader>nn :NERDTreeToggle<cr>
+" let g:NERDTreeWinPos = "right"
+" let NERDTreeShowHidden = 0
+" let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+" let g:NERDTreeWinSize = 35
+" map <leader>nn :NERDTreeToggle<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -148,9 +148,12 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
             \^\.coffee\|^\venv\|^\.mypy_cache\|^\.egg-info'
 
 " Customize the mappings inside the CtrlP's prompt
-let g:ctrlp_pompt_mappings = {
-    \ 'PrtCleakCache()':      ['<F5>']
-    \ }
+" let g:ctrlp_pompt_mappings = {
+"     \ 'PrtClearCache()':      ['<F5>'],
+"     \ }
+
+let g:ctrlp_extensions = ['buffertag']
+" map <leader>t :CtrlPBufTag<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
