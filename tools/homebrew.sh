@@ -7,6 +7,7 @@ brew install flake8
 brew install htop
 brew install python
 brew install tree
+brew install the_silver_searcher
 
 # Install MacOS Applications
 brew cask install brave-browser

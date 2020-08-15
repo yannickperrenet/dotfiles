@@ -1,18 +1,25 @@
+# I use skhd and yabai to create a window manager similar to i3 on
+# Linux. However, for some reason, I do not like using a tiling window
+# manager on Mac. Therefore I am not actively using or maintaining these
+# configuration.
+# https://github.com/koekeishiya/skhd
+# https://github.com/koekeishiya/yabai
+
 # new terminal
 ctrl - return : open -n -a iTerm
 
 # focus movement
-ctrl - h : yabai -m window --focus west
-shift + ctrl - h : yabai -m window --swap west
+shift + ctrl - h : yabai -m window --focus west
+# shift + ctrl - h : yabai -m window --swap west
 
-ctrl - j : yabai -m window --focus south
-shift + ctrl - j : yabai -m window --swap south
+# ctrl - j : yabai -m window --focus south
+# shift + ctrl - j : yabai -m window --swap south
 
-ctrl - k : yabai -m window --focus north
-shift + ctrl - k : yabai -m window --swap north
+# ctrl - k : yabai -m window --focus north
+# shift + ctrl - k : yabai -m window --swap north
 
-ctrl - l : yabai -m window --focus east
-shift + ctrl - l : yabai -m window --warp east
+shift + ctrl - l : yabai -m window --focus east
+# shift + ctrl - l : yabai -m window --warp east
 
 # fullscreen
 # ctrl - f : yabai -m window --toggle zoom-fullscreen
