@@ -7,6 +7,11 @@ if [[ $? != 0 ]] ; then
 	exit 1
 fi
 
+# Clone the configurations into a temporary directory and then copy its
+# content to the ~/.config folder.
+dir=$(mktemp -d)
+git clone --recursive https://github.com/yannickperrenet/dotfiles.git "$dir"
+cp -Ri "$dir"/. ~/.config
 
 # Profiles
 ln -s -f ~/.config/profiles/profile ~/.profile
