@@ -179,7 +179,10 @@ let g:ack_apply_qmappings = 1
 
 " Every time you type :Ack it actually becomes :Ack! which does not
 " follow the first result from the search.
-cnoreabbrev Ack Ack!
+" cnoreabbrev Ack Ack!
+
+" :help key-notation
+map <leader>f :Ack!<Space>
 
 
 """"""""""""""""""""""""""""""

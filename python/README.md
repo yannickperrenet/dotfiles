@@ -1,3 +1,4 @@
+# Python configs
 In short: the `pythonrc` is run before an interactive shell is started (see `PYTHONSTARTUP` ENV
 variable). Thus now we can alter the location of the `python_history` file.
 

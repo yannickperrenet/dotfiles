@@ -253,7 +253,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quickly open a buffer for scribble
-map <leader>q :e ~/.configs/vim/temp_dirs/buffer_scribble<cr>
+map <leader>q :e ~/.configs/vim/cache/buffer_scribble<cr>
 
 " Close the current buffer
 " map <leader>bc :Bclose<cr>:tabclose<cr>gT
@@ -350,18 +350,18 @@ map <leader>pp :setlocal paste!<cr>
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.config/vim/temp_dirs/undodir
+    set undodir=~/.config/vim/cache/undodir
     set undofile
 catch
 endtry
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Set paths to temp_dirs
+" => Set paths to cache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set directory=~/.config/vim/temp_dirs/swap
-set backupdir=~/.config/vim/temp_dirs/backup
-set viewdir=~/.config/vim/temp_dirs/view
-set viminfo+=n~/.config/vim/temp_dirs/viminfo
+set directory=~/.config/vim/cache/swap
+set backupdir=~/.config/vim/cache/backup
+set viewdir=~/.config/vim/cache/view
+set viminfo+=n~/.config/vim/cache/viminfo
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

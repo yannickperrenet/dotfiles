@@ -1,6 +1,3 @@
-# TODO
-- [ ] Maybe per plugin list all the important keys. For example on how to open something in a split. 
-
 # Vim Dotfiles
 Here you will find an up-to-date version of my vim-dotfiles.
 
@@ -18,19 +15,19 @@ This will install the following plugins for you
 * [nerdtree](https://github.com/scrooloose/nerdtree): a file system explorer, allowing to browse directories, quickly open files and perform basic file system operations.
 * [vim-commentary](https://github.com/tpope/vim-commentary): comment stuff out without effort.
 * [vimwiki](https://github.com/vimwiki/vimwiki): a personal wiki for Vim. I use it for most of my note taking to make them searchable but also nicely editable and readable.
-* [vim-markdown](https://github.com/plasticboy/vim-markdown): syntax highlighting, matching rules and mappings for Markdown files.
 * [comfortable-motion.vim](https://github.com/yuttie/comfortable-motion.vim): brings physics-based smooth scrolling to Vim.
 * [ctrlp.vim](https://github.com/kien/ctrlp.vim): full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 * [ack.vim](https://github.com/mileszs/ack.vim): search tool within Vim, with an enhanced results list. Similar to grep.
+* [ale](https://github.com/dense-analysis/ale): check syntax in Vim asynchronously and fix files,
+  with LSP support.
 * [vim-yankstack](https://github.com/maxbrunsfeld/vim-yankstack): allows you to cycle through items in yank stack after doing a paste.
 
 Plugins that I used to have
 * [bufexplorer.zip](https://github.com/vim-scripts/bufexplorer.zip): quickly and easily switch between buffers.
+* [vim-markdown](https://github.com/plasticboy/vim-markdown): syntax highlighting, matching rules and mappings for Markdown files.
 
 
-# Overview of all the mappings
-
-## Mappings inside the vimrcs (exluding the plugins)
+## Custom mappings inside the vimrcs (exluding the plugins)
 General
 * `<leader>w` save file
 * `<space>` to `/`
@@ -62,9 +59,4 @@ Visual mode
 * Pressing `*` or `#` searches for the current selection
 * `<leader>j` move line(s) of text down
 * `<leader>k` move line(s) of text up
-* `<leader>y` yanks the selection to clipboard
-
-## Plugins
-vim-fugitive
-* Most importantly is the `:G` which is short for `:Gstatus` and then pressing `g?` to bring up a list of mappings
-
+* `<leader>y` yanks the selection to clipboard (requires `+clipboard`, run `vim --version` to check)
