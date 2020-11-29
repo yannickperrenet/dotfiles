@@ -33,6 +33,7 @@ Plugin 'dense-analysis/ale'
 Plugin 'itchyny/lightline.vim'
 Plugin 'godlygeek/tabular'
 " Plugin 'plasticboy/vim-markdown'
+Plugin 'rust-lang/rust.vim'
 
 " Searching
 Plugin 'mileszs/ack.vim'

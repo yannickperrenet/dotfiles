@@ -30,7 +30,8 @@ call ale#linter#Define('python-lsp', {
 let g:ale_linters = {
 \   'javascript': ['jshint'],
 \   'python': ['flake8', 'pyls', 'mypy'],
-\   'go': ['go', 'golint', 'errcheck']
+\   'go': ['go', 'golint', 'errcheck'],
+\   'rust': ['analyzer', 'rls']
 \}
 
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
@@ -155,6 +156,11 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
 let g:ctrlp_extensions = ['buffertag']
 " map <leader>t :CtrlPBufTag<cr>
 
+" Flags and arguments to `ctags`
+let g:ctrlp_buftag_types = {
+\ 'python': '--format=2 --fields=fKst',
+\ }
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching
@@ -188,7 +194,7 @@ map <leader>f :Ack!<Space>
 """"""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
-let g:yankstack_yank_keys = ['y', 'd']
+let g:yankstack_yank_keys = ['y', 'd', 'c']
 
 nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-n> <Plug>yankstack_substitute_newer_paste
@@ -202,3 +208,9 @@ let g:comfortable_motion_no_default_key_mappings = 1
 
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+
+""""""""""""""""""""""""""""""
+" => rust.vim
+""""""""""""""""""""""""""""""
+" Automatically run :RustFmt on save of buffer
+let g:rustfmt_autosave = 1
