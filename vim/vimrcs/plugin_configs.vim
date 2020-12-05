@@ -12,39 +12,41 @@ highlight SignColumn ctermfg=none ctermbg=none
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Install https://github.com/palantir/python-language-server
-" into your virtualenv to use this, and requires to start vim
-" at the root of your project.
-call ale#linter#Define('python-lsp', {
-  \   'name': 'pyls',
-  \   'lsp': 'stdio',
-  \   'executable': '$VIRTUAL_ENV/bin/pyls',
-  \   'command': '%e run',
-  \   'project_root': getcwd()
-  \})
+" Searches upward to the file to get the virtualenv. Does not
+" require you to have the virtualenv set, but will fall back to
+" $VIRTUAL_ENV if it cannot find it. Make sure you have installed
+" `python-language-server` into the environment.
+function! GetPylsExecutable(buffer) abort
+    return ale_linters#python#FindVirtualenv(a:buffer) . '/bin/pyls'
+endfunction
 
-" Python
-" - flake8: pep8 check
-" - pyls: use the language server defined above (name is pyls)
-" - mypy: enable linting for type checking on annotated files
+" Overwrites the build in 'pyls' because that requires using
+" `pipenv`.
+call ale#linter#Define('python-lsp', {
+\   'name': 'pyls',
+\   'lsp': 'stdio',
+\   'executable': function('GetPylsExecutable'),
+\   'command': '%e run',
+\   'project_root': function('ale#python#FindProjectRoot'),
+\   'completion_filter': 'ale#completion#python#CompletionItemFilter',
+\   'lsp_config': {b -> ale#Var(b, 'python_pyls_config')},
+\})
+
 let g:ale_linters = {
 \   'javascript': ['jshint'],
 \   'python': ['flake8', 'pyls', 'mypy'],
-\   'go': ['go', 'golint', 'errcheck'],
 \   'rust': ['analyzer', 'rls']
 \}
 
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
 nmap <leader>gd <Plug>(ale_go_to_definition)
 nmap <leader>fr <Plug>(ale_find_references)
-" show documentation
-" nmap <leader>sd <Plug>(ale_documentation) --> only for tsserver
+
+" Show documentation of function under cursor.
 nmap <leader>sd <Plug>(ale_hover)
 
 let g:ale_set_highlights = 1
 let g:ale_completion_enabled = 1
-
-let g:ale_python_pyls_executable = 'pyls'
 
 " Linting
 let g:ale_lint_on_text_changed = 'never'
