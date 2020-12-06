@@ -12,7 +12,7 @@ set $mod Mod1
 ########################################
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+font pango:monospace 10.5
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,6 +24,7 @@ bar {
         status_command i3status
         position top
         mode dock
+        height 50
 }
 
 # Colors to indicate the focus of the window
@@ -31,8 +32,16 @@ set $blue #00E6FF
 
 client.focused      $blue       $blue       $blue  
 
-# use no window title and a border
-default_border pixel 3
+# Use no window title and a border. Make sure to not use a window title
+# as otherwise the gaps will not work.
+default_border pixel 2
+
+gaps inner 15
+gaps outer -15
+
+# bindsym $mod+g                  gaps inner current plus 5
+# bindsym $mod+Shift+g            gaps inner current minus 5
+# bindsym $mod+Shift+t		      gaps inner current set 15; gaps outer current set -15
 
 ########################################
 # Applications
@@ -69,11 +78,13 @@ bindsym $mod+q kill
 
 # split in horizontal orientation (split to right)
 # bindsym $mod+Shift+backslash split horizontal
-bindsym $mod+Shift+v split horizontal
+# bindsym $mod+Shift+v split horizontal
 
 # split in vertical orientation (split down)
 # bindsym $mod+minus split vertical
-bindsym $mod+Shift+s split vertical
+# bindsym $mod+Shift+s split vertical
+
+bindsym $mod+t split toggle
 
 # change focus
 bindsym $mod+h focus left
@@ -122,6 +133,9 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+# Move back and forth between your two most recently used workspaces
+bindsym $mod+Tab workspace back_and_forth
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -153,6 +167,10 @@ mode "resize" {
         # back to normal
         bindsym Escape mode "default"
 }
+bindsym $mod+Up             resize grow width 15 px or 15 ppt
+bindsym $mod+Down           resize shrink width 15 px or 15 ppt
+bindsym $mod+Shift+Up       resize grow height 15 px or 15 ppt
+bindsym $mod+Shift+Down     resize shrink height 15 px or 15 ppt
 
 ########################################
 # System
