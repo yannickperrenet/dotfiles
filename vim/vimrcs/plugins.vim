@@ -37,7 +37,8 @@ Plugin 'rust-lang/rust.vim'
 
 " Searching
 Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'scrooloose/nerdtree'
 
 " Other

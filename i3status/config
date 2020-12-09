@@ -11,35 +11,38 @@ general {
         interval = 5
 }
 
+order += "volume master"
 order += "wireless _first_"
-# order += "ethernet _first_"
 order += "battery all"
 order += "memory"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "📶 (%quality at %essid) %ip"
+        format_up = "📶 %quality at %essid"
         format_down = "📶: down"
 }
 
-# ethernet _first_ {
-#         format_up = "E: %ip (%speed)"
-#         format_down = "E: down"
-# }
-
 battery all {
-        status_chr = "/⚡"
-        status_full = "/⚡"
-        status_bat = ""
-        format = "🔋%status %percentage"
+        status_chr = "🔌"
+        status_full = "🔋"
+        status_bat = "🔋"
+        format = "%status %percentage"
 }
 
 memory {
-        format = "💻 %used/%available"
+        format = "💻 %used"
         threshold_degraded = "4G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "🕔 %Y-%m-%d %H:%M:%S"
+        format = "📅 %Y-%m-%d 🕔 %H:%M:%S"
+}
+
+volume master {
+        format = "🔉 %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }

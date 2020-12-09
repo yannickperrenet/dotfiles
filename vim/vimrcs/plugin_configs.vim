@@ -163,6 +163,10 @@ let g:ctrlp_buftag_types = {
 \ 'python': '--format=2 --fields=fKst',
 \ }
 
+" Ask for another character after <C-o> to specify how to open
+" the marked (with <C-z>) files.
+let g:ctrlp_arg_map = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching
