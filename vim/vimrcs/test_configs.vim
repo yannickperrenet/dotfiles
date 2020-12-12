@@ -7,7 +7,9 @@ set tw=100
 " Great for Python or structuring note taking
 if has('folding')
     set foldmethod=indent
-    set foldlevelstart=0
+    set foldnestmax=3
+    " If zero, all folds are closed.
+    set foldlevelstart=3
 endif
 
 " Copy file content to clipboard

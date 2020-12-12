@@ -1,1 +1,4 @@
-.zprofile
+source .zprofile
+
+export PATH="$HOME/.poetry/bin:$PATH"
+source "$HOME/.cargo/env"

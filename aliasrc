@@ -1,2 +1,4 @@
-alias ctags="`brew --prefix`/bin/ctags"
+# alias ctags="`brew --prefix`/bin/ctags"
 alias ll="ls -la"
+alias vim="gvim -v"
+alias fd="fdfind"

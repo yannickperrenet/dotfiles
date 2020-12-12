@@ -26,4 +26,4 @@
 
 # Always ignore
 .zcompdump*
-viminfo
+vim/cache/*

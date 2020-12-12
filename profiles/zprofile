@@ -8,10 +8,12 @@ export PATH="/usr/bin:$PATH";
 export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="/usr/sbin:$PATH";
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
+export PATH="$HOME/.local/bin:$PATH";
+export PATH="$HOME/Documents/Orchest/orchest:$PATH"
+# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
 
 # Set Man Pages
-export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+# export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 
 # Default programs
 export BROWSER="brave"
@@ -34,6 +36,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # export GEM_HOME="$XDG_DATA_HOME/gem"
 # export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"

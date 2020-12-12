@@ -58,3 +58,9 @@ ZSH_CUSTOM=$HOME/.config/oh-my-zsh
 Basically a clone of [Oh My Tmux!](https://github.com/gpakosz/.tmux)
 
 Use the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) and run `prefix + I` to install the plugins (once tmux is activated)
+
+
+### i3-gaps
+Disable the menubar of the terminal
+1. *Edit* > *Preferences* > *General*
+2. Untick the *Show menubar by default in new terminals*

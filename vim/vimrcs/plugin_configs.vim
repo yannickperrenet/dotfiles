@@ -38,6 +38,23 @@ let g:ale_linters = {
 \   'rust': ['analyzer', 'rls']
 \}
 
+" Linter configurations.
+" * flake8
+"   See: https://flake8.pycqa.org/en/latest/user/options.html
+"   Some configuration options have been introduced at a later
+"   version and thus need to be disabled for lower version.
+"   Otherwise ale does not work in its entirety for python.
+let g:flake8_version = system('echo $(flake8 --version | grep -o "^\S*" | tr -d ".")')
+if g:flake8_version < 379
+    let g:ale_python_flake8_options = '--max-line-length=88'
+else
+    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=72'
+endif
+
+" * mypy
+let g:ale_python_mypy_options = '--allow-redefinition'
+
+
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
 nmap <leader>gd <Plug>(ale_go_to_definition)
 nmap <leader>fr <Plug>(ale_find_references)
@@ -50,18 +67,6 @@ let g:ale_completion_enabled = 1
 
 " Linting
 let g:ale_lint_on_text_changed = 'never'
-
-" flake8 configurations.
-" See: https://flake8.pycqa.org/en/latest/user/options.html
-" Some configuration options have been introduced at a later
-" version and thus need to be disabled for lower version.
-" Otherwise ale does not work in its entirety for python.
-let g:flake8_version = system('echo $(flake8 --version | grep -o "^\S*" | tr -d ".")')
-if g:flake8_version < 379
-    let g:ale_python_flake8_options = '--max-line-length=88'
-else
-    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=72'
-endif
 
 " Otherwise the linting might trigger and 'de-trigger' the 
 " signcolumn 24/7, making the screen go from left to right
@@ -166,6 +171,9 @@ let g:ctrlp_buftag_types = {
 " Ask for another character after <C-o> to specify how to open
 " the marked (with <C-z>) files.
 let g:ctrlp_arg_map = 1
+
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_cache_dir = $XDG_CACHE_HOME.'/ctrlp'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
