@@ -7,3 +7,9 @@
 [submodule "iterm2/dracula"]
 	path = iterm2/dracula
 	url = https://github.com/dracula/iterm.git
+[submodule "zsh/themes/pure"]
+	path = zsh/themes/pure
+	url = https://github.com/sindresorhus/pure
+[submodule "zsh/plugins/zsh-vim-mode"]
+	path = zsh/plugins/zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode
