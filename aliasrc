@@ -2,3 +2,4 @@
 alias ll="ls -la"
 alias vim="gvim -v"
 alias fd="fdfind"
+alias bat="batcat"
