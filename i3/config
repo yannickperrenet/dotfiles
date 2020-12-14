@@ -24,7 +24,7 @@ bar {
         status_command i3status
         position top
         mode dock
-        height 50
+        # height 50
 }
 
 # Colors to indicate the focus of the window
@@ -36,8 +36,8 @@ client.focused      $blue       $blue       $blue
 # as otherwise the gaps will not work.
 default_border pixel 2
 
-gaps inner 15
-gaps outer -15
+# gaps inner 15
+# gaps outer -15
 
 # bindsym $mod+g                  gaps inner current plus 5
 # bindsym $mod+Shift+g            gaps inner current minus 5
