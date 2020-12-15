@@ -64,3 +64,12 @@ set numberwidth=1
 "   autocmd BufWinLeave * mkview
 "   autocmd BufWinEnter * silent loadview
 " augroup END
+
+" Press `gx` to open the file under the cursor. This actually works by
+" using netrw (which is installed by default). However, there seems to
+" be an issue:
+"   https://github.com/vim/vim/issues/4738
+" So for the time being this `nmap` is in here to give us the same
+" behavior.
+nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
+let g:netrw_browsex_viewer="xdg-open"

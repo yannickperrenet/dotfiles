@@ -53,7 +53,11 @@ Use the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) and run `pref
 ### i3-gaps
 Set the color of the terminal:
 1. *Edit* > *Preferences* > *Profiles* > *Colors*
-2. Select *Solarized dark* in the drop down for *Built-in schemes*
+2. Select *Solarized dark* in the drop down for *Built-in schemes* (or the *GNOME dark* theme)
+
+Set the font of the terminal:
+1. *Edit* > *Preferences* > *Profiles* > *Text*
+2. *Custom font* > *Monospace 11*
 
 Disable the menubar of the terminal:
 1. *Edit* > *Preferences* > *General*

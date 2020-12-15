@@ -1,5 +1,9 @@
 # alias ctags="`brew --prefix`/bin/ctags"
-alias ll="ls -la"
+
+# Might also be interesting to look into LS_COLORS to define how files
+# and directories are colored when using the `ls` command.
+alias ll="ls -la --color=auto"
+
 alias vim="gvim -v"
 alias fd="fdfind"
 alias bat="batcat"
