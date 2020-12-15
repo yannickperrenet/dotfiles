@@ -27,6 +27,8 @@ bar {
         # height 50
 }
 
+exec --no-startup-id feh --bf-scale ~/Pictures/wallpapers/nature-landscape.jpg
+
 # Colors to indicate the focus of the window
 set $blue #00E6FF
 

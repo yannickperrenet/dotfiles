@@ -1,3 +1,0 @@
-# This file is super important, on Ubuntu it is often called instead of
-# .zprofile (even when zsh is set as login shell).
-source .zprofile

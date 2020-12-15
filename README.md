@@ -1,16 +1,18 @@
 # Dotfiles
 
-        Some things might only work on macOS.
+> Special thanks to [LukeSmithxyz/voidrice](https://github.com/LukeSmithxyz/voidrice)
 
-This repository was created with the intend of giving an overview of my dotfiles as well as installing applications and such on a new machine.
-
-I was inspired by [CoreyMSchafer/dotfiles](https://github.com/CoreyMSchafer/dotfiles) and [LukeSmithxyz/voidrice](https://github.com/LukeSmithxyz/voidrice).
+Currently working to make the dotfiles portably between macOS and GNU/Linux, where the dotfiles
+work on both systems just not to its full entirety.
 
 ## Installation 
-Installation is as simple as cloning this repository and then, if applicable, use the individual package managers of the applications to install further packages.
-More information can be found in the designated sections.
+For installation, please refer to my [iscripts](https://github.com/yannickperrenet/iscripts)
+repository.
 
-To keep everything up to date it is as simple as
+After installation some manual work has to be conducted as can be found in the designated sections
+below. It mostly comes down to using the respective package managers to install further packages.
+
+To keep the dotfiles up to date simply run:
 ```bash
 cd ~/.config
 git pull --rebase
@@ -20,9 +22,10 @@ git submodule update --init
 ### MacOS
 Make sure you have [Homebrew](https://brew.sh/) installed, if not, run
 ```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+> The script below is deprecated but can be useful to look at:
 ```bash
 curl -LO https://raw.githubusercontent.com/yannickperrenet/dotfiles/master/tools/install_macos.sh
 sh install_macos.sh
@@ -42,25 +45,16 @@ Activating Dracula theme, as can be found on the official [Dracula theme](https:
 
 Use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage packages, run `:PluginInstall` to install the plugins (once inside Vim).
 
-### oh-my-zsh
-[Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
-
-The theme should be set up automatically. Note that the `ZSH_THEME` variable is set to `"refined"`, however the theme is actually called [Pure](https://github.com/sindresorhus/pure). 
-This is due to naming conflicts in OMZ and therefore to activate Pure the theme has to be set to `"refined"`.
-
-Lastly, the `ZSH_CUSTOM` variable is also set automatically to point to the custom configurations. Although it is
-alsways good to know what the value should be in case things do not work as expected:
-```zsh
-ZSH_CUSTOM=$HOME/.config/oh-my-zsh
-```
-
 ### tmux
 Basically a clone of [Oh My Tmux!](https://github.com/gpakosz/.tmux)
 
 Use the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) and run `prefix + I` to install the plugins (once tmux is activated)
 
-
 ### i3-gaps
-Disable the menubar of the terminal
+Set the color of the terminal:
+1. *Edit* > *Preferences* > *Profiles* > *Colors*
+2. Select *Solarized dark* in the drop down for *Built-in schemes*
+
+Disable the menubar of the terminal:
 1. *Edit* > *Preferences* > *General*
 2. Untick the *Show menubar by default in new terminals*

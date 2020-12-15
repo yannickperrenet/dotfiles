@@ -6,20 +6,17 @@
 !.gitignore
 !LICENSE.MIT
 !README.md
-!Xresources
-!aliasrc
-!bash/
 !i3/
 !i3status/
-!inputrc
 !iterm2/
 !mimeapps.list
-!profiles/
 !python/
 !ranger/
+!shell/
 !tmux/
 !tools/
 !vim/
+!x11/
 !zsh/
 
 # Always ignore
