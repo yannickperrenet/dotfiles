@@ -50,6 +50,9 @@ default_border pixel 2
 ########################################
 set $term --no-startup-id i3-sensible-terminal
 
+# Otherwise my eyes are just bleeding...
+exec --no-startup-id redshift-gtk
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 
