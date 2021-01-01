@@ -148,6 +148,13 @@ nmap <leader>wC <Plug>VimwikiAll2HTML
 """"""""""""""""""""""""""""""
 " => CTRL-P
 """"""""""""""""""""""""""""""
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'git ls-files'],
+  \ },
+\ 'fallback': 'fd --type file'
+\ }
+
 let g:ctrlp_working_path_mode = 0
 
 let g:ctrlp_map = '<c-f>'
