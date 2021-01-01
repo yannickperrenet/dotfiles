@@ -32,7 +32,7 @@ exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/nature-landscape.jpg
 # Colors to indicate the focus of the window
 set $blue #00E6FF
 
-client.focused      $blue       $blue       $blue  
+client.focused      $blue       $blue       $blue
 
 # Use no window title and a border. Make sure to not use a window title
 # as otherwise the gaps will not work.
@@ -52,6 +52,9 @@ set $term --no-startup-id i3-sensible-terminal
 
 # Otherwise my eyes are just bleeding...
 exec --no-startup-id redshift-gtk
+
+# My screen setup.
+exec --no-startup-id mirror-displays
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
