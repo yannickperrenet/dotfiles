@@ -3,7 +3,7 @@ Here you will find an up-to-date version of my vim-dotfiles.
 
 # Included Plugins
 The following plugins will automatically be setup when cloning this repo
-* [Pathogen](https://github.com/tpope/vim-pathogen): Manage vim runtimepath. Install plugins and runtime files in their own private directories. 
+* [Pathogen](https://github.com/tpope/vim-pathogen): Manage vim runtimepath. Install plugins and runtime files in their own private directories.
 * [Vundle](https://github.com/VundleVim/Vundle.vim): Plugin manager.
 * [peaksea](https://github.com/vim-scripts/peaksea): color scheme.
 * [vimwiki-assets](https://github.com/zweifisch/vimwiki-assets): styling for the html generated pages by vimwiki. I made some minor tweaks and renamed it to "vimwiki-styling".
@@ -11,8 +11,6 @@ The following plugins will automatically be setup when cloning this repo
 Additional plugins can be loaded by running `:PluginInstall` in Vim, calling Vundle as our plugin manager.
 This will install the following plugins for you
 * [lightline](https://github.com/itchyny/lightline.vim): a light and configurable statusline/tabline plugin for Vim. I use it to style my statusline and tabline as well as determine what should be displayed on them.
-* [vim-fugitive](https://github.com/tpope/vim-fugitive): possibly the best Git wrapper of all time. Uses include displaying branch name in statusline (compatibility with lightline) and all other git magic from within vim.
-* [nerdtree](https://github.com/scrooloose/nerdtree): a file system explorer, allowing to browse directories, quickly open files and perform basic file system operations.
 * [vim-commentary](https://github.com/tpope/vim-commentary): comment stuff out without effort.
 * [vimwiki](https://github.com/vimwiki/vimwiki): a personal wiki for Vim. I use it for most of my note taking to make them searchable but also nicely editable and readable.
 * [comfortable-motion.vim](https://github.com/yuttie/comfortable-motion.vim): brings physics-based smooth scrolling to Vim.
@@ -24,13 +22,13 @@ This will install the following plugins for you
 
 Plugins that I used to have
 * [bufexplorer.zip](https://github.com/vim-scripts/bufexplorer.zip): quickly and easily switch between buffers.
-* [vim-markdown](https://github.com/plasticboy/vim-markdown): syntax highlighting, matching rules and mappings for Markdown files.
+* [nerdtree](https://github.com/scrooloose/nerdtree): a file system explorer, allowing to browse directories, quickly open files and perform basic file system operations.
+* [vim-fugitive](https://github.com/tpope/vim-fugitive): possibly the best Git wrapper of all time. Uses include displaying branch name in statusline (compatibility with lightline) and all other git magic from within vim.
 
 
 ## Custom mappings inside the vimrcs (exluding the plugins)
 General
 * `<leader>w` save file
-* `<space>` to `/`
 * `<leader><cr>` disable highlight
 * `<leader>pp` toggle paste mode on and off
 * `<leader>cf` copy file content to clipboard
@@ -59,4 +57,4 @@ Visual mode
 * Pressing `*` or `#` searches for the current selection
 * `<leader>j` move line(s) of text down
 * `<leader>k` move line(s) of text up
-* `<leader>y` yanks the selection to clipboard (requires `+clipboard`, run `vim --version` to check)
+* `<leader>y` yanks the selection to clipboard

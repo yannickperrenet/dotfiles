@@ -18,11 +18,10 @@ call pathogen#helptags()
 
 
 """"""""""""""""""""""""""""""
-" => Vundle 
+" => Vundle
 """"""""""""""""""""""""""""""
 " Pass a path where Vundle should install plugins
-" call vundle#begin('~/.vim_configs/plugins')
-call vundle#begin('~/.config/vim/plugins')
+call vundle#begin('$XGD_CONFIG_HOME/nvim/plugins')
 
 " Let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -32,12 +31,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'dense-analysis/ale'
 Plugin 'itchyny/lightline.vim'
 Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
 Plugin 'rust-lang/rust.vim'
 
 " Searching
 Plugin 'mileszs/ack.vim'
-" Plugin 'kien/ctrlp.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'scrooloose/nerdtree'
 
@@ -48,7 +45,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vimwiki/vimwiki'
 Plugin 'maxbrunsfeld/vim-yankstack'
-" Plugin 'majutsushi/tagbar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()

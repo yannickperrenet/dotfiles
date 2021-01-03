@@ -1,39 +1,26 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
+" Maintainer:
 "       Yannick Perrenet
 "
 " Credits:
 "		Amir Salihefendic - @amix3k
-"		I follow mostly his configurations with small changes and 
-"		extra comments
 "
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
+"		I follow mostly his configurations adding small changes
+"		and extra comments
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " With a map leader it's possible to do extra key combinations
-let mapleader = ","
+let mapleader = " "
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! ~/.config/vim/vimrcs/test_configs.vim<cr>
-autocmd! bufwritepost ~/.config/vim/vimrcs/test_configs.vim source ~/.config/vim/vimrcs/test_configs.vim
+map <leader>e :e! $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim<cr>
+autocmd! bufwritepost $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim \
+    source $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,14 +35,14 @@ filetype plugin on
 filetype indent on
 
 " When a file has been changed outside of Vim, automatically read it again.
-" Note: it does not reaload files unless you run an external command like
+" Note: it does not reload files unless you run an external command like
 " !ls Manually reloading a file can be done using :e
 set autoread
 
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -73,11 +60,7 @@ set wildmenu
 " Ignore compiled files. For example when using the CtrlP plugin, it will
 " ignore the .git files.
 set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
-else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/venv/*
-endif
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/venv/*
 
 " Always show current position. This way you know the row and column you
 " are on.
@@ -108,16 +91,16 @@ set hlsearch
 
 " Makes search act like search in modern browsers. Highlights incrementally.
 " Thus whilst searching it will move the highlight.
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -140,7 +123,7 @@ set foldcolumn=1
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -218,13 +201,13 @@ set tabstop=4
 set linebreak
 
 " Linebreak on 500 characters
-" set tw=500
+set tw=100
 
 set ai "Auto indent
 set si "Smart indent
 
 " Wrap lines visually, i.e. the line is still one line of text, but Vim
-" displays it on multiple lines. This way you do not have to scroll 
+" displays it on multiple lines. This way you do not have to scroll
 " horizontally.
 set wrap
 
@@ -242,7 +225,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+" map <space> /
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -254,7 +237,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quickly open a buffer for scribble
-map <leader>q :e ~/.configs/vim/cache/buffer_scribble<cr>
+map <leader>q :e $XDG_CONFIG_HOME/nvim/cache/buffer_scribble<cr>
 
 " Close the current buffer
 " map <leader>bc :Bclose<cr>:tabclose<cr>gT
@@ -277,7 +260,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   " This was included in amix/vimrc but I have not yet understood
   " why you would ever want to have usetab and newtab enabled
@@ -322,17 +305,19 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    " autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre * :call CleanExtraSpaces()
 endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Shortcuts using <leader>
+" Respectively: go to next misspelled word, previous, add to
+" dictionary, fix
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
@@ -347,11 +332,11 @@ map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Turn persistent undo on 
+" => Turn persistent undo on
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.config/vim/cache/undodir
+    set undodir=$XDG_CONFIG_HOME/nvim/cache/undodir
     set undofile
 catch
 endtry
@@ -359,10 +344,10 @@ endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set paths to cache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set directory=~/.config/vim/cache/swap
-set backupdir=~/.config/vim/cache/backup
-set viewdir=~/.config/vim/cache/view
-set viminfo+=n~/.config/vim/cache/viminfo
+set directory=$XDG_CONFIG_HOME/nvim/cache/swap
+set backupdir=$XDG_CONFIG_HOME/nvim/cache/backup
+set viewdir=$XDG_CONFIG_HOME/nvim/cache/view
+set viminfo+=n$XDG_CONFIG_HOME/nvim/cache/viminfo
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -398,7 +383,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
