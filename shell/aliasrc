@@ -4,7 +4,7 @@
 # and directories are colored when using the `ls` command.
 alias ll="ls -la --color=auto"
 
-alias vim="gvim -v"
+alias vim="nvim"
 alias fd="fdfind"
 alias bat="batcat"
 alias w3m="w3m -o ext_image_viewer=0"
