@@ -68,7 +68,7 @@ let g:ale_completion_enabled = 1
 " Linting
 let g:ale_lint_on_text_changed = 'never'
 
-" Otherwise the linting might trigger and 'de-trigger' the 
+" Otherwise the linting might trigger and 'de-trigger' the
 " signcolumn 24/7, making the screen go from left to right
 " to left to right to left....
 let g:ale_sign_column_always = 1
@@ -83,7 +83,7 @@ let g:lightline = {
       \   'left': [ ['mode', 'paste'],
       \             ['readonly', 'relativepath'],
       \             ['modified', 'fugitive'] ],
-      \   'right': [ [ 'lineinfo' ], 
+      \   'right': [ [ 'lineinfo' ],
       \              ['percent'],
       \              ['fileencoding', 'filetype'] ]
       \ },
@@ -130,7 +130,7 @@ let g:lightline.tab = {
 " => Vimwiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Register a vimwiki different from the default
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
     \ 'path_html': '~/Documents/vimwiki/vimwiki-html/',
     \ 'template_path': '~/Documents/vimwiki/vimwiki-styling/',
     \ 'template_default': 'default',
@@ -139,7 +139,7 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
     \ 'nested_syntaxes': {'python': 'python'},
     \ 'automatic_nested_syntaxes': 1}]
 
-" Parse open vimwiki to html 
+" Parse open vimwiki to html
 nmap <leader>wc <Plug>Vimwiki2HTML
 " Parse the entire vimwiki
 nmap <leader>wC <Plug>VimwikiAll2HTML
@@ -152,7 +152,7 @@ let g:ctrlp_user_command = {
 \ 'types': {
   \ 1: ['.git', 'git ls-files'],
   \ },
-\ 'fallback': 'fd --type file'
+\ 'fallback': 'fdfind --type file'
 \ }
 
 let g:ctrlp_working_path_mode = 0
