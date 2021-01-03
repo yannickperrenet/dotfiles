@@ -43,10 +43,6 @@ source $XDG_CONFIG_HOME/zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 # vi-mode.
 export KEYTIMEOUT=1
 
-# Jump around based on rank and frequency.
-_Z_DATA=$XDG_CACHE_HOME/z
-source $XDG_CONFIG_HOME/zsh/plugins/z/z.sh
-
 # NOTE: Has to be run all the way at the bottom of the `.zshrc` file.
 # From the docs: "In zsh newer than 5.8 (not including 5.8 itself),
 # zsh-syntax-highlighting uses the add-zle-hook-widget facility to

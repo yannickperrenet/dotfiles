@@ -10,15 +10,15 @@
 !i3status/
 !iterm2/
 !mimeapps.list
+!nvim/
 !python/
 !ranger/
 !shell/
 !tmux/
 !tools/
-!vim/
 !x11/
 !zsh/
 
 # Always ignore
 .zcompdump*
-vim/cache/*
+nvim/cache/*
