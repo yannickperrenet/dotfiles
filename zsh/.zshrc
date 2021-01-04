@@ -20,6 +20,9 @@ HISTFILE=$XDG_CACHE_HOME/zsh/history
 # being completed to lower and uppercase.
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+# Make cd push the old directory onto the directory stack.
+setopt AUTO_PUSHD
+
 #################
 # Layout
 #################
