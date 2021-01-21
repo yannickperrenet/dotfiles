@@ -93,6 +93,9 @@ set hlsearch
 " Thus whilst searching it will move the highlight.
 set incsearch
 
+" Neovim requires this so that 'incsearch' affects commands also.
+set inccommand=split
+
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 

@@ -24,3 +24,10 @@ au FileType python set indentkeys-=0#
 """"""""""""""""""""""""""""""
 " Improve readability
 au FileType html setlocal sw=2 ts=2
+
+
+""""""""""""""""""""""""""""""
+" => Javascript section
+""""""""""""""""""""""""""""""
+" Improve readability
+au FileType javascript setlocal sw=2 ts=2
