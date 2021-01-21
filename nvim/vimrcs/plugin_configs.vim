@@ -150,7 +150,7 @@ nmap <leader>wC <Plug>VimwikiAll2HTML
 """"""""""""""""""""""""""""""
 let g:ctrlp_user_command = {
 \ 'types': {
-  \ 1: ['.git', 'git ls-files'],
+  \ 1: ['.git', 'git ls-files -co'],
   \ },
 \ 'fallback': 'fdfind --type file'
 \ }
