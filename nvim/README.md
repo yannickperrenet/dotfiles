@@ -45,8 +45,6 @@ Window movement, tab management and buffers
 * `<leader>h` go to the next buffer
 
 Text alteration
-* `<leader>j` move line of text down
-* `<leader>k` move line of text up
 * `<leader>ss` toggle and untoggle spell checking
 * `<leader>sn` go to next misspelled word
 * `<leader>sp` go to previous misspelled word
@@ -55,6 +53,7 @@ Text alteration
 
 Visual mode
 * Pressing `*` or `#` searches for the current selection
-* `<leader>j` move line(s) of text down
-* `<leader>k` move line(s) of text up
 * `<leader>y` yanks the selection to clipboard
+
+Normal mode
+* `<leader>j` go to any word on screen (uses easymotion)

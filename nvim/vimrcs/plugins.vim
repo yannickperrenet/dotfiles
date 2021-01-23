@@ -32,12 +32,15 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'dense-analysis/ale'
 Plugin 'itchyny/lightline.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
 
 " Searching
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'scrooloose/nerdtree'
+
+" Jumping around
+Plugin 'easymotion/vim-easymotion'
 
 " Other
 Plugin 'yuttie/comfortable-motion.vim'

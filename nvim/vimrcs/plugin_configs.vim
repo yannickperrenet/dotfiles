@@ -235,8 +235,17 @@ let g:comfortable_motion_no_default_key_mappings = 1
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 
+
 """"""""""""""""""""""""""""""
 " => rust.vim
 """"""""""""""""""""""""""""""
 " Automatically run :RustFmt on save of buffer
 let g:rustfmt_autosave = 1
+
+
+""""""""""""""""""""""""""""""
+" => easymotion
+""""""""""""""""""""""""""""""
+" One mapping to rule them all! Jump to any word, anywhere.
+nmap <leader>j <Plug>(easymotion-overwin-w)
+
