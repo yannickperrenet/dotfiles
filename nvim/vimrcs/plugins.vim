@@ -21,7 +21,7 @@ call pathogen#helptags()
 " => Vundle
 """"""""""""""""""""""""""""""
 " Pass a path where Vundle should install plugins
-let s:plugins_path=$XGD_CONFIG_HOME.'/nvim/plugins'
+let s:plugins_path=$XDG_CONFIG_HOME.'/nvim/plugins'
 call vundle#begin(fnameescape(s:plugins_path))
 
 " Let Vundle manage Vundle
