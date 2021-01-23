@@ -148,9 +148,11 @@ nmap <leader>wC <Plug>VimwikiAll2HTML
 """"""""""""""""""""""""""""""
 " => CTRL-P
 """"""""""""""""""""""""""""""
+" When inside a git repository, make sure to stage deleted files as
+" otherwise they will be included in the files.
 let g:ctrlp_user_command = {
 \ 'types': {
-  \ 1: ['.git', 'git ls-files -co'],
+  \ 1: ['.git', 'git ls-files -co --exclude-standard'],
   \ },
 \ 'fallback': 'fdfind --type file'
 \ }
@@ -186,8 +188,11 @@ let g:ctrlp_cache_dir = $XDG_CACHE_HOME.'/ctrlp'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use the the_silver_searcher if possible (much faster than Ack)
-if executable('ag')
+" ripgrep is the fastest of them all and does not have gitignore issues
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --smart-case'
+elseif executable('ag')
+    " Use the the_silver_searcher if possible (much faster than Ack)
   let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
