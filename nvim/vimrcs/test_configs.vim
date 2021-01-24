@@ -21,7 +21,9 @@ endif
 
 " When a sentence spans multiple lines, show a special character for the break
 " and color this character the same as the line numbers
-set showbreak=\ \ ↳\ 
+" set showbreak=\ \ ↳
+
+" Color entire viewport, not just the rows with text
 hi! link NonText LineNr
 
 " Generate a tags file for your current working directory and
@@ -66,10 +68,11 @@ set numberwidth=1
 " augroup END
 
 " Press `gx` to open the file under the cursor. This actually works by
-" using netrw (which is installed by default). However, there seems to
-" be an issue:
-"   https://github.com/vim/vim/issues/4738
-" So for the time being this `nmap` is in here to give us the same
-" behavior.
-nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
+" using netrw (which is installed by default).
 let g:netrw_browsex_viewer="xdg-open"
+if !has('nvim')
+    " In Vim there is an issue:
+    "   https://github.com/vim/vim/issues/4738
+    " This mapping gives more or less the same behavior.
+    nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
+endif
