@@ -248,4 +248,3 @@ let g:rustfmt_autosave = 1
 """"""""""""""""""""""""""""""
 " One mapping to rule them all! Jump to any word, anywhere.
 nmap <leader>j <Plug>(easymotion-overwin-w)
-

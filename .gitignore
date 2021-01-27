@@ -22,3 +22,4 @@
 # Always ignore
 .zcompdump*
 nvim/cache/*
+nvim/.netrwhist

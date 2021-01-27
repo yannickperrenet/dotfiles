@@ -26,10 +26,6 @@ endif
 " Color entire viewport, not just the rows with text
 hi! link NonText LineNr
 
-" Generate a tags file for your current working directory and
-" activated virtual environment
-map <leader>g :!ctags --tag-relative=yes --languages=python -R -f $VIRTUAL_ENV/tags . $VIRTUAL_ENV/lib/python3.7/site-packages<CR>
-set tags=$VIRTUAL_ENV/tags
 " Open the definition in a vertical split
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -44,13 +40,8 @@ set mouse=a
 
 " Toggle cursorline on and off. The autocommand makes it such that the
 " cursorline is only shown in the current window.
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 nnoremap <leader>c :set cursorline!<CR>
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal nocursorline
-  au WinLeave * setlocal nocursorline
-augroup END
 
 " Preview window settings.
 set completeopt=menu,menuone,preview

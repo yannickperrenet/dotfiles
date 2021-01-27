@@ -140,7 +140,6 @@ try
     colorscheme desert
 catch
 endtry
-set background=dark
 
 " Set font according to system
 if has("mac") || has("macunix")
@@ -195,7 +194,7 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces. 'Each shiftwidth wort of indent adds on to the
+" 1 tab == 4 spaces. 'Each shiftwidth worth of indent adds on to the
 " depth of the fold. This is called a fold level.'
 set shiftwidth=4
 set tabstop=4
