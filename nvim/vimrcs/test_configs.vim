@@ -38,10 +38,15 @@ set mouse=a
 " Show [text link](link to something) as text link
 "set conceallevel=2
 
-" Toggle cursorline on and off. The autocommand makes it such that the
-" cursorline is only shown in the current window.
+" cursorline
+function! BlinkCursorline()
+    set cursorline!
+    redraw
+    sleep 100m
+    set cursorline!
+endfunction
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-nnoremap <leader>c :set cursorline!<CR>
+nnoremap <leader>c :call BlinkCursorline()<CR>
 
 " Preview window settings.
 set completeopt=menu,menuone,preview
