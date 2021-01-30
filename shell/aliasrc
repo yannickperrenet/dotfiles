@@ -1,11 +1,18 @@
 # alias ctags="`brew --prefix`/bin/ctags"
 
+alias bat="batcat"
+alias brave="brave-browser"
+alias clip="xclip -sel clip"
+alias fd="fdfind"
+
 # Might also be interesting to look into LS_COLORS to define how files
 # and directories are colored when using the `ls` command.
 alias ll="ls -la --color=auto"
 
+# Use appimage for nvim to get v0.5.0 which is required for the
+# nvim-lspconfig plugin. NOTE: this double alias makes it so that
+# calling "vim" actually calls the appimage as well.
 alias vim="nvim"
-alias fd="fdfind"
-alias bat="batcat"
+alias nvim="nvim.appimage"
+
 alias w3m="w3m -o ext_image_viewer=0"
-alias clip="xclip -sel clip"
