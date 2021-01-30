@@ -49,7 +49,7 @@ hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 nnoremap <leader>c :call BlinkCursorline()<CR>
 
 " Preview window settings.
-set completeopt=menu,menuone,preview
+set completeopt=menu,menuone,noinsert,noselect
 set previewheight=10
 set splitbelow
 
@@ -72,3 +72,8 @@ if !has('nvim')
     " This mapping gives more or less the same behavior.
     nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 endif
+
+" Otherwise the linting might trigger and 'de-trigger' the
+" signcolumn 24/7, making the screen go from left to right
+" to left to right to left....
+set signcolumn=yes

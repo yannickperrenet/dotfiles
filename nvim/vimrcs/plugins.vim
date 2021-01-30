@@ -29,15 +29,14 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Additional Plugins
 " Styling and filetypes
-Plugin 'dense-analysis/ale'
 Plugin 'itchyny/lightline.vim'
 Plugin 'godlygeek/tabular'
-" Plugin 'rust-lang/rust.vim'
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-lua/completion-nvim'
 
 " Searching
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'scrooloose/nerdtree'
 
 " Jumping around
 Plugin 'easymotion/vim-easymotion'

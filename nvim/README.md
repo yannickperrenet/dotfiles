@@ -1,6 +1,8 @@
 # Vim Dotfiles
 Here you will find an up-to-date version of my vim-dotfiles.
 
+In case things are not running as expected inside Nvim, run `:checkhealth`.
+
 # Included Plugins
 The following plugins will automatically be setup when cloning this repo
 * [Pathogen](https://github.com/tpope/vim-pathogen): Manage vim runtimepath. Install plugins and runtime files in their own private directories.

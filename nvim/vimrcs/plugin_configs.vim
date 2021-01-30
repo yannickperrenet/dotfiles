@@ -10,71 +10,6 @@ highlight SignColumn ctermfg=none ctermbg=none
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ale
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Searches upward to the file to get the virtualenv. Does not
-" require you to have the virtualenv set, but will fall back to
-" $VIRTUAL_ENV if it cannot find it. Make sure you have installed
-" `python-language-server` into the environment.
-function! GetPylsExecutable(buffer) abort
-    return ale_linters#python#FindVirtualenv(a:buffer) . '/bin/pyls'
-endfunction
-
-" Overwrites the build in 'pyls' because that requires using
-" `pipenv`.
-call ale#linter#Define('python-lsp', {
-\   'name': 'pyls',
-\   'lsp': 'stdio',
-\   'executable': function('GetPylsExecutable'),
-\   'command': '%e run',
-\   'project_root': function('ale#python#FindProjectRoot'),
-\   'completion_filter': 'ale#completion#python#CompletionItemFilter',
-\   'lsp_config': {b -> ale#Var(b, 'python_pyls_config')},
-\})
-
-let g:ale_linters = {
-\   'javascript': ['jshint'],
-\   'python': ['flake8', 'pyls', 'mypy'],
-\   'rust': ['analyzer', 'rls']
-\}
-
-" Linter configurations.
-" * flake8
-"   See: https://flake8.pycqa.org/en/latest/user/options.html
-"   Some configuration options have been introduced at a later
-"   version and thus need to be disabled for lower version.
-"   Otherwise ale does not work in its entirety for python.
-let g:flake8_version = system('echo $(flake8 --version | grep -o "^\S*" | tr -d ".")')
-if g:flake8_version < 379
-    let g:ale_python_flake8_options = '--max-line-length=88'
-else
-    let g:ale_python_flake8_options = '--max-line-length=88 --max-doc-length=72'
-endif
-
-" * mypy
-let g:ale_python_mypy_options = '--allow-redefinition'
-
-
-nmap <silent> <leader>a <Plug>(ale_next_wrap)
-nmap <leader>gd <Plug>(ale_go_to_definition)
-nmap <leader>fr <Plug>(ale_find_references)
-
-" Show documentation of function under cursor.
-nmap <leader>sd <Plug>(ale_hover)
-
-let g:ale_set_highlights = 1
-let g:ale_completion_enabled = 1
-
-" Linting
-let g:ale_lint_on_text_changed = 'never'
-
-" Otherwise the linting might trigger and 'de-trigger' the
-" signcolumn 24/7, making the screen go from left to right
-" to left to right to left....
-let g:ale_sign_column_always = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
@@ -104,26 +39,6 @@ let g:lightline = {
 let g:lightline.tab = {
 	\ 'active': [ 'tabnum', 'filename', 'modified' ],
 	\ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:NERDTreeWinPos = "right"
-" let NERDTreeShowHidden = 0
-" let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-" let g:NERDTreeWinSize = 35
-" map <leader>nn :NERDTreeToggle<cr>
-
-
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-" let g:bufExplorerDefaultHelp=0
-" let g:bufExplorerShowRelativePath=1
-" let g:bufExplorerFindActive=1
-" let g:bufExplorerSortBy='name'
-" map <leader>o :BufExplorer<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,14 +152,83 @@ nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 
 
 """"""""""""""""""""""""""""""
-" => rust.vim
-""""""""""""""""""""""""""""""
-" Automatically run :RustFmt on save of buffer
-let g:rustfmt_autosave = 1
-
-
-""""""""""""""""""""""""""""""
 " => easymotion
 """"""""""""""""""""""""""""""
 " One mapping to rule them all! Jump to any word, anywhere.
 nmap <leader>j <Plug>(easymotion-overwin-w)
+
+
+""""""""""""""""""""""""""""""
+" => completion-nvim
+""""""""""""""""""""""""""""""
+let g:completion_matching_strategy_list = ['exact', 'substring']
+
+let g:completion_chain_complete_list = {
+    \'default' : [
+    \    {'complete_items': ['lsp']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+    \}
+
+let g:completion_trigger_character = ['.']
+let g:completion_trigger_keyword_length = 2
+
+" Otherwise matches starting with '_' will be first in the completion
+" list, whilst they are often the matches you want.
+let g:completion_sorting = 'none'
+
+
+""""""""""""""""""""""""""""""
+" => LSP
+""""""""""""""""""""""""""""""
+" :LspInfo
+"
+" Configure a new Language Server:
+" https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+"
+" pyright:
+" * pyrightconfig.json
+" * https://github.com/microsoft/pyright/blob/master/docs/configuration.md
+
+lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Setup defaults
+local settings = {
+  pyright = { }
+}
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+
+  -- Completion.
+  local nvim_completion = require('completion')
+  nvim_completion.on_attach(client, bufnr)
+end
+
+-- Use a loop to conveniently both setup defined servers
+-- and map buffer local keybindings when the language server attaches
+local servers = { "pyright", "tsserver" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { settings = settings[lsp], on_attach = on_attach }
+end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true
+    }
+)
+
+EOF

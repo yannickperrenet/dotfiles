@@ -18,6 +18,9 @@ au FileType python set cindent
 au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
 
+" Use LSP omni-completion in Python files.
+" au Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
 
 """"""""""""""""""""""""""""""
 " => HTML section
