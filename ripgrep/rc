@@ -1,0 +1,17 @@
+# The configuration from this file can be ignored with:
+# --no-config
+
+# "Each line is given to ripgrep as a single command line argument
+# verbatim." And so environment variables don't work, e.g.
+# $XDG_CONFIG_HOME.
+# That is why the `--ignore-file` is set together with an alias for
+# `rg`.
+
+# Make output look like The Silver Searcher's output.
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=path:fg:green
+--colors=path:style:bold
+--colors=match:fg:black
+--colors=match:bg:yellow
+--colors=match:style:nobold

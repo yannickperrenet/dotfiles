@@ -13,6 +13,7 @@
 !nvim/
 !python/
 !ranger/
+!ripgrep/
 !shell/
 !tmux/
 !tools/

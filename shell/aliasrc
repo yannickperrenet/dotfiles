@@ -1,3 +1,6 @@
+# To run any the main executable instead of the aliased one preceed
+# the command with `\`, e.g. `\rg`.
+
 # alias ctags="`brew --prefix`/bin/ctags"
 
 alias bat="batcat"
@@ -9,15 +12,15 @@ alias fd="fdfind"
 # and directories are colored when using the `ls` command.
 alias ll="ls -la --color=auto"
 
-# Specify ignore file, which takes lowest precedence of all ignore
-# files. The additional benefit is that it does not polute the $HOME
-# directory.
-alias rg="rg --ignore-file=$XDG_CONFIG_HOME/rg/rgignore"
-
 # Use appimage for nvim to get v0.5.0 which is required for the
 # nvim-lspconfig plugin. NOTE: this double alias makes it so that
 # calling "vim" actually calls the appimage as well.
 alias vim="nvim"
 alias nvim="nvim.appimage"
+
+# Specify ignore file, which takes lowest precedence of all ignore
+# files. The additional benefit is that it does not polute the $HOME
+# directory.
+alias rg="rg --ignore-file=$XDG_CONFIG_HOME/ripgrep/ignore"
 
 alias w3m="w3m -o ext_image_viewer=0"
