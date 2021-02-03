@@ -85,12 +85,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
 "     \ }
 
 let g:ctrlp_extensions = ['buffertag']
-" map <leader>t :CtrlPBufTag<cr>
 
-" Flags and arguments to `ctags`
-let g:ctrlp_buftag_types = {
-\ 'python': '--format=2 --fields=fKst',
-\ }
+nnoremap <C-b> :CtrlPBuffer<CR>
+nnoremap <C-m> :CtrlPMRU<CR>
 
 " Ask for another character after <C-o> to specify how to open
 " the marked (with <C-z>) files.
