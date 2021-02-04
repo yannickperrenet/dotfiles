@@ -77,3 +77,11 @@ endif
 " signcolumn 24/7, making the screen go from left to right
 " to left to right to left....
 set signcolumn=yes
+
+" Use Esc in terminal to enter normal mode. This does interfere
+" with the vi-mode from zsh, but this does not matter as it has
+" the exact same functionality.
+tnoremap <Esc> <C-\><C-n>
+
+" Switch between last opened buffers. This is easier to press.
+nnoremap <C-s> <C-^>
