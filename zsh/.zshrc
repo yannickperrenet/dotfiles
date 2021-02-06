@@ -31,6 +31,31 @@ fpath+=$XDG_CONFIG_HOME/zsh/themes/pure
 autoload -U promptinit; promptinit
 zstyle :prompt:pure:path color "#add8e6"
 prompt pure
+# Overwrite how the title function is called. Important to do this after
+# `prompt pure`.
+prompt_pure_preexec() {
+	if [[ -n $prompt_pure_git_fetch_pattern ]]; then
+		# Detect when Git is performing pull/fetch, including Git aliases.
+		local -H MATCH MBEGIN MEND match mbegin mend
+		if [[ $2 =~ (git|hub)\ (.*\ )?($prompt_pure_git_fetch_pattern)(\ .*)?$ ]]; then
+			# We must flush the async jobs to cancel our git fetch in order
+			# to avoid conflicts with the user issued pull / fetch.
+			async_flush_jobs 'prompt_pure'
+		fi
+	fi
+
+	typeset -g prompt_pure_cmd_timestamp=$EPOCHSECONDS
+
+	# Shows the current directory and executed command in the title while a process is active.
+    DISPLAY_PATH=$(print -P "%~")  # THIS LINE IS CHANGED
+	prompt_pure_set_title 'ignore-escape' "$DISPLAY_PATH: $2"  # THIS LINE IS CHANGED
+
+	# Disallow Python virtualenv from updating the prompt. Set it to 12 if
+	# untouched by the user to indicate that Pure modified it. Here we use
+	# the magic number 12, same as in `psvar`.
+	export VIRTUAL_ENV_DISABLE_PROMPT=${VIRTUAL_ENV_DISABLE_PROMPT:-12}
+}
+
 
 #################
 # ZSH Plugins

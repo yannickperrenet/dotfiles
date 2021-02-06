@@ -85,3 +85,10 @@ tnoremap <Esc> <C-\><C-n>
 
 " Switch between last opened buffers. This is easier to press.
 nnoremap <C-s> <C-^>
+
+" Switch between last accessed window
+nnoremap <leader>p <C-w>p
+
+" Set window title of terminal (used for searching open windows)
+set title
+set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{getcwd()})%)
