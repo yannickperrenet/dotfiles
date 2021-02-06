@@ -36,7 +36,8 @@ client.focused      $blue       $blue       $blue
 
 # Use no window title and a border. Make sure to not use a window title
 # as otherwise the gaps will not work.
-default_border pixel 2
+# default_border normal 2
+default_border pixel 3
 
 # gaps inner 15
 # gaps outer -15
@@ -57,12 +58,8 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id mirror-displays
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+w exec --no-startup-id rofi -show window
 
 # start a terminal
 bindsym $mod+Return exec $term
@@ -83,16 +80,6 @@ bindsym $mod+minus exec "amixer sset Master 3%-"
 ########################################
 # kill focused window
 bindsym $mod+q kill
-
-# split in horizontal orientation (split to right)
-# bindsym $mod+Shift+backslash split horizontal
-# bindsym $mod+Shift+v split horizontal
-
-# split in vertical orientation (split down)
-# bindsym $mod+minus split vertical
-# bindsym $mod+Shift+s split vertical
-
-bindsym $mod+t split toggle
 
 # change focus
 bindsym $mod+h focus left
@@ -116,9 +103,8 @@ bindsym $mod+c focus child
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout toggle stacked split
+bindsym $mod+t split toggle
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -156,25 +142,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# enter resize mode to resize windows
-bindsym $mod+Shift+r mode "resize"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 15 px or 15 ppt
-        bindsym k resize grow height 15 px or 15 ppt
-        bindsym j resize shrink height 15 px or 15 ppt
-        bindsym l resize grow width 15 px or 15 ppt
-
-        # back to normal
-        bindsym Escape mode "default"
-}
+# window resizing
 bindsym $mod+Up             resize grow width 15 px or 15 ppt
 bindsym $mod+Down           resize shrink width 15 px or 15 ppt
 bindsym $mod+Shift+Up       resize grow height 15 px or 15 ppt
@@ -190,8 +158,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+z restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Lock screen
+# Lock screen, shutdown, exit.
 bindsym $mod+x          exec --no-startup-id i3lock -e -f -c 1d2021
-bindsym $mod+Shift+x    exec [ $(echo "yes\nno" | dmenu) = "yes" ] && shutdown now
+bindsym $mod+Shift+x    exec [ $(echo "yes\nno" | rofi -dmenu -p "Do you want to shutdown?") = "yes" ] && shutdown now
+bindsym $mod+Shift+e    exec [ $(echo "yes\nno" | rofi -dmenu -p "Do you want to logout?") = "yes" ] && i3-msg exit

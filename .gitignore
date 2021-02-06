@@ -14,6 +14,7 @@
 !python/
 !ranger/
 !ripgrep/
+!rofi/
 !shell/
 !tmux/
 !tools/
