@@ -65,3 +65,5 @@ source $XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlight
 # more information. (e.g.  apt-cache show fzf)"
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+bindkey '^F' fzf-file-widget
+bindkey '^X^J' fzf-cd-widget  # j for jump
