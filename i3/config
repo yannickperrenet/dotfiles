@@ -194,4 +194,4 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Lock screen
 bindsym $mod+x          exec --no-startup-id i3lock -e -f -c 1d2021
-bindsym $mod+Shift+x    exec --no-startup-id i3lock -e -f -c 1d2021; exec systemctl suspend
+bindsym $mod+Shift+x    exec [ $(echo "yes\nno" | dmenu) = "yes" ] && shutdown now
