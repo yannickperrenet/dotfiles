@@ -162,5 +162,5 @@ bindsym $mod+Shift+z restart
 
 # Lock screen, shutdown, exit.
 bindsym $mod+x          exec --no-startup-id i3lock -e -f -c 1d2021
+bindsym $mod+e          exec [ $(echo "yes\nno" | rofi -dmenu -p "Do you want to logout?") = "yes" ] && i3-msg exit
 bindsym $mod+Shift+x    exec [ $(echo "yes\nno" | rofi -dmenu -p "Do you want to shutdown?") = "yes" ] && shutdown now
-bindsym $mod+Shift+e    exec [ $(echo "yes\nno" | rofi -dmenu -p "Do you want to logout?") = "yes" ] && i3-msg exit
