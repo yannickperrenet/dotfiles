@@ -39,13 +39,20 @@ set mouse=a
 "set conceallevel=2
 
 " cursorline
+hi CursorLine cterm=NONE ctermbg=darkblue
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
 function! BlinkCursorline()
     set cursorline!
     redraw
     sleep 100m
     set cursorline!
 endfunction
-hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 nnoremap <leader>c :call BlinkCursorline()<CR>
 
 " Preview window settings.

@@ -176,6 +176,11 @@ let g:completion_sorting = 'none'
 
 
 """"""""""""""""""""""""""""""
+" => Rust
+""""""""""""""""""""""""""""""
+let g:rustfmt_autosave = 1
+
+""""""""""""""""""""""""""""""
 " => LSP
 """"""""""""""""""""""""""""""
 " :LspInfo
@@ -216,7 +221,7 @@ end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver" }
+local servers = { "pyright", "tsserver", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { settings = settings[lsp], on_attach = on_attach }
 end

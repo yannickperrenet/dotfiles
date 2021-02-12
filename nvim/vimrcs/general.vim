@@ -324,7 +324,7 @@ map <leader>sf z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+map <leader>P :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

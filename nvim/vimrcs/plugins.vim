@@ -33,6 +33,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'nvim-lua/completion-nvim'
+Plugin 'rust-lang/rust.vim'
 
 " Searching
 Plugin 'mileszs/ack.vim'
