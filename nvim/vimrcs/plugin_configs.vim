@@ -69,7 +69,7 @@ let g:ctrlp_user_command = {
 \ 'types': {
   \ 1: ['.git', 'git ls-files -co --exclude-standard'],
   \ },
-\ 'fallback': 'fdfind --type file'
+\ 'fallback': 'fdfind --hidden --type file'
 \ }
 
 let g:ctrlp_working_path_mode = 0
