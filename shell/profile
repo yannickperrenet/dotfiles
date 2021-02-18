@@ -9,10 +9,11 @@ export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="/usr/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
-# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
+export PATH="$HOME/.cargo/bin:$PATH"
 
-# Set Man Pages
+# Brew stuff
 # export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
 
 # Default programs
 export BROWSER="brave-browser"
@@ -25,9 +26,11 @@ export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_OPT_HOME="$HOME/.opt"
 # ---
 export HISTFILE="$XDG_DATA_HOME/history"
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
+export PYENV_ROOT="$XDG_OPT_HOME/pyenv"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIMINIT="source $HOME/.config/nvim/init.vim"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/rc"
