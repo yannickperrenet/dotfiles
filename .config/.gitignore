@@ -1,0 +1,27 @@
+# Blacklist files/folders in same directory as the .gitignore file
+# Ignore everything
+/*
+
+# Except these files
+!.gitignore
+!README.md
+!i3/
+!i3status/
+!iterm2/
+!mimeapps.list
+!nvim/
+!python/
+!ranger/
+!ripgrep/
+!rofi/
+!shell/
+!tmux/
+!tools/
+!user-dirs.dirs
+!x11/
+!zsh/
+
+# Always ignore
+.zcompdump*
+nvim/cache/*
+nvim/.netrwhist

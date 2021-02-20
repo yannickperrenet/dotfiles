@@ -1,0 +1,33 @@
+# -- use the setup by gpakosz ----------------------------------------------
+# Make sure to source this configuration file in the .tmux.conf.local file
+# in the user configuration section.
+
+
+# -- own configurations ----------------------------------------------------
+# split current window vertically
+bind | split-window -h
+
+# use Alt-arrow keys without prefix key to switch panes
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# shift arrow to switch windows
+bind -n S-Left  previous-window
+bind -n S-Right next-window
+
+# use vim keys in copy mode 
+# bind -T copy-mode-vi 'v' send-keys -X begin-selection
+
+# tmux-resurrect remember vim sessions
+set -g @resurrect-strategy-vim 'session'
+
+
+# The lines below have to be uncommented and included in the tmux.conf file.
+# # -- plugins ---------------------------------------------------------------
+# # list of plugins
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# # initialize TMUX plugin manager (keep this line at the very bottom)
+# run -b '~/.config/tmux/plugins/tpm/tpm'

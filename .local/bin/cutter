@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Run cookiecutter templates
+
+[ -z "$1" ] && echo "Example usage: 'cutter py'" && exit 1
+
+cookiecutter "$XDG_OPT_HOME/cutter-$1"

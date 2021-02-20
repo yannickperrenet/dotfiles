@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Run `cheat.sh` queries
+
+[ -z "$1" ] && echo "Example usage: 'cheat rg'" && exit 1
+
+curl "https://cheat.sh/$1"

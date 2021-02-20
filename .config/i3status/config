@@ -1,0 +1,54 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "run_watch quote"
+order += "volume master"
+order += "wireless _first_"
+order += "battery all"
+order += "memory"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = "📶 %quality at %essid"
+        format_down = "📶: down"
+}
+
+battery all {
+        status_chr = "🔌"
+        status_full = "🔋"
+        status_bat = "🔋"
+        format = "%status %percentage"
+}
+
+memory {
+        format = "💻 %used"
+        threshold_degraded = "4G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "📅 %Y-%m-%d 🕔 %H:%M:%S"
+}
+
+volume master {
+        format = "🔉 %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+run_watch quote {
+    pidfile = "/home/"
+    format = "TIME WITHOUT ATTENTION IS WORTHLESS, SO VALUE ATTENTION OVER TIME!"
+}
