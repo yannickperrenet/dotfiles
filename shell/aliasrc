@@ -6,6 +6,10 @@
 alias bat="batcat"
 alias brave="brave-browser"
 alias clip="xclip -sel clip"
+
+# Mnemonic: dotfiles git
+alias dfg="/usr/bin/git --git-dir=$XDG_DATA_HOME/dotfiles --work-tree=$HOME"
+
 alias fd="fdfind"
 
 # Might also be interesting to look into LS_COLORS to define how files

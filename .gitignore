@@ -20,6 +20,7 @@
 !tools/
 !x11/
 !zsh/
+!.local/share/dotfiles
 
 # Always ignore
 .zcompdump*
