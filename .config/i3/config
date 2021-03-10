@@ -32,7 +32,8 @@ exec --no-startup-id feh --bg-scale ~/.local/share/wall.jpg
 # Colors to indicate the focus of the window
 set $blue #00E6FF
 
-client.focused      $blue       $blue       $blue
+#class                    border    backgr.     text        indicator   child_border
+client.focused            $blue     #285577     #ffffff     #2e9ef4     $blue
 
 # Use no window title and a border. Make sure to not use a window title
 # as otherwise the gaps will not work.
