@@ -33,7 +33,7 @@ Activating Dracula theme, as can be found on the official
 My special thanks goes out to the [Ultimate Vim configuration](https://github.com/amix/vimrc) which
 has helped me out a great deal to get started with my own `.vimrc`.
 
-Use [Vundle](https://github.com/VundleVim/Vundle.vim) to manage packages, run `:PluginInstall` to
+Use [vim-plug](https://github.com/junegunn/vim-plug) to manage packages, run `:PlugInstall` to
 install the plugins (once inside Vim).
 
 ### tmux

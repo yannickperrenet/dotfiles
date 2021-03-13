@@ -1,1 +1,1 @@
-This directory was added, because otherwise Vundle would remove these sources on a `:PluginClean` call.
+This directory was added, so that `vim-plug` does not try to manage these plugins.

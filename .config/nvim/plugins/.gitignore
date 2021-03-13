@@ -1,8 +1,5 @@
 # Ignore all plugins
 */
 
-# Except
-!Vundle.vim
-
 # Mac generated files
 .DS_Store
