@@ -99,3 +99,16 @@ nnoremap <leader>p <C-w>p
 " Set window title of terminal (used for searching open windows)
 set title
 set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{getcwd()})%)
+
+nnoremap <C-q> :call QFixToggle()<CR>
+
+" https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+function! QFixToggle()
+  if exists("g:qfix_win")
+    cclose
+    unlet g:qfix_win
+  else
+    copen
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
