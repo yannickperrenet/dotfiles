@@ -34,3 +34,21 @@ au FileType html setlocal sw=2 ts=2
 """"""""""""""""""""""""""""""
 " Improve readability
 au FileType javascript setlocal sw=2 ts=2
+
+
+""""""""""""""""""""""""""""""
+" => hcl section
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.hcl set filetype=hcl
+
+" Improve readability
+au FileType hcl setlocal sw=2 ts=2
+
+
+""""""""""""""""""""""""""""""
+" => Terraform section
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.tf set filetype=terraform
+
+" Improve readability
+au FileType terraform setlocal sw=2 ts=2
