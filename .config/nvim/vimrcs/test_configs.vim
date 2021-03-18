@@ -100,6 +100,8 @@ nnoremap <leader>p <C-w>p
 set title
 set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{getcwd()})%)
 
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprev<CR>
 nnoremap <C-q> :call QFixToggle()<CR>
 
 " https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
