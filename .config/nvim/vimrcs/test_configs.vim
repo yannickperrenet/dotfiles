@@ -114,3 +114,8 @@ function! QFixToggle()
     let g:qfix_win = bufnr("$")
   endif
 endfunction
+
+" Set ' mark on "k" and "j" movements if they are jumping multiple lines
+" to emulate populating the jumplist.
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
