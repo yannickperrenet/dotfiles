@@ -14,6 +14,7 @@ general {
 order += "run_watch quote"
 order += "volume master"
 order += "wireless _first_"
+order += "ethernet _first_"
 order += "battery all"
 order += "memory"
 order += "tztime local"
@@ -21,6 +22,11 @@ order += "tztime local"
 wireless _first_ {
         format_up = "📶 %quality at %essid"
         format_down = "📶: down"
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
 }
 
 battery all {

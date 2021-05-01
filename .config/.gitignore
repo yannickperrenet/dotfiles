@@ -4,6 +4,7 @@
 
 # Except these files
 !.gitignore
+!compton.conf
 !README.md
 !i3/
 !i3status/
