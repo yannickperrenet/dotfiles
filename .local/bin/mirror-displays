@@ -7,3 +7,4 @@ primary="$(echo "$xrandr_out" | head -1)"
 secondary="$(echo "$xrandr_out" | tail -1)"
 
 xrandr --output "$secondary" --same-as "$primary"
+xrandr --auto
