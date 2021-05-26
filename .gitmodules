@@ -22,3 +22,6 @@
 [submodule ".opt/cutter-py"]
 	path = .opt/cutter-py
 	url = https://github.com/yannickperrenet/cutter-py
+[submodule ".opt/zenbrowsing"]
+	path = .opt/zenbrowsing
+	url = https://github.com/florianperrenet/zenbrowsing.git
