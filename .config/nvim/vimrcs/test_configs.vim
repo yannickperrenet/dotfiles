@@ -119,3 +119,6 @@ endfunction
 " to emulate populating the jumplist.
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
+" Moving visually selected text around with proper indentation
+vnoremap K :m '<-2<CR>gv=gv
