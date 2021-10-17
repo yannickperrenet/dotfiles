@@ -27,8 +27,7 @@ bar {
         # height 50
 }
 
-exec --no-startup-id feh --bg-scale ~/.local/share/wall.jpg
-exec --no-startup-id compton
+# exec --no-startup-id ~/.opt/activitywatch/aw-qt
 
 # Colors to indicate the focus of the window
 set $blue #00E6FF
@@ -52,12 +51,6 @@ default_border pixel 3
 # Applications
 ########################################
 set $term --no-startup-id i3-sensible-terminal
-
-# Otherwise my eyes are just bleeding...
-exec --no-startup-id redshift-gtk
-
-# My screen setup.
-exec --no-startup-id mirror-displays
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun

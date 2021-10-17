@@ -1,3 +1,4 @@
+#!/bin/zsh
 # NOTE: The content of this file must be compatible with any /bin/sh
 
 # Set all environment variables (except bash-specific ones) here
@@ -16,6 +17,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
 
 # Default programs
+export TERMINAL="alacritty"
 export BROWSER="brave-browser"
 export EDITOR="nvim.appimage"
 
@@ -27,6 +29,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_OPT_HOME="$HOME/.opt"
+# Since Ubuntu comes with a display manager, which runs `startx` the path between
+# regular login and login through tty differs if the xinitrc is not in the $HOME
+# directory.
+export XINITRC="$HOME/.xinitrc"
 # ---
 export HISTFILE="$XDG_DATA_HOME/history"
 export PYENV_ROOT="$XDG_OPT_HOME/pyenv"
@@ -47,3 +53,10 @@ export MPLCONFIGDIR="$XDG_CONFIG_HOME/matplotlib"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
 export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
+
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Start an Xorg display server using the `xstart` frontend if it is not
+# already running.
+! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
