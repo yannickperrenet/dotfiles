@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Do not start `xrdb` processes in the background to avoid race conditions.
+xrdb "$XDG_CONFIG_HOME/x11/Xresources"
+
+# My custom screen setup.
+mirror-displays
+
+feh --bg-scale ~/.local/share/wall.jpg &
+compton &
+
+# Otherwise my eyes are just bleeding...
+redshift -P &
