@@ -13,6 +13,7 @@
 !nvim/
 !python/
 !ranger/
+!redshift.conf
 !ripgrep/
 !rofi/
 !shell/
