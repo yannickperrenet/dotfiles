@@ -41,6 +41,8 @@ Plug 'easymotion/vim-easymotion'
 " Other
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-commentary'
+" Unified color scheme
+Plug 'junegunn/seoul256.vim'
 " Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vimwiki/vimwiki'

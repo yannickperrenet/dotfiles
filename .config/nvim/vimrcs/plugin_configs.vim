@@ -1,12 +1,34 @@
 """"""""""""""""""""""""""""""
 " => Colorscheme and Fonts
 """"""""""""""""""""""""""""""
-set background=dark
-colorscheme peaksea
+let curr_period = readfile($XDG_DATA_HOME.'/redshift/current_period')[0]
+if curr_period == 'day'
+    " This value is remapped in the alacritty.yml
+    let g:seoul256_background = 255
+else
+    let g:seoul256_background = 240
+endif
+colorscheme seoul256
+" hi Normal cterm=NONE ctermbg=255
 
+" When guicolors are enabled, the color remapping does not work.
+" if has('termguicolors')
+"   set termguicolors
+" endif
+
+" Peaksea set up:
+" set background=dark
+" colorscheme peaksea
+
+" Color the cursorline
+" hi CursorLine cterm=NONE ctermbg=53
+"
 " OMG, without this the signcolumn is displayed as DarkGreen
 " ... so ugly
-highlight SignColumn ctermfg=none ctermbg=none
+" highlight SignColumn ctermfg=none ctermbg=none
+"
+" Alternative:
+" colorscheme ron
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,7 +91,7 @@ let g:ctrlp_user_command = {
 \ 'types': {
   \ 1: ['.git', 'git ls-files -co --exclude-standard'],
   \ },
-\ 'fallback': 'fdfind --hidden --type file'
+\ 'fallback': 'fdfind --hidden --type file --ignore-file=.gitignore 2>/dev/null'
 \ }
 
 let g:ctrlp_working_path_mode = 0

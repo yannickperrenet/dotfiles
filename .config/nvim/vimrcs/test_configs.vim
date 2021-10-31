@@ -38,8 +38,6 @@ set mouse=a
 " Show [text link](link to something) as text link
 "set conceallevel=2
 
-" cursorline
-hi CursorLine cterm=NONE ctermbg=darkblue
 augroup CursorLine
     au!
     au VimEnter * setlocal cursorline
@@ -123,6 +121,3 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 " Moving visually selected text around with proper indentation
 vnoremap <Up> :m '<-2<CR>gv=gv
 vnoremap <Down> :m '>+1<CR>gv=gv
-
-" Color the cursorline
-hi CursorLine cterm=NONE ctermbg=53
