@@ -23,6 +23,7 @@
 !tools/
 !user-dirs.dirs
 !x11/
+!zathura/
 !zsh/
 
 # Always ignore
