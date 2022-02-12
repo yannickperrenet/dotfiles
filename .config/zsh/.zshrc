@@ -12,6 +12,12 @@ source "$XDG_CONFIG_HOME/shell/aliasrc"
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
+# Share history across terminals
+# setopt sharehistory
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 
 # Can be used to color items in the completion list.
 # zmodload zsh/complist

@@ -1,22 +1,27 @@
 # To run any the main executable instead of the aliased one preceed
 # the command with `\`, e.g. `\rg`.
 
-# alias ctags="`brew --prefix`/bin/ctags"
 
-alias bat="batcat"
-alias brave="brave-browser"
+# Might also be interesting to look into LS_COLORS to define how files
+# and directories are colored when using the `ls` command.
+# - `LC_COLLATE=C` to list dotfiles first.
+alias ll="LC_COLLATE=C ls -la --color=auto --group-directories-first"
+
+# ---
+# Utilities
+# ---
 alias clip="xclip -sel clip"
 
 # Mnemonic: dotfiles git. Alias to manage the dotfiles as a bare git
 # repository.
 alias dfg="/usr/bin/git --git-dir=$XDG_DATA_HOME/dotfiles --work-tree=$HOME"
 
+# ---
+# Third-party software
+# ---
+alias bat="batcat"
 alias fd="fdfind"
-
-# Might also be interesting to look into LS_COLORS to define how files
-# and directories are colored when using the `ls` command.
-# - `LC_COLLATE=C` to list dotfiles first.
-alias ll="LC_COLLATE=C ls -la --color=auto --group-directories-first"
+alias brave="brave-browser"
 
 # Use appimage for nvim to get v0.5.0 which is required for the
 # nvim-lspconfig plugin. NOTE: this double alias makes it so that
@@ -30,3 +35,4 @@ alias nvim="nvim.appimage"
 alias rg="rg --ignore-file=$XDG_CONFIG_HOME/ripgrep/ignore"
 
 alias w3m="w3m -o ext_image_viewer=0"
+alias kc="minikube kubectl --"

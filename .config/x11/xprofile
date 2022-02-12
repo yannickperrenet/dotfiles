@@ -8,6 +8,7 @@ mirror-displays
 
 feh --bg-scale ~/.local/share/wall.jpg &
 compton &
+dunst &
 
 # Otherwise my eyes are just bleeding...
 redshift -P &
