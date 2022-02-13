@@ -1,38 +1,32 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set window title of terminal (used for searching open windows)
 set title
+" Nvim: options.vim (plugin) (/home/user/.config/nvim)
 set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{getcwd()})%)
 
-" Set number of lines to remember. Past commands are stored in the file
-" ~/.viminfo
-set history=500
+" Enable loading filetype detection, filetype plugins and filetype indent
+" NOTE: Must come after `packadd` calls, because `packadd` adds
+" to `runtimepath` and we want to make sure that `ftdetect`
+" directories of packages are evaluated.
+filetype plugin indent on
 
-" Enable filetype plugins, e.g. the standard included python.vim
-filetype plugin on
-filetype indent on
-
-" When a file has been changed outside of Vim, automatically read it again.
-" Note: it does not reload files unless you run an external command like
-" !ls Manually reloading a file can be done using :e
-set autoread
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
+" :W --> sudo saves the file. Useful for permission-denied errors.
 command W w !sudo tee % > /dev/null
 
+" TODO: Structure all autocommands together
 " Return to last edit position when opening files (You want this!)
+" When starting to edit an existing file (any filetype), do:
+" - line("'\"") gets the line number of the cursor position when last
+"   exiting the current buffer.
+"   - 'x get position of mark x
+"   - \" means the mark " which is the cursor position when last exiting
+"     the current buffer
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Show line numbers, allows for faster movement inside file.
-set relativenumber
+set relativenumber  " great for fast multi-line movement
+set number  " still show actual current line number
 
-" Linebreak on 100 characters
-set tw=100
+set textwidth=100  " Linebreak on 100 characters
+set whichwrap=b,h,l,s,<,>,[,],~
 
 " Great for Python or structuring note taking
 if has('folding')
@@ -42,77 +36,37 @@ if has('folding')
     set foldlevelstart=3
 endif
 
+" Minimal number of screen lines to keep above and below the cursor.
+set scrolloff=10
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Turn on the wildmenu. This enables a menu at the bottom of the window
-" when typing a command, e.g. :color <TAB>
+" Command-line completion using `<Tab>` (the default `wildchar`)
 set wildmenu
-
-" Ignore compiled files. For example when using the CtrlP plugin, it will
-" ignore the .git files.
-set wildignore=*.o,*~,*.pyc
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/venv/*
-
-" Always show current position. This way you know the row and column you
-" are on.
-set ruler
-
-" Height of the command bar
-set cmdheight=2
+" Patterns to ignore in the `wildmenu`
+set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/venv/*
 
 " A buffer becomes hidden when it is abandoned. It hides buffers instead
 " of closing them. This means that you can have unwritten changes to a file
 " and open a new file using :e, without being forced to write or undo your
 " changes first. Also, undo buffers and marks are preserved while the buffer
 " is open.
-set hid
+set hidden
 
-" Configure backspace so it acts as it should act. You can now backspace
-" over all characters (instead of only once in insert mode).
+" Unrestricted backspacing in insert mode.
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
 
-" Ignore case when searching and try to be smart about cases. Now typing
-" /example would match both example and Example.
-set ignorecase
-set smartcase
+set ignorecase  " Ignore case when searching ...
+set smartcase  " ... unless there is a capital in the query
 
-" Highlight search results
-set hlsearch
+set hlsearch  " Highlight search results
+set incsearch  " Highlight incrementally whilst typing the search
+set inccommand=split  " Live preview of :s results
 
-" Makes search act like search in modern browsers. Highlights incrementally.
-" Thus whilst searching it will move the highlight.
-set incsearch
-
-" Neovim requires this so that 'incsearch' affects commands also.
-set inccommand=split
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
+set lazyredraw  " Don't redraw while executing macros
+set belloff=all  " No annoying sound on errors
+set timeoutlen=500  " ms to wait for a mapped sequence to complete
 
 " Show matching brackets when text indicator is over them
 set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
-endif
 
 " Add a bit extra margin to the left
 set foldcolumn=1
@@ -124,11 +78,6 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable
 
-" Enable 256 colors palette in Gnome Terminal
-if ($COLORTERM == 'gnome-terminal' || $COLORTERM == 'truecolor')
-    set t_Co=256
-endif
-
 " Colorscheme
 " Cannot set the peaksea colorscheme here yet, because pathogen is sourced
 " after the general.vim configurations.
@@ -137,49 +86,11 @@ try
 catch
 endtry
 
-" Set font according to system
-if has("mac") || has("macunix")
-    set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
-elseif has("win16") || has("win32")
-    set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
-elseif has("gui_gtk2")
-    set gfn=IBM\ Plex\ Mono:h14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
-elseif has("linux")
-    set gfn=IBM\ Plex\ Mono:h14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
-elseif has("unix")
-    set gfn=Monospace\ 11
-endif
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-
-    " Disable scrollbars (real hackers don't use scrollbars for navigation!)
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=l
-    set guioptions-=L
-endif
-
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Don't create backups when writing.
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related

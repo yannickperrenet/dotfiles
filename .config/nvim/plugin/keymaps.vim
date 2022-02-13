@@ -1,3 +1,6 @@
+" Fast saving
+nmap <leader>w :w!<cr>
+
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
