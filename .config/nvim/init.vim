@@ -1,7 +1,86 @@
-set runtimepath+=$XDG_CONFIG_HOME/nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer: Yannick Perrenet
+" https://github.com/yannickperrenet
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Structure of my Neovim configuration.
+"
+" ./after/plugin/*.vim AND ./after/plugin/*.lua
+"   Third-party plugin configurations (see `./pack/bundle/opt/*`).
+"
+"   - Automatically picked up through `runtimepath`.
+"   - `*.vim` files are always sourced before `*.lua` files.
+"
+" ./after/ftplugin/*.vim
+"   Filetype plugin configurations.
+"
+"   - Automatically picked up through `runtimepath`.
+"
+" ./pack/bundle/opt/*
+"   Directory that holds my (third-party) plugins.
+"
+"   - I manage the plugins through `git submodule`.
+"   - Add plugins to `runtimepath` by searching `packpath` for
+"     `./pack/*/opt/{name}` using `packadd {name}` in a runtime
+"     file, i.e. run `packadd {name}` to add a plugin.
+"
+" ./init.vim
+"   Initialization file.
+"
+"   - Run as the very first file in the entire initialization process
+"     and thus great to initialize things that need to be defined early.
+"
+" ./plugin/*.vim AND ./plugin/*.lua
+"   My own plugins.
+"
+"   - Includes my options (e.g. `set incsearch`) and keymaps.
+"
+" ./lua/yannick/*.lua AND ./lua/yannick/?/*.lua
+"   Lua modules.
+"
+"   - Placed in the `yannick` namespace to prevent collisions of file
+"     names with other files from plugins in their `./lua` directory.
+"   - These files are all included in the Lua module system. Therefore,
+"     all the modules defined here can be called from any other `*.lua`
+"     file (in the entire Neovim configuration).
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Some useful commands when working on the configuration:
+" - `:checkhealth` -- debug information.
+" - `:scriptnames` -- evaluation order of all scripts.
+" - `nvim --startuptime nvim.log` -- get profiling info.
+" - `:set runtimepath`
 
-source $XDG_CONFIG_HOME/nvim/vimrcs/general.vim
-source $XDG_CONFIG_HOME/nvim/vimrcs/filetypes.vim
-source $XDG_CONFIG_HOME/nvim/vimrcs/plugins.vim
-source $XDG_CONFIG_HOME/nvim/vimrcs/plugin_configs.vim
-source $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim
+" From tjdevries:
+" > In general, it's a good idea to set this early in your config,
+" > because otherwise if you have any mappings you set BEFORE doing
+" > this, they will be set to the OLD leader.
+let mapleader = " "
+
+" Disable some builtin plugins that I don't use.
+let g:loaded_gzip = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_2html_plugin = 1
+
+" Third-party plugins
+packadd! ack.vim
+packadd! comfortable-motion.vim
+packadd! completion-nvim
+packadd! ctrlp.vim
+packadd! lightline.vim
+packadd! nvim-lspconfig
+packadd! rust.vim
+packadd! seoul256.vim
+packadd! tabular
+packadd! vim-commentary
+packadd! vim-easymotion
+packadd! vim-indent-object
+packadd! vimwiki
+packadd! vim-yankstack
+packadd! peaksea
+packadd! vimwiki-styling

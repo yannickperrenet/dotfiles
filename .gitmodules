@@ -25,3 +25,45 @@
 [submodule ".opt/zenbrowsing"]
 	path = .opt/zenbrowsing
 	url = https://github.com/florianperrenet/zenbrowsing.git
+[submodule ".config/nvim/pack/bundle/opt/ack.vim"]
+	path = .config/nvim/pack/bundle/opt/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule ".config/nvim/pack/bundle/opt/ctrlp.vim"]
+	path = .config/nvim/pack/bundle/opt/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".config/nvim/pack/bundle/opt/comfortable-motion.vim"]
+	path = .config/nvim/pack/bundle/opt/comfortable-motion.vim
+	url = https://github.com/yuttie/comfortable-motion.vim.git
+[submodule ".config/nvim/pack/bundle/opt/completion-nvim"]
+	path = .config/nvim/pack/bundle/opt/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim.git
+[submodule ".config/nvim/pack/bundle/opt/lightline.vim"]
+	path = .config/nvim/pack/bundle/opt/lightline.vim
+	url = https://github.com/itchyny/lightline.vim.git
+[submodule ".config/nvim/pack/bundle/opt/nvim-lspconfig"]
+	path = .config/nvim/pack/bundle/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule ".config/nvim/pack/bundle/opt/rust.vim"]
+	path = .config/nvim/pack/bundle/opt/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule ".config/nvim/pack/bundle/opt/seoul256.vim"]
+	path = .config/nvim/pack/bundle/opt/seoul256.vim
+	url = https://github.com/junegunn/seoul256.vim.git
+[submodule ".config/nvim/pack/bundle/opt/tabular"]
+	path = .config/nvim/pack/bundle/opt/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule ".config/nvim/pack/bundle/opt/vim-commentary"]
+	path = .config/nvim/pack/bundle/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule ".config/nvim/pack/bundle/opt/vim-easymotion"]
+	path = .config/nvim/pack/bundle/opt/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule ".config/nvim/pack/bundle/opt/vim-indent-object"]
+	path = .config/nvim/pack/bundle/opt/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule ".config/nvim/pack/bundle/opt/vim-yankstack"]
+	path = .config/nvim/pack/bundle/opt/vim-yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack.git
+[submodule ".config/nvim/pack/bundle/opt/vimwiki"]
+	path = .config/nvim/pack/bundle/opt/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git

@@ -1,31 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Yannick Perrenet
-"
-" Credits:
-"		Amir Salihefendic - @amix3k
-"
-"		I follow mostly his configurations adding small changes
-"		and extra comments
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" With a map leader it's possible to do extra key combinations
-let mapleader = " "
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fast editing and reloading of vimrc configs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim<cr>
-autocmd! bufwritepost $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim \
-    source $XDG_CONFIG_HOME/nvim/vimrcs/test_configs.vim
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set window title of terminal (used for searching open windows)
+set title
+set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{getcwd()})%)
+
 " Set number of lines to remember. Past commands are stored in the file
 " ~/.viminfo
 set history=500
@@ -45,6 +24,23 @@ nmap <leader>w :w!<cr>
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
+
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Show line numbers, allows for faster movement inside file.
+set relativenumber
+
+" Linebreak on 100 characters
+set tw=100
+
+" Great for Python or structuring note taking
+if has('folding')
+    set foldmethod=indent
+    set foldnestmax=3
+    " If zero, all folds are closed.
+    set foldlevelstart=3
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -213,55 +209,6 @@ set si "Smart indent
 " horizontally.
 set wrap
 
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-" map <space> /
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Quickly open a buffer for scribble
-map <leader>q :e $XDG_CONFIG_HOME/nvim/cache/buffer_scribble<cr>
-
-" Close the current buffer
-" map <leader>bc :Bclose<cr>:tabclose<cr>gT
-
-" Close the current buffer whilst trying to maintain the current split
-" It simply goes to the previous buffer and closes the currently open one
-" map <leader>bc :bp|bd#<cr>
-
-" Close all the buffers
-" map <leader>ba :bufdo bd<cr>
-
-" Cycle through buffers
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Specify the behavior when switching between buffers
 try
   " This was included in amix/vimrc but I have not yet understood
@@ -273,9 +220,6 @@ try
   set stal=2
 catch
 endtry
-
-" Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 """"""""""""""""""""""""""""""
@@ -289,111 +233,61 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    " autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-    autocmd BufWritePre * :call CleanExtraSpaces()
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Respectively: go to next misspelled word, previous, add to
-" dictionary, fix
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>sf z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle paste mode on and off
-map <leader>P :setlocal paste!<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Turn persistent undo on
-"    means that you can undo even when you close a buffer/VIM
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-try
-    set undodir=$XDG_CONFIG_HOME/nvim/cache/undodir
-    set undofile
-catch
-endtry
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set paths to cache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set directory=$XDG_CONFIG_HOME/nvim/cache/swap
-set backupdir=$XDG_CONFIG_HOME/nvim/cache/backup
-set viewdir=$XDG_CONFIG_HOME/nvim/cache/view
-set viminfo+=n$XDG_CONFIG_HOME/nvim/cache/viminfo
+" Used to be `viminfo`
+set shadafile=$XDG_DATA_HOME/nvim/shada/main.shada
+" See 'undo-persistence'
+set undofile
+let g:netrw_home='$XDG_DATA_HOME/nvim'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
+" Enable mouse
+set mouse=a
 
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
+" Show [text link](link to something) as text link
+"set conceallevel=2
 
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
+" Preview window settings.
+set completeopt=menu,menuone,noinsert,noselect
+set previewheight=10
+set splitbelow
 
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
+" set signcolumn=yes
+set numberwidth=1
 
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
+" Otherwise the linting might trigger and 'de-trigger' the
+" signcolumn 24/7, making the screen go from left to right
+" to left to right to left....
+set signcolumn=yes
 
-function! CmdLine(str)
-    call feedkeys(":" . a:str)
-endfunction
+""""""""""""""""""""""""""""""
+" => Colorscheme and Fonts
+""""""""""""""""""""""""""""""
+let curr_period = readfile($XDG_DATA_HOME.'/redshift/current_period')[0]
+if curr_period == 'day'
+    " This value is remapped in the alacritty.yml
+    let g:seoul256_background = 255
+else
+    let g:seoul256_background = 240
+endif
+colorscheme seoul256
+" hi Normal cterm=NONE ctermbg=255
 
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+" When guicolors are enabled, the color remapping does not work.
+" if has('termguicolors')
+"   set termguicolors
+" endif
 
-    let l:pattern = escape(@", "\\/.*'$^~[]")
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+" Peaksea set up:
+" set background=dark
+" colorscheme peaksea
 
-    if a:direction == 'gv'
-        call CmdLine("Ack '" . l:pattern . "' " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
+" Color the cursorline
+" hi CursorLine cterm=NONE ctermbg=53
+"
+" OMG, without this the signcolumn is displayed as DarkGreen
+" ... so ugly
+" highlight SignColumn ctermfg=none ctermbg=none
+"
+" Alternative:
+" colorscheme ron
