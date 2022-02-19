@@ -9,7 +9,6 @@ let g:ctrlp_user_command = {
 
 let g:ctrlp_working_path_mode = 0
 
-let g:ctrlp_map = '<c-f>'
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
             \^\.coffee\|^\venv\|^\.mypy_cache\|^\.egg-info'
@@ -22,7 +21,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git
 let g:ctrlp_extensions = ['buffertag']
 
 nnoremap <C-b> :CtrlPBuffer<CR>
-nnoremap <C-f> :CtrlP<CR>
 
 " Ask for another character after <C-o> to specify how to open
 " the marked (with <C-z>) files.

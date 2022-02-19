@@ -61,9 +61,6 @@
 [submodule ".config/nvim/pack/bundle/opt/vim-indent-object"]
 	path = .config/nvim/pack/bundle/opt/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule ".config/nvim/pack/bundle/opt/vim-yankstack"]
-	path = .config/nvim/pack/bundle/opt/vim-yankstack
-	url = https://github.com/maxbrunsfeld/vim-yankstack.git
 [submodule ".config/nvim/pack/bundle/opt/vimwiki"]
 	path = .config/nvim/pack/bundle/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git

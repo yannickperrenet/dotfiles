@@ -17,6 +17,9 @@ set foldcolumn=1  " Only show top-level folds in a dedicated column on the left
 " to left to right to left....
 set signcolumn=yes
 
+" Color entire viewport, not just the rows with text
+hi! link NonText LineNr
+
 " Set colorscheme based on the time of day.
 let curr_period = readfile($XDG_DATA_HOME.'/redshift/current_period')[0]
 if curr_period == 'day'
@@ -109,9 +112,13 @@ set lazyredraw     " Don't redraw while executing macros
 set belloff=all    " No annoying sound on errors
 set timeoutlen=500 " ms to wait for a mapped sequence to complete
 
+set viewoptions=folds  " Only store folds on :mkview
 set nobackup
 set nowritebackup  " Don't create backups when writing.
 set noswapfile
 set shada+=n$XDG_DATA_HOME/nvim/shada/main.shada  " New viminfo
 set undofile       " See 'undo-persistence'
 let g:netrw_home='$XDG_DATA_HOME/nvim'
+" Press `gx` to open the file under the cursor. This actually works by
+" using netrw (which is installed by default).
+let g:netrw_browsex_viewer="xdg-open"

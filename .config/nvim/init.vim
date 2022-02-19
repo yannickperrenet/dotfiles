@@ -73,6 +73,14 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep --smart-case'
 endif
 
+" Set here as otherwise ctrlp will automatically remap `<c-p>`
+" which I want to use for another command.
+let g:ctrlp_map = '<c-f>'
+
+" No default key mappings to prevent it overwriting other mappings.
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:EasyMotion_do_mapping = 0
+
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
@@ -89,6 +97,5 @@ packadd! vim-commentary
 packadd! vim-easymotion
 packadd! vim-indent-object
 packadd! vimwiki
-packadd! vim-yankstack
 packadd! peaksea
 packadd! vimwiki-styling
