@@ -67,7 +67,15 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_2html_plugin = 1
 
+" Needs to be before loading the `ack.vim` plugin as otherwise
+" it does not load and calls `finish` right away.
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --smart-case'
+endif
+
 " Third-party plugins
+" If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
+" run the command `:helptags ALL`
 packadd! ack.vim
 packadd! comfortable-motion.vim
 packadd! completion-nvim

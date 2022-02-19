@@ -30,3 +30,7 @@ let g:ctrlp_arg_map = 1
 
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_cache_dir = $XDG_CACHE_HOME.'/ctrlp'
+
+" Open a new instance of a file instead of jumping to an existing to the
+" window that currently has it open.
+let g:ctrlp_switch_buffer = 0
