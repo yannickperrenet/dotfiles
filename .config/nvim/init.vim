@@ -77,6 +77,17 @@ endif
 " which I want to use for another command.
 let g:ctrlp_map = '<c-f>'
 
+" Register a vimwiki different from the default
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
+    \ 'path_html': '~/Documents/vimwiki/vimwiki-html/',
+    \ 'template_path': '~/Documents/vimwiki/vimwiki-styling/',
+    \ 'template_default': 'default',
+    \ 'template_ext': '.html',
+    \ 'auto_export': 0,
+    \ 'nested_syntaxes': {'python': 'python'},
+    \ 'automatic_nested_syntaxes': 1}]
+
+
 " No default key mappings to prevent it overwriting other mappings.
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:EasyMotion_do_mapping = 0
@@ -85,11 +96,15 @@ let g:EasyMotion_do_mapping = 0
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
 packadd! ack.vim
+packadd! cmp-nvim-lsp
 packadd! comfortable-motion.vim
-packadd! completion-nvim
 packadd! ctrlp.vim
 packadd! lightline.vim
+packadd! LuaSnip
+packadd! cmp_luasnip
 packadd! nvim-lspconfig
+packadd! nvim-cmp
+packadd! peaksea
 packadd! rust.vim
 packadd! seoul256.vim
 packadd! tabular
@@ -97,5 +112,4 @@ packadd! vim-commentary
 packadd! vim-easymotion
 packadd! vim-indent-object
 packadd! vimwiki
-packadd! peaksea
 packadd! vimwiki-styling

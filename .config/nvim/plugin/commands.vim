@@ -31,11 +31,12 @@ augroup END
 " NOTE: You might want to disable this as `:mkview` is not very efficient
 " Make fold configuration persistent as long as the file is within buffers.
 " Can be configured what is (re)stored using `viewoptions`.
-augroup AutoSaveFolds
-  autocmd!
-  autocmd BufWinLeave *.py mkview!
-  autocmd BufWinEnter * silent! loadview
-augroup END
+" NOTE: It also doesn't work all that great.
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave *.py mkview!
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
 
 """"""""""""""""""""""""""""""
 " => Helper functions

@@ -1,6 +1,3 @@
-[submodule ".config/nvim/plugins/Vundle.vim"]
-	path = .config/nvim/plugins/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim
 [submodule ".config/tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -64,3 +61,15 @@
 [submodule ".config/nvim/pack/bundle/opt/vimwiki"]
 	path = .config/nvim/pack/bundle/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule ".config/nvim/pack/bundle/opt/cmp-nvim-lsp"]
+	path = .config/nvim/pack/bundle/opt/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule ".config/nvim/pack/bundle/opt/nvim-cmp"]
+	path = .config/nvim/pack/bundle/opt/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule ".config/nvim/pack/bundle/opt/LuaSnip"]
+	path = .config/nvim/pack/bundle/opt/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip.git
+[submodule ".config/nvim/pack/bundle/opt/cmp_luasnip"]
+	path = .config/nvim/pack/bundle/opt/cmp_luasnip
+	url = https://github.com/saadparwaiz1/cmp_luasnip.git

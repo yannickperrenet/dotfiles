@@ -75,6 +75,7 @@ set splitright  " :vsplit adds window to the right and follows it
 
 " TODO: I might want `noinsert` here as well
 set completeopt=menu,menuone,noselect  " Preview window settings for insert mode completion
+set pumheight=10  " Maximum number of items in completion pop-up menu
 
 set foldmethod=indent
 set foldnestmax=3

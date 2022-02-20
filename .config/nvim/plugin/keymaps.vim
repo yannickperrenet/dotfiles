@@ -80,6 +80,11 @@ tnoremap <Esc> <C-\><C-n>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO: Improve by not using global command but just finding
+" whether there exists a quickfix window. This way the toggle
+" will always be instant, even if another plugin opened the quickfix
+" window. Since this toggle is not the only handle to open and close
+" the quickfix the state of `g:qfix_win` may be incorrect.
 " https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
 function! QFixToggle()
   if exists("g:qfix_win")
