@@ -1,6 +1,9 @@
 " :W --> sudo saves the file. Useful for permission-denied errors.
 command W w !sudo tee % > /dev/null
 
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+
 " Return to last edit position when opening files (You want this!)
 " When starting to edit an existing file (any filetype), do:
 " - line("'\"") gets the line number of the cursor position when last
@@ -12,9 +15,6 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " Delete trailing white space on save
 autocmd BufWritePre * :call CleanExtraSpaces()
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
 
 " Always show the cursorline on the line with the cursor.
 " When using multiple windows, only the window with the cursor should
@@ -33,7 +33,7 @@ augroup END
 " Can be configured what is (re)stored using `viewoptions`.
 augroup AutoSaveFolds
   autocmd!
-  autocmd BufWinLeave * mkview!
+  autocmd BufWinLeave *.py mkview!
   autocmd BufWinEnter * silent! loadview
 augroup END
 

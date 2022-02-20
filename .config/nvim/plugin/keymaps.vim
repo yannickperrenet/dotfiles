@@ -4,6 +4,9 @@ nmap <leader>w :w!<cr>
 map <leader>e :e <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+" Reload vim config by reloading all matched patterns when
+" searching `runtimepath` and `packpath`
+nnoremap <leader>r :runtime! init.vim plugin/*.vim after/plugin/*.vim after/ftplugin/*.vim<cr>
 
 " Yank selection to clipboard
 vnoremap <leader>y "+y
@@ -80,10 +83,18 @@ tnoremap <Esc> <C-\><C-n>
 " https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
 function! QFixToggle()
   if exists("g:qfix_win")
+    " If the buffer in the current window is the quickfix window, i.e.
+    " the cursor is currently in the quickfix window, then first jump
+    " to the previous window (so the window you came from) before
+    " closing the quickfix window.
+    if bufnr("%") == g:qfix_win
+      execute "normal! \<C-w>p"
+    end
     cclose
     unlet g:qfix_win
   else
-    copen
+    " Open quickfix window and let it occupy the full window width.
+    botright copen
     let g:qfix_win = bufnr("$")
   endif
 endfunction
