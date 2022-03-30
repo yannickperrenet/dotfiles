@@ -27,8 +27,6 @@ bar {
         # height 50
 }
 
-# exec --no-startup-id ~/.opt/activitywatch/aw-qt
-
 # Colors to indicate the focus of the window
 set $blue #00E6FF
 

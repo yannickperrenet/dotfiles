@@ -55,7 +55,7 @@ export SKIP_TANDEM_OVERLAY=TRUE
 
 # TODO: refactor these lines
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Start an Xorg display server using the `xstart` frontend if it is not
 # already running.

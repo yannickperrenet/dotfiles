@@ -95,15 +95,17 @@ let g:EasyMotion_do_mapping = 0
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
+packadd! LuaSnip
 packadd! ack.vim
 packadd! cmp-nvim-lsp
+packadd! cmp_luasnip
 packadd! comfortable-motion.vim
 packadd! ctrlp.vim
 packadd! lightline.vim
-packadd! LuaSnip
-packadd! cmp_luasnip
-packadd! nvim-lspconfig
+" TODO: Still have to configure this one
+" packadd! lsp_signature.nvim
 packadd! nvim-cmp
+packadd! nvim-lspconfig
 packadd! peaksea
 packadd! rust.vim
 packadd! seoul256.vim

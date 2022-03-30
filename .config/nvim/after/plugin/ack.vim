@@ -1,8 +1,6 @@
 " Highlight the search term in the results
 let g:ackhighlight = 1
 
-let g:ack_autofold_results = 1
-
 " Options --color and --group disable the function to follow links,
 " which is obvisouly undesired
 let g:ack_default_options = ' -s -H --nogroup

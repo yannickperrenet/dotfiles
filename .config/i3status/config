@@ -56,5 +56,5 @@ volume master {
 
 run_watch quote {
     pidfile = "/home/"
-    format = "TIME WITHOUT ATTENTION IS WORTHLESS, SO VALUE ATTENTION OVER TIME!"
+    format = "500+ users by Sept. 2022"
 }
