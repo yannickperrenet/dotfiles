@@ -30,6 +30,11 @@ nnoremap <C-q> :call QFixToggle()<CR>
 " Quickly open a buffer for scribble
 map <leader>q :e $XDG_DATA_HOME/nvim/buffer_scribble<cr>
 
+" Open my (personal) docs
+map <leader>d :e ~/.local/share/vimwiki/docs/index.md<cr>
+" Serve my personal docs in the background
+map <leader>ds :call system("mkdocs serve -f ~/.local/share/vimwiki/mkdocs.yml &")<cr>
+
 " Close the current buffer but maintain window layout
 map <leader>bc :Bclose<cr>
 
