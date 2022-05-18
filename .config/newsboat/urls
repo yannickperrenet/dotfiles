@@ -1,17 +1,20 @@
 https://feeds.feedburner.com/PythonInsider
 http://matthewrocklin.com/blog/atom.xml
-https://250bpm.com/rss.xml
-https://blog.pragmaticengineer.com/rss/
+https://250bpm.com/rss.xml  "ZeroMQ author blog"
 https://unixsheikh.com/feed.rss
+# Random blogger but great content
 https://feeds.feedburner.com/michaelnielsen/wmna
 https://lukasz.langa.pl/programming/atom.xml
 https://scattered-thoughts.net/atom.xml
+# Fun Python blog
 https://death.andgravity.com/_feed/index.xml
-https://blog.kowalczyk.info/atom.xml
-https://lucumr.pocoo.org/feed.atom
+https://blog.kowalczyk.info/atom.xml "SumatraPDF author blog"
+https://lucumr.pocoo.org/feed.atom "Armin Ronacher blog"
+# Some random CTO, but I like his thoughts
 https://www.benkuhn.net/index.xml
 https://edwardsnowden.substack.com/feed
+# Python behind the scenes
 https://tenthousandmeters.com/feeds/all.atom.xml
 https://matt-rickard.com/rss/
 https://mtlynch.io/index.xml
-http://antirez.com/rss
+http://antirez.com/rss "Redis author blog"
