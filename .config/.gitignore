@@ -4,9 +4,10 @@
 
 # Except these files
 !.gitignore
+!README.md
 !alacritty/
 !compton.conf
-!README.md
+!git/
 !i3/
 !i3status/
 !iterm2/
@@ -15,8 +16,8 @@
 !nvim/
 !python/
 !ranger/
-!redshift/
 !redshift.conf
+!redshift/
 !ripgrep/
 !rofi/
 !shell/

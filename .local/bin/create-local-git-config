@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Used for GitLab since for GitHub I have set up my global config file.
+# ~/.config/git/config
+git config --local user.name "Yannick"
+git config --local user.email "864951-yannickperrenet@users.noreply.gitlab.com"
+git config --local core.editor "nvim"
