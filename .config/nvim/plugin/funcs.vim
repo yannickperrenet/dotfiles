@@ -6,7 +6,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 function! FollowMDLink()
     let line = getline('.')
-    let result = matchlist(line, '\[.*\](\(.*\))')
+    " \{-} means non-greedy match as to stop on first )
+    let result = matchlist(line, '\[.*\](\(.\{-}\))')
     if len(result) == 0
         return
     endif

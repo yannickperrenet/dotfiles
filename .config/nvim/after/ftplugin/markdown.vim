@@ -6,7 +6,7 @@
 " TODO: Make it work if link is split over multiple lines, e.g. due to
 " linewrapping.
 " Make <Tab> go to the next markdown link.
-nnoremap <buffer> <Tab> :call search('\[.*\](.*)')<cr>
+nnoremap <buffer> <Tab> :call search('\[.*\](.\{-})')<cr>
 nnoremap <buffer> <S-Tab> :call search('\[.*\](.*)', 'b')<cr>
 
 nnoremap <buffer> <CR> :call FollowMDLink()<cr>
