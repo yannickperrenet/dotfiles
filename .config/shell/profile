@@ -10,6 +10,7 @@ export PATH="/usr/local/sbin:$PATH";
 export PATH="/usr/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 
 # Default programs
 export TERMINAL="alacritty"
@@ -48,6 +49,9 @@ export MPLCONFIGDIR="$XDG_CONFIG_HOME/matplotlib"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
 export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
+export GOPATH="$XDG_CACHE_HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOBIN"
 # ---
 # Desktop applications
 # ---
