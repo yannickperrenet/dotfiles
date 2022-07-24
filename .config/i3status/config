@@ -56,5 +56,5 @@ volume master {
 
 run_watch quote {
     pidfile = "/home/"
-    format = "500+ users by Sept. 2022"
+    format = "JUST DO IT"
 }

@@ -1,7 +1,7 @@
 -- :LspInfo
 --
 -- Configure a new Language Server:
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local lspconfig = require('lspconfig')
 local has_luasnip, luasnip = pcall(require, 'luasnip')
@@ -88,7 +88,7 @@ cmp.setup {
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver", "rust_analyzer" }
+local servers = { "pyright", "tsserver", "rust_analyzer", "gopls" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     settings = settings[lsp],
