@@ -23,11 +23,7 @@ alias bat="batcat"
 alias fd="fdfind"
 alias brave="brave-browser"
 
-# Use appimage for nvim to get v0.5.0 which is required for the
-# nvim-lspconfig plugin. NOTE: this double alias makes it so that
-# calling "vim" actually calls the appimage as well.
 alias vim="nvim"
-alias nvim="nvim.appimage"
 
 # Specify ignore file, which takes lowest precedence of all ignore
 # files. The additional benefit is that it does not polute the $HOME
