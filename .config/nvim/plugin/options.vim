@@ -10,12 +10,12 @@ set titlestring=Nvim:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)%(\ (%{ge
 set showtabline=2 " Always show tabline
 set laststatus=2  " Always show the status line
 set numberwidth=1 " Use minimal columns to show line numbers
-set foldcolumn=1  " Only show top-level folds in a dedicated column on the left
+" set foldcolumn=1  " Only show top-level folds in a dedicated column on the left
 
 " Otherwise the linting might trigger and 'de-trigger' the
 " signcolumn 24/7, making the screen go from left to right
 " to left to right to left....
-set signcolumn=yes
+set signcolumn=number
 
 " Color entire viewport, not just the rows with text
 hi! link NonText LineNr
