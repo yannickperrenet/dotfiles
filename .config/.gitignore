@@ -32,3 +32,9 @@
 .zcompdump*
 nvim/cache/*
 nvim/.netrwhist
+
+# Special case, specifically not ignoring a single file in a
+# subdirectory.
+!pulse/
+pulse/*
+!pulse/default.pa
