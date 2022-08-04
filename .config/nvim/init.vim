@@ -91,6 +91,7 @@ packadd! cmp_luasnip
 packadd! comfortable-motion.vim
 packadd! ctrlp.vim
 packadd! lightline.vim
+packadd! goyo.vim
 " TODO: Still have to configure this one
 " packadd! lsp_signature.nvim
 packadd! nvim-cmp

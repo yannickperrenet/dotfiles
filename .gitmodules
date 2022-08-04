@@ -76,3 +76,6 @@
 [submodule ".config/nvim/pack/bundle/opt/lsp_signature.nvim"]
 	path = .config/nvim/pack/bundle/opt/lsp_signature.nvim
 	url = https://github.com/ray-x/lsp_signature.nvim.git
+[submodule ".config/nvim/pack/bundle/opt/goyo.vim"]
+	path = .config/nvim/pack/bundle/opt/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
