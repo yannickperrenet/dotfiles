@@ -3,3 +3,5 @@
 	name = Yannick
 [core]
 	editor = nvim
+[pull]
+	rebase = false
