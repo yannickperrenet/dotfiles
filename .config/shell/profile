@@ -15,7 +15,7 @@ export PATH="$PATH:/usr/local/go/bin"
 # Default programs
 export TERMINAL="alacritty"
 export BROWSER="brave-browser"
-export EDITOR="nvim.appimage"
+export EDITOR="nvim"
 
 # You may need to manually set your language environment.
 export LANG=en_US.UTF-8
