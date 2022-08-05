@@ -65,8 +65,8 @@ bindsym $mod+m exec $term -e htop
 bindsym $mod+i exec gnome-screenshot
 
 # volume
-bindsym $mod+plus exec "amixer sset Master 3%+"
-bindsym $mod+minus exec "amixer sset Master 3%-"
+bindsym $mod+plus exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym $mod+minus exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 
 ########################################
 # Window focus and movement
