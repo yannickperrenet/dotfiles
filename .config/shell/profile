@@ -62,5 +62,7 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Start an Xorg display server using the `xstart` frontend if it is not
-# already running.
-! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+# already running and user is on tty1. Require to be on tty1 so that
+# these dotfiles can be used on servers as well (e.g. when connecting
+# over ssh you don't want to start an X server).
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
