@@ -1,6 +1,3 @@
-[submodule ".config/tmux/plugins/tpm"]
-	path = .config/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule ".config/iterm2/dracula"]
 	path = .config/iterm2/dracula
 	url = https://github.com/dracula/iterm.git
@@ -58,9 +55,6 @@
 [submodule ".config/nvim/pack/bundle/opt/vim-indent-object"]
 	path = .config/nvim/pack/bundle/opt/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule ".config/nvim/pack/bundle/opt/vimwiki"]
-	path = .config/nvim/pack/bundle/opt/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule ".config/nvim/pack/bundle/opt/cmp-nvim-lsp"]
 	path = .config/nvim/pack/bundle/opt/cmp-nvim-lsp
 	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
