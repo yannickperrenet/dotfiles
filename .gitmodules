@@ -81,7 +81,7 @@
 	url = https://github.com/junegunn/goyo.vim.git
 [submodule ".opt/dunst"]
 	path = .opt/dunst
-	url = https://github.com/dunst-project/dunst/tree/v1.9.0
+	url = https://github.com/dunst-project/dunst
 [submodule ".opt/alacritty"]
 	path = .opt/alacritty
-	url = https://github.com/alacritty/alacritty/tree/v0.10.1
+	url = https://github.com/alacritty/alacritty
