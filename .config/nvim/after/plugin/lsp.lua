@@ -88,7 +88,7 @@ cmp.setup {
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver", "rust_analyzer", "gopls" }
+local servers = { "pyright", "tsserver", "rust_analyzer", "gopls", "clangd" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     settings = settings[lsp],
