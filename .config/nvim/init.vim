@@ -69,12 +69,6 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_2html_plugin = 1
 
-" Needs to be before loading the `ack.vim` plugin as otherwise
-" it does not load and calls `finish` right away.
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep --smart-case'
-endif
-
 " Set here as otherwise ctrlp will automatically remap `<c-p>`
 " which I want to use for another command.
 let g:ctrlp_map = '<c-f>'
@@ -87,7 +81,6 @@ let g:EasyMotion_do_mapping = 0
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
 " packadd! LuaSnip
-packadd! ack.vim
 " packadd! cmp_luasnip
 packadd! ctrlp.vim
 packadd! lightline.vim
