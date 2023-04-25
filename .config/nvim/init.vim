@@ -69,10 +69,6 @@ let g:loaded_vimball = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_2html_plugin = 1
 
-" Set here as otherwise ctrlp will automatically remap `<c-p>`
-" which I want to use for another command.
-let g:ctrlp_map = '<c-f>'
-
 " No default key mappings to prevent it overwriting other mappings.
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:EasyMotion_do_mapping = 0
@@ -82,7 +78,6 @@ let g:EasyMotion_do_mapping = 0
 " run the command `:helptags ALL`
 " packadd! LuaSnip
 " packadd! cmp_luasnip
-packadd! ctrlp.vim
 packadd! lightline.vim
 packadd! rust.vim
 packadd! vim-commentary
