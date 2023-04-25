@@ -13,32 +13,28 @@ local settings = {
 
 local opts = { noremap=true, silent=true }
 
--- Add additional capabilities supported by nvim-cmp
--- Language servers provide different completion results depending on the capabilities of the
--- client. Neovim's default omnifunc has basic support for serving completion candidates. nvim-cmp
--- supports more types of completion candidates, so users must override the capabilities sent to the
--- server such that it can provide these candidates during a completion request.
--- NOTE: adding these capabilities will break the built-in omnifunc support for neovim's language
--- server client
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
+
+function get_lsp_references(opts)
+    if pcall(require, 'telescope') then
+        return require('telescope.builtin').lsp_references(opts)
+    else
+        return vim.lsp.buf.references(opts)
+    end
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-
-  -- require("lsp_signature").on_attach()
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gr', get_lsp_references, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 end
 
 local cmp = require('cmp')
@@ -83,8 +79,20 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp_signature_help' },
   },
 }
+
+-- Add additional capabilities supported by nvim-cmp
+-- Language servers provide different completion results depending on
+-- the capabilities of the client. Neovim's default omnifunc has basic
+-- support for serving completion candidates. nvim-cmp supports more
+-- types of completion candidates, so users must override the
+-- capabilities sent to the server such that it can provide these
+-- candidates during a completion request.
+-- NOTE: adding these capabilities will break the built-in omnifunc
+-- support for neovim's language server client
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
@@ -94,6 +102,7 @@ for _, lsp in ipairs(servers) do
     settings = settings[lsp],
     on_attach = on_attach,
     capabilities = capabilities,
+    single_file_support = true,
   }
 end
 

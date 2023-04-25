@@ -15,3 +15,10 @@ dfg pull
 # Update submodules and automatically initialize newly added submodules.
 dfg submodule update --init
 ```
+
+## Adding submodules
+
+```sh
+# For example:
+dfg submodule add -- https://github.com/nvim-telescope/telescope-fzf-native.nvim .config/nvim/pack/bundle/opt/telescope-fzf-native.nvim
+```

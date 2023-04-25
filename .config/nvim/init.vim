@@ -42,7 +42,9 @@
 "     names with other files from plugins in their `./lua` directory.
 "   - These files are all included in the Lua module system. Therefore,
 "     all the modules defined here can be called from any other `*.lua`
-"     file (in the entire Neovim configuration).
+"     file (in the entire Neovim configuration) using:
+"
+"       require('yannick.<name>')
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some useful commands when working on the configuration:
@@ -84,22 +86,45 @@ let g:EasyMotion_do_mapping = 0
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
-packadd! LuaSnip
+" packadd! LuaSnip
 packadd! ack.vim
-packadd! cmp-nvim-lsp
-packadd! cmp_luasnip
-packadd! comfortable-motion.vim
+" packadd! cmp_luasnip
 packadd! ctrlp.vim
 packadd! lightline.vim
-packadd! goyo.vim
-" TODO: Still have to configure this one
-" packadd! lsp_signature.nvim
-packadd! nvim-cmp
-packadd! nvim-lspconfig
-packadd! peaksea
 packadd! rust.vim
-packadd! seoul256.vim
-packadd! tabular
 packadd! vim-commentary
 packadd! vim-easymotion
 packadd! vim-indent-object
+
+packadd! plenary.nvim  " Dependency of telescope
+packadd! telescope.nvim
+packadd! telescope-fzf-native.nvim
+
+" TODO: nvim-treesitter
+
+" Easy text alignment (e.g. for tables in markdown)
+packadd! tabular
+" Distraction-free writing
+packadd! goyo.vim
+" Smooth scrolling with `<C-d>` and `<C-u>`
+packadd! comfortable-motion.vim
+" Colorschemes
+packadd! peaksea
+packadd! seoul256.vim
+
+" --- LSP config
+" Collection of (quickstart) LSP configs. This way you can easily add new
+" language servers. It is a convenience layer, NOT a requirement.
+" `:h lspconfig`
+packadd! nvim-lspconfig
+" Add `nvim-cmp` capabilities to the built-in Nvim LSP client
+" capabilities. This way the language server provides better completion
+" results as the client (which is Nvim) has more capabilities.
+" Basically, on each request to the language server it now adds
+" additional capabilities.
+packadd! cmp-nvim-lsp
+" Autocompletion, see `:help nvim-cmp`
+" Nvim does not support built-in autocompletion so a plugin is needed.
+packadd! nvim-cmp
+" Display function signature while entering parameters
+packadd! cmp-nvim-lsp-signature-help

@@ -6,7 +6,7 @@ map <leader>e :e <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Reload vim config by reloading all matched patterns when
 " searching `runtimepath` and `packpath`
-nnoremap <leader>r :runtime! init.vim plugin/*.vim after/plugin/*.vim after/ftplugin/*.vim<cr>
+nnoremap <leader>r :runtime! init.vim plugin/** after/plugin/** after/ftplugin/**<cr>
 
 " Yank selection to clipboard
 vnoremap <leader>y "+y
