@@ -91,3 +91,12 @@
 [submodule ".config/nvim/pack/bundle/opt/telescope-fzf-native.nvim"]
 	path = .config/nvim/pack/bundle/opt/telescope-fzf-native.nvim
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+[submodule ".config/nvim/pack/bundle/opt/nvim-treesitter-textobjects"]
+	path = .config/nvim/pack/bundle/opt/nvim-treesitter-textobjects
+	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+[submodule ".config/nvim/pack/bundle/opt/nvim-treesitter"]
+	path = .config/nvim/pack/bundle/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule ".config/nvim/pack/bundle/opt/playground"]
+	path = .config/nvim/pack/bundle/opt/playground
+	url = https://github.com/nvim-treesitter/playground

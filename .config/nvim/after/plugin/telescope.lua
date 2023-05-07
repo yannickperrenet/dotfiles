@@ -35,13 +35,27 @@ function live_grep_dotfiles()
     }
 end
 
+function live_grep_zettelkasten()
+    builtin.live_grep {
+        prompt_title = "~ Live Grep Zettelkasten ~",
+        cwd = "$XDG_DATA_HOME/vimwiki",
+    }
+end
+
+function live_grep()
+    builtin.live_grep {
+        path_display = { shorten = { len = 4, exclude = {1, -1} } }
+    }
+end
+
 -- Files/Search related
-vim.keymap.set('n', '<leader>ff', find_files({hidden=true}), {desc="[F]ind [F]iles"})
-vim.keymap.set('n', '<leader>ft', git_files, {desc="[F]ind gi[T] files"})
+vim.keymap.set('n', '<C-f>', find_files({hidden=true}), {desc="[F]ind [F]iles"})
+vim.keymap.set('n', '<leader>fg', git_files, {desc="[F]ind [G]it files"})
 vim.keymap.set('n', '<leader>fd', find_dotfiles, {desc="[F]ind [D]otfiles"})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {desc="[F]ind [O]ldfiles"})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc="[F]ind [G]rep"})
+vim.keymap.set('n', '<leader>gf', live_grep, {desc="[G]rep [F]iles"})
 vim.keymap.set('n', '<leader>gd', live_grep_dotfiles, {desc="[G]rep [D]otfiles"})
+vim.keymap.set('n', '<leader>gz', live_grep_zettelkasten, {desc="[G]rep [Z]ettelkasten"})
 -- Nvim related
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {desc="[F]ind [B]uffers"})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {desc="[F]ind [H]elptags"})

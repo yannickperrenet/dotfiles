@@ -84,11 +84,15 @@ packadd! vim-commentary
 packadd! vim-easymotion
 packadd! vim-indent-object
 
+" Telescope fuzzy finder
 packadd! plenary.nvim  " Dependency of telescope
 packadd! telescope.nvim
 packadd! telescope-fzf-native.nvim
 
 " TODO: nvim-treesitter
+packadd! nvim-treesitter
+packadd! nvim-treesitter-textobjects
+packadd! playground
 
 " Easy text alignment (e.g. for tables in markdown)
 packadd! tabular

@@ -29,7 +29,7 @@ if curr_period == 'day'
 else
     let g:seoul256_background = 240
 endif
-colorscheme seoul256
+colorscheme seoul256-light
 
 " Peaksea set up:
 " set background=dark
@@ -56,7 +56,8 @@ set scrolloff=10   " Minimal number of screen lines to keep above and below the 
 " directories of packages are evaluated.
 filetype plugin indent on
 
-syntax enable  " Enable syntax highlighting
+" NOTE: We let treesitter do the syntax highlighting
+" syntax enable  " Enable syntax highlighting
 set showmatch  " Show matching brackets when text indicator is over them
 
 set backspace=eol,start,indent  " Unrestricted backspacing in insert mode.

@@ -3,6 +3,19 @@ Here you will find an up-to-date version of my vim-dotfiles.
 
 In case things are not running as expected inside Nvim, run `:checkhealth`.
 
+## Adding a plugin
+```sh
+# In init.vim
+packadd! ...
+
+# I like to git clone first so I can try it out before adding the submodule
+git clone https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
+
+# Adding submodule
+cd
+dfg submodule add -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help .config/nvim/pack/bundle/opt/cmp-nvim-lsp-signature-help
+```
+
 # Included Plugins
 The following plugins will automatically be setup when cloning this repo
 * [Pathogen](https://github.com/tpope/vim-pathogen): Manage vim runtimepath. Install plugins and runtime files in their own private directories.
