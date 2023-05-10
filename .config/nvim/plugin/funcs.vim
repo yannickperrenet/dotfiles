@@ -13,5 +13,9 @@ function! FollowMDLink()
     endif
     " 0 is the full match and 1 is the submatch indicated by \(\)
     let link = result[1]
-    execute "e " .. expand('%:p:h') .. '/' .. link
+    if link =~ "^http[s]://"
+        silent execute "!" .. g:netrw_browsex_viewer .. " '" .. link .. "'"
+    else
+        execute "e " .. expand('%:p:h') .. '/' .. link
+    endif
 endfunction
