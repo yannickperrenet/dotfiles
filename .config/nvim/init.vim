@@ -120,3 +120,7 @@ packadd! cmp-nvim-lsp
 packadd! nvim-cmp
 " Display function signature while entering parameters
 packadd! cmp-nvim-lsp-signature-help
+
+lua << EOF
+require("yannick.globals")
+EOF
