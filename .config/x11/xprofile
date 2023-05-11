@@ -6,7 +6,7 @@ xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 # My custom screen setup.
 mirror-displays
 
-feh --bg-scale ~/.local/share/cost-risk.jpg &
+feh --bg-scale ~/.local/share/wall.jpg &
 compton &
 dunst &
 
