@@ -25,7 +25,6 @@ nnoremap <C-p> <C-w>p
 " Quickfix window
 nnoremap <leader>n :cnext<CR>
 nnoremap <leader>p :cprev<CR>
-nnoremap <C-q> :call QFixToggle()<CR>
 
 " Quickly open a buffer for scribble
 map <leader>q :e $XDG_DATA_HOME/nvim/buffer_scribble<cr>
@@ -85,30 +84,6 @@ tnoremap <Esc> <C-\><C-n>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TODO: Improve by not using global command but just finding
-" whether there exists a quickfix window. This way the toggle
-" will always be instant, even if another plugin opened the quickfix
-" window. Since this toggle is not the only handle to open and close
-" the quickfix the state of `g:qfix_win` may be incorrect.
-" https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
-function! QFixToggle()
-  if exists("g:qfix_win")
-    " If the buffer in the current window is the quickfix window, i.e.
-    " the cursor is currently in the quickfix window, then first jump
-    " to the previous window (so the window you came from) before
-    " closing the quickfix window.
-    if bufnr("%") == g:qfix_win
-      execute "normal! \<C-w>p"
-    end
-    cclose
-    unlet g:qfix_win
-  else
-    " Open quickfix window and let it occupy the full window width.
-    botright copen
-    let g:qfix_win = bufnr("$")
-  endif
-endfunction
-
 function! VisualSelection() range
     let l:saved_reg = @"
     execute "normal! vgvy"
