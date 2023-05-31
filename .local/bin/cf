@@ -1,0 +1,184 @@
+#!/usr/bin/python3
+
+import argparse
+import enum
+import filecmp
+import os
+import re
+import subprocess
+import sys
+from collections import namedtuple
+from shutil import which as shutil_which
+
+
+IDENT_FILE = ".codeforces"
+
+FILE_FORMAT = namedtuple("File_Format", ["fstring", "regex"])
+IN_FILE_FORMAT = FILE_FORMAT("in{ident}.txt", r"in\d+\.txt")
+OUT_FILE_FORMAT = FILE_FORMAT("out{ident}.txt", r"out\d+\.txt")
+OUT_RUN_FILE_FORMAT = FILE_FORMAT("out{ident}__run.txt", r"out\d+\.txt")
+
+
+class Command(enum.Enum):
+    NEW = "new"
+    TEST = "test"
+
+    @classmethod
+    def run(cls, c_name: str) -> None:
+        try:
+            command = cls(c_name)
+        except ValueError as e:
+            print("[Error]:", e)
+            sys.exit(1)
+
+        # Run the command
+        command()
+
+    def __call__(self):
+        match self:
+            # NOTE: We are overloading with new command with two
+            # functionalities: (1) create a new directory and content,
+            # (2) creating new in/out files for testing.
+            case Command.NEW:
+                _command_new()
+            case Command.TEST:
+                _command_test()
+            case _:
+                assert False, f"Forgot to add match case for command: {self}"
+
+
+def _command_new() -> None:
+    def touch(*args) -> None:
+        fpath = os.path.join(*args)
+        with open(fpath, "w"): ...
+
+    if not os.path.exists(IDENT_FILE):
+        dir_name = input("Directory name: ")
+        os.mkdir(dir_name)
+        touch(dir_name, IDENT_FILE)
+        for i in range(1, 4):
+            touch(dir_name, IN_FILE_FORMAT.fstring.format(ident=i))
+            touch(dir_name, OUT_FILE_FORMAT.fstring.format(ident=i))
+
+        with open(os.path.join(dir_name, "main.py"), "w") as f:
+            f.write(MAIN_PY)
+
+    else:
+        num_pairs = 1
+        for file in os.listdir():
+            if re.match(IN_FILE_FORMAT.regex, file) is not None:
+                num_pairs += 1
+
+        # NOTE: Yes, could break but not if you always use this utility
+        # script.
+        touch(IN_FILE_FORMAT.fstring.format(ident=num_pairs))
+        touch(OUT_FILE_FORMAT.fstring.format(ident=num_pairs))
+
+
+def _command_test() -> None:
+    if not os.path.exists(IDENT_FILE):
+        print("`cd` into a codeforces directory first")
+        return
+
+
+    estimate_in_out_files = len(os.listdir()) // 2
+    for i in range(1, estimate_in_out_files+1):
+        fname_in = IN_FILE_FORMAT.fstring.format(ident=i)
+        if not os.path.exists(fname_in):
+            # We know we generate 1..n so if for some i the file doesn't
+            # exist, then we know i+1..n don't exist either.
+            break
+        elif os.stat(fname_in).st_size == 0:
+            # Don't want to process an empty file
+            continue
+
+        with open(fname_in, "r") as f:
+            fcontent = f.read()
+
+        # Do stop on first error, because if the returncode is not zero
+        # then it will likely have been a syntax error or similar.
+        try:
+            p = subprocess.run(
+                [sys.executable, "main.py"],
+                capture_output=True,
+                text=True,
+                input=fcontent,
+                check=True,
+            )
+        except subprocess.CalledProcessError as e:
+            # e attributes: cmd, returncode, stdout, stderr, output
+            print("[Error]: Something wrong when running `main.py`")
+            print("-- [ STDOUT ] ----------:")
+            print(e.stdout)
+            print("-- [ STDERR ] ----------:")
+            print(e.stderr)
+            return
+
+        # Save output so we can inspect it.
+        fname_out_run = OUT_RUN_FILE_FORMAT.fstring.format(ident=i)
+        with open(fname_out_run, "w") as f:
+            f.write(p.stdout)
+
+        fname_out = OUT_FILE_FORMAT.fstring.format(ident=i)
+        are_same = filecmp.cmp(fname_out, fname_out_run, shallow=False)
+        if are_same:
+            print(f"[✅ PASS]: {fname_in} and {fname_out}")
+        else:
+            print(f"[❌ FAIL]: {fname_in} and {fname_out}")
+
+            if os.getenv("NODIFF") is not None:
+                return
+
+            # Prettier diffs, quicker to spot the difference.
+            if shutil_which("difft") is not None:
+                # `cargo install difftastic`
+                print("[ Correct ]  ---  [My output]")
+                os.system(f"difft {fname_out} {fname_out_run}")
+            else:
+                print("[ Correct ]  ---  [My output]")
+                os.system(f"diff --side-by-side {fname_out} {fname_out_run}")
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="cf",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=(
+            "Helps quickly submitting [C]ode[f]orces solutions.\n"
+            "\n"
+            "For prettier diffs install difftastic:\n"
+            "\t`cargo install difftastic`\n"
+            "Run with NODIFF=1 to turn off showing output diffs."
+        ),
+    )
+
+    parser.add_argument(
+        "command",
+        # We want to output strings instead of enum options as
+        # otherwise the CLI user will not understand what we want.
+        choices=[c.value for c in Command],
+    )
+    args = parser.parse_args()
+
+    Command.run(args.command)
+
+
+# All the way at the bottom to save your eyes.
+MAIN_PY = """import sys
+
+input = sys.stdin.readline
+
+def solve():
+    return
+
+if __name__ == "__main__":
+    # Read in input:
+    input()
+
+    # Call solution:
+    ans = solve()
+    print(ans)
+"""
+
+
+if __name__ == "__main__":
+    main()
