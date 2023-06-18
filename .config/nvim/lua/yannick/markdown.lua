@@ -29,5 +29,14 @@ M.go_prev = function()
     local prev_file = table.remove(M._stack)
     vim.fn.execute("e " .. prev_file)
 end
+--
+-- TODO: Make it work if link is split over multiple lines, e.g. due to
+-- linewrapping.
+M.search = function(flags)
+    if not flags then
+        flags = ""
+    end
+    vim.fn.search("\\[.*\\](.\\{-})", flags)
+end
 
 return M

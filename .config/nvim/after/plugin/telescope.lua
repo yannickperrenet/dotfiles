@@ -49,8 +49,8 @@ function live_grep()
 end
 
 -- Files/Search related
-vim.keymap.set('n', '<C-f>', find_files({hidden=true}), {desc="[F]ind [F]iles"})
-vim.keymap.set('n', '<leader>fg', git_files, {desc="[F]ind [G]it files"})
+vim.keymap.set('n', '<C-f>', find_files({hidden=true}), {desc="[F]ind"})
+vim.keymap.set('n', '<leader>ff', git_files, {desc="[F]ind git [F]iles"})
 vim.keymap.set('n', '<leader>fd', find_dotfiles, {desc="[F]ind [D]otfiles"})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {desc="[F]ind [O]ldfiles"})
 vim.keymap.set('n', '<leader>gf', live_grep, {desc="[G]rep [F]iles"})
