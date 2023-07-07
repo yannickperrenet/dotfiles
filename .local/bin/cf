@@ -34,7 +34,7 @@ class Command(enum.Enum):
     TEST = "test"
 
     @classmethod
-    def run(cls, c_name: str) -> None:
+    def run(cls, c_name: str, **kwargs) -> None:
         try:
             command = cls(c_name)
         except ValueError as e:
@@ -42,9 +42,9 @@ class Command(enum.Enum):
             sys.exit(1)
 
         # Run the command
-        command()
+        command(**kwargs)
 
-    def __call__(self):
+    def __call__(self, **kwargs):
         match self:
             # NOTE: We are overloading with new command with two
             # functionalities: (1) create a new directory and content,
@@ -52,7 +52,7 @@ class Command(enum.Enum):
             case Command.NEW:
                 _command_new()
             case Command.TEST:
-                _command_test()
+                _command_test(**kwargs)
             case _:
                 assert False, f"Forgot to add match case for command: {self}"
 
@@ -73,6 +73,15 @@ def _command_new() -> None:
         with open(os.path.join(dir_name, "main.py"), "w") as f:
             f.write(MAIN_PY)
 
+        # Add rust fallback.
+        # `rs_main.rs` instead of `main.rs` such that name doesn't clash
+        # with `main.py` for easier tab completion
+        touch(dir_name, "rs_main.rs")
+        with open(os.path.join(dir_name, "rs_main.rs"), "w") as f:
+            f.write(MAIN_RS)
+        with open(os.path.join(dir_name, "Cargo.toml"), "w") as f:
+            f.write(CARGO_TOML.format(dir_name=dir_name))
+
     else:
         num_pairs = 1
         for file in os.listdir():
@@ -85,7 +94,7 @@ def _command_new() -> None:
         touch(OUT_FILE_FORMAT.fstring.format(ident=num_pairs))
 
 
-def _command_test() -> None:
+def _command_test(**kwargs) -> None:
     if not os.path.exists(IDENT_FILE):
         print("`cd` into a codeforces directory first")
         return
@@ -105,11 +114,18 @@ def _command_test() -> None:
         with open(fname_in, "r") as f:
             fcontent = f.read()
 
+        if kwargs["rust"]:
+            subprocess_args = ["cargo", "run", "--release", "--quiet"]
+            executable_name = "Rust"
+        else:
+            subprocess_args = [sys.executable, "main.py"]
+            executable_name = "Python"
+
         # Do stop on first error, because if the returncode is not zero
         # then it will likely have been a syntax error or similar.
         try:
             p = subprocess.run(
-                [sys.executable, "main.py"],
+                args=subprocess_args,
                 capture_output=True,
                 text=True,
                 input=fcontent,
@@ -117,7 +133,7 @@ def _command_test() -> None:
             )
         except subprocess.CalledProcessError as e:
             # e attributes: cmd, returncode, stdout, stderr, output
-            print("[Error]: Something wrong when running `main.py`")
+            print(f"[Error]: Something wrong when running `{executable_name}`")
             print("-- [ STDOUT ] ----------:")
             print(e.stdout)
             print("-- [ STDERR ] ----------:")
@@ -132,16 +148,16 @@ def _command_test() -> None:
         fname_out = OUT_FILE_FORMAT.fstring.format(ident=i)
         are_same = filecmp.cmp(fname_out, fname_out_run, shallow=False)
         if are_same:
-            print(f"[✅ PASS]: {fname_in} and {fname_out}")
+            print(f"[✅ PASS ({executable_name})]: {fname_in} and {fname_out}")
 
             # Maximum resident set size used (in kilobytes)
-            # See `man getrsusage.2`
+            # See `man getrusage.2`
             print(
                 "Maximum amount of memory used (in MB):",
                 resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss // 1e3,
             )
         else:
-            print(f"[❌ FAIL]: {fname_in} and {fname_out}")
+            print(f"[❌ FAIL ({executable_name})]: {fname_in} and {fname_out}")
 
             if os.getenv("NODIFF") is not None:
                 return
@@ -186,16 +202,22 @@ def main():
             "Run with NODIFF=1 to turn off showing output diffs."
         ),
     )
-
     parser.add_argument(
         "command",
         # We want to output strings instead of enum options as
         # otherwise the CLI user will not understand what we want.
         choices=[c.value for c in Command],
+        help="The supported commands",
+    )
+    parser.add_argument(
+        "--rust",
+        action="store_true",
+        help="Flag to run the Rust script instead",
+        dest="rust",
     )
     args = parser.parse_args()
 
-    Command.run(args.command)
+    Command.run(args.command, rust=args.rust)
 
 
 # All the way at the bottom to save your eyes.
@@ -221,6 +243,76 @@ if __name__ == "__main__":
         ans = solve()
         print(ans)
 
+"""
+
+MAIN_RS = """
+use std::fmt;
+use std::str;
+use std::io;
+
+#[allow(dead_code)]
+static MOD: u64 = 10_u64.pow(9) + 7;
+
+#[allow(dead_code)]
+fn read_value<B, T>(lines: &mut io::Lines<B>) -> T
+where
+    B: io::BufRead,
+    T: str::FromStr,
+    <T as str::FromStr>::Err: fmt::Debug
+{
+    let line = lines.next().unwrap().unwrap();
+    let value: T = line.trim().parse().unwrap();
+    return value;
+}
+
+#[allow(dead_code)]
+fn read_array<B, T>(lines: &mut io::Lines<B>) -> Vec<T>
+where
+    B: io::BufRead,
+    T: str::FromStr,
+    <T as str::FromStr>::Err: fmt::Debug
+{
+    let line = lines.next().unwrap().unwrap();
+    let edge: Vec<T> = line.split(" ").map(|n| n.parse().unwrap()).collect();
+    return edge;
+}
+
+#[allow(dead_code)]
+fn print_array<T>(v: Vec<T>)
+where
+    T: fmt::Display
+{
+    let str = v.iter().map(|val| format!("{}", val)).collect::<Vec<String>>().join(" ");
+    println!("{}", str);
+}
+
+fn solve() {
+}
+
+fn main() {
+    let mut lines = io::stdin().lines();
+    let t: u64 = read_value(&mut lines);
+
+    for _i in 0..t {
+        let edge: Vec<u64> = read_array(&mut lines);
+
+        let ans = solve();
+        println!("{}", ans);
+    }
+}
+"""
+
+CARGO_TOML = """
+[package]
+name = "{dir_name}"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "main"
+path = "rs_main.rs"
 """
 
 
