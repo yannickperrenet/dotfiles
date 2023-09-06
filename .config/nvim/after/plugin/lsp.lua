@@ -67,6 +67,7 @@ cmp.setup {
       end
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -74,11 +75,7 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    -- ['<CR>'] = cmp.mapping.confirm {
-    --   behavior = cmp.ConfirmBehavior.Replace,
-    --   select = true,
-    -- },
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif has_luasnip and luasnip.expand_or_jumpable() then
@@ -86,8 +83,8 @@ cmp.setup {
       else
         fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
+    end),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif has_luasnip and luasnip.jumpable(-1) then
@@ -95,7 +92,7 @@ cmp.setup {
       else
         fallback()
       end
-    end,
+    end),
   },
   sources = {
     { name = 'nvim_lsp' },
