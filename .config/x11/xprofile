@@ -10,6 +10,10 @@ feh --bg-scale ~/.local/share/wall.jpg &
 compton &
 dunst &
 
+# These progs I install manually so they might not yet be present
+[ -n "$(command -v google-drive-ocamlfuse)" ] && google-drive-ocamlfuse -xdgbd ~/google-drive &
+[ -n "$(command -v dropbox)" ] && dropbox start &
+
 # Otherwise my eyes are just bleeding...
 redshift -P &
 
