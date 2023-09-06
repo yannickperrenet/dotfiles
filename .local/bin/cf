@@ -186,6 +186,7 @@ def _command_test(**kwargs) -> None:
                 print("[ Correct ]  ---  [My output]")
                 subprocess.run(
                     f"diff --side-by-side <(nl {fname_out}) <(nl {fname_out_run})",
+                    shell=True,
                     # So we can use the syntax as above
                     executable="/bin/bash",
                 )
@@ -222,6 +223,8 @@ def main():
 
 # All the way at the bottom to save your eyes.
 MAIN_PY = """
+from collections import *
+
 import sys
 input = sys.stdin.readline
 MOD = 10**9 + 7
