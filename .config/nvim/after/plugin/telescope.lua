@@ -65,6 +65,7 @@ vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {desc="[/] S
 -- LSP related
 vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, {desc="[F]ind [S]ymbols"})
 
+local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
@@ -85,6 +86,7 @@ require('telescope').setup{
         -- using a string, e.g. `telescope.actions.move_selection_next`
         ["<C-k>"] = "move_selection_previous",
         ["<C-j>"] = "move_selection_next",
+        ["<C-o>"] = function(p_bufnr) actions.send_selected_to_qflist(p_bufnr) vim.cmd.cfdo("edit") end,
         -- TODO: I could make this "cycle through options" like with
         -- ctrlp
         -- ["<C-f>"] = find_files({}),
