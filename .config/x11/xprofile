@@ -3,6 +3,9 @@
 # Do not start `xrdb` processes in the background to avoid race conditions.
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
 
+# Fixes slow startup times of gnome applications
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 # My custom screen setup.
 mirror-displays
 
@@ -11,8 +14,8 @@ compton &
 dunst &
 
 # These progs I install manually so they might not yet be present
-[ -n "$(command -v google-drive-ocamlfuse)" ] && google-drive-ocamlfuse -xdgbd ~/google-drive &
 [ -n "$(command -v dropbox)" ] && dropbox start &
+
 
 # Otherwise my eyes are just bleeding...
 redshift -P &
