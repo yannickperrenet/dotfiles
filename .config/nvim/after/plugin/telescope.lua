@@ -1,11 +1,5 @@
 local builtin = require('telescope.builtin')
 
-function find_files(opts)
-  return function()
-               builtin.find_files(opts)
-         end
-end
-
 function find_dotfiles()
     builtin.find_files {
         prompt_title = "~ dotfiles ~",
@@ -24,6 +18,7 @@ function git_files()
             -- you add a new file which you haven't `git add` yet.
             "-o",
             "--exclude-standard",
+            "--deduplicate",
         }
     }
 end
@@ -38,7 +33,7 @@ end
 function live_grep_zettelkasten()
     builtin.live_grep {
         prompt_title = "~ Live Grep Zettelkasten ~",
-        cwd = "$XDG_DATA_HOME/vimwiki",
+        cwd = "~/protondrive/vimwiki",
     }
 end
 
@@ -49,7 +44,7 @@ function live_grep()
 end
 
 -- Files/Search related
-vim.keymap.set('n', '<C-f>', find_files({hidden=true}), {desc="[F]ind"})
+vim.keymap.set('n', '<C-f>', builtin.find_files, {desc="[F]ind"})
 vim.keymap.set('n', '<leader>ff', git_files, {desc="[F]ind git [F]iles"})
 vim.keymap.set('n', '<leader>fd', find_dotfiles, {desc="[F]ind [D]otfiles"})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {desc="[F]ind [O]ldfiles"})
@@ -101,6 +96,11 @@ require('telescope').setup{
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    find_files = {
+      find_command = {
+          "fdfind", "--type", "f", "--strip-cwd-prefix", "--hidden", "--exclude", "**/.git/*"
+      },
+    },
   },
   extensions = {
     -- Your extension configuration goes here:
