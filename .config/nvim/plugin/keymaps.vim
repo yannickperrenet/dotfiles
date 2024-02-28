@@ -27,12 +27,12 @@ nnoremap <leader>n :cnext<CR>
 nnoremap <leader>p :cprev<CR>
 
 " Quickly open a buffer for scribble
-map <leader>q :e $XDG_DATA_HOME/nvim/buffer_scribble<cr>
+map <leader>q :e $XDG_DATA_HOME/nvim/buffer_scribble.md<cr>
 
 " Open my (personal) docs: [Z]ettelkasten
-map <leader>z :e ~/.local/share/vimwiki/docs/index.md<cr>
+map <leader>z :e ~/protondrive/vimwiki/docs/index.md<cr>
 " Serve my personal docs in the background: [Z]ettelkasten [S]erve
-map <leader>zs :call system("mkdocs serve -f ~/.local/share/vimwiki/mkdocs.yml &")<cr>
+map <leader>zs :call system("mkdocs serve -f ~/protondrive/vimwiki/mkdocs.yml &")<cr>
 
 " Close the current buffer but maintain window layout
 map <leader>bc :Bclose<cr>

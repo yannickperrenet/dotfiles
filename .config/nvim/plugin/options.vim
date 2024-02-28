@@ -26,10 +26,15 @@ if curr_period == 'day'
     " This value is remapped in my `alacritty.yml` so that the terminal
     " and Vim have the exact same background color.
     let g:seoul256_background = 255
+    colorscheme seoul256-light
 else
-    let g:seoul256_background = 240
+		set background=dark
+		colorscheme peaksea
+		hi CursorLine cterm=NONE ctermbg=53  " Color the cursorline
+		" OMG, without this the signcolumn is displayed as DarkGreen
+		" ... so ugly
+		highlight SignColumn ctermfg=none ctermbg=none
 endif
-colorscheme seoul256-light
 
 " Peaksea set up:
 " set background=dark
