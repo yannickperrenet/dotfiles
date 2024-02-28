@@ -14,8 +14,9 @@ export PATH="$PATH:/usr/local/go/bin"
 
 # Default programs
 export TERMINAL="alacritty"
-export BROWSER="brave-browser"
+export BROWSER="mullvad-browser"
 export EDITOR="nvim"
+export PAGER="less"
 
 # You may need to manually set your language environment.
 export LANG=en_US.UTF-8
@@ -56,6 +57,7 @@ export PATH="$PATH:$GOBIN"
 # Desktop applications
 # ---
 export SKIP_TANDEM_OVERLAY=TRUE
+export POETRY_VIRTUALENVS_IN_PROJECT="true"
 
 # TODO: refactor these lines
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"

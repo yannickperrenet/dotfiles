@@ -1,4 +1,4 @@
-# To run any the main executable instead of the aliased one preceed
+# To run the main executable instead of the aliased one, prefix
 # the command with `\`, e.g. `\rg`.
 
 
@@ -35,3 +35,7 @@ alias kc="minikube kubectl --"
 
 # Make tmux use `$XDG_CONFIG_HOME`
 alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+
+# Be as strict to the ISO standard and super verbose to aid learning
+# https://gcc.gnu.org/install/index.html
+alias g++="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -std=c++17"
