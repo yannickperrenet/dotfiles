@@ -6,7 +6,7 @@
 
 local md_funcs = require("yannick.markdown")
 
-vim.keymap.set("n", "<Tab>", md_funcs.search, { desc="Go to next link" })
-vim.keymap.set("n", "<S-Tab>", function() md_funcs.search("b") end, { desc="Go to previous link" })
-vim.keymap.set("n", "<CR>", md_funcs.go_next, { desc="Follow link under cursor" })
-vim.keymap.set("n", "<BackSpace>", md_funcs.go_prev, { desc="Follow link under cursor" })
+vim.keymap.set("n", "<Tab>", md_funcs.search, { desc="Go to next link", buffer=true })
+vim.keymap.set("n", "<S-Tab>", function() md_funcs.search("b") end, { desc="Go to previous link", buffer=true })
+vim.keymap.set("n", "<CR>", md_funcs.go_next, { desc="Follow link under cursor", buffer=true })
+vim.keymap.set("n", "<BackSpace>", md_funcs.go_prev, { desc="Follow link under cursor", buffer=true })
