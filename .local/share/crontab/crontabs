@@ -24,4 +24,4 @@
 
 # $XDG_RUNTIME_DIR is needed so notify-send can find the `bus` socket
 # in order to communicate with the notification daemon.
-*/30 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send -t 10000 "Posture" "💥"
+*/30 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send -t 10000 "Posture 💥" "Neck: Tucks & Stretches"
