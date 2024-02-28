@@ -58,7 +58,7 @@ bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+Return exec $term
 
 # browser
-bindsym $mod+b exec /usr/bin/brave-browser-stable
+bindsym $mod+b exec "$BROWSER"
 
 bindsym $mod+r exec $term -e ranger
 bindsym $mod+m exec $term -e htop
