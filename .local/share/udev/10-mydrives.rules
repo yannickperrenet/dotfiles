@@ -1,0 +1,5 @@
+# Samsung shield SSD
+ATTRS{idVendor}=="04e8", ATTRS{idProduct}=="61fb", ATTRS{serial}=="S6YGNJ0TB28015H", SYMLINK+="shield"
+
+# Samsung 1T SSD
+ATTRS{idVendor}=="04e8", ATTRS{idProduct}=="61f5", ATTRS{serial}=="1234567F8A96", SYMLINK+="ext-ssd"
