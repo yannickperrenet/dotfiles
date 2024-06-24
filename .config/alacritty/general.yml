@@ -1,8 +1,0 @@
-colors:
-    indexed_colors:
-    - { index: 53, color: '#005599' }
-    - { index: 255, color: '#eeedd1' }
-
-key_bindings:
-  # Open new instance on same cwd.
-  - { key: N, mods: Control|Shift, action: SpawnNewInstance }

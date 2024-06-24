@@ -23,29 +23,25 @@ hi! link NonText LineNr
 " Set colorscheme based on the time of day.
 let curr_period = readfile($XDG_DATA_HOME.'/redshift/current_period')[0]
 if curr_period == 'day'
-    " This value is remapped in my `alacritty.yml` so that the terminal
-    " and Vim have the exact same background color.
-    let g:seoul256_background = 255
+    " I've changed the value for `254` in `s:rgb_map` in
+    " `.config/nvim/pack/bundle/opt/seoul256.vim/colors` to be
+    " equal to the value for the background of my terminal. Which
+    " is defined in `alacritty.toml` to be `#eeedd1`
+    let g:seoul256_srgb = 1
+    let g:seoul256_background = 254
     colorscheme seoul256-light
 else
-		set background=dark
-		colorscheme peaksea
-		hi CursorLine cterm=NONE ctermbg=53  " Color the cursorline
-		" OMG, without this the signcolumn is displayed as DarkGreen
-		" ... so ugly
-		highlight SignColumn ctermfg=none ctermbg=none
+    colorscheme seoul256-light
+    set background=dark
+
+    " set background=dark
+    " colorscheme peaksea
+    " hi CursorLine cterm=NONE ctermbg=53  " Color the cursorline
+    " " OMG, without this the signcolumn is displayed as DarkGreen
+    " " ... so ugly
+    " highlight SignColumn ctermfg=none ctermbg=none
 endif
 
-" Peaksea set up:
-" set background=dark
-" colorscheme peaksea
-" hi CursorLine cterm=NONE ctermbg=53  " Color the cursorline
-" OMG, without this the signcolumn is displayed as DarkGreen
-" ... so ugly
-" highlight SignColumn ctermfg=none ctermbg=none
-"
-" Alternative:
-" colorscheme ron
 
 """"""""""""""""""""""""""""""
 " => Editing

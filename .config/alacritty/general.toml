@@ -1,0 +1,12 @@
+# [[colors.indexed_colors]]
+# color = "#005599"
+# index = 53
+
+# [[colors.indexed_colors]]
+# color = "#eeedd1"
+# index = 17
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
