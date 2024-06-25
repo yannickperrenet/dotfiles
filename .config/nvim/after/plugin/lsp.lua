@@ -114,7 +114,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver", "rust_analyzer", "gopls", "clangd", "lua_ls" }
+--
+-- Used in the past: lua_ls, gopls
+local servers = { "pyright", "tsserver", "rust_analyzer", "clangd" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     settings = settings[lsp],
