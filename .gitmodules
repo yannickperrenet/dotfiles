@@ -42,7 +42,7 @@
 	url = https://github.com/rust-lang/rust.vim.git
 [submodule ".config/nvim/pack/bundle/opt/seoul256.vim"]
 	path = .config/nvim/pack/bundle/opt/seoul256.vim
-	url = https://github.com/junegunn/seoul256.vim.git
+	url = https://github.com/yannickperrenet/seoul256.vim
 [submodule ".config/nvim/pack/bundle/opt/tabular"]
 	path = .config/nvim/pack/bundle/opt/tabular
 	url = https://github.com/godlygeek/tabular.git
