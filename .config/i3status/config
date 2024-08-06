@@ -56,5 +56,5 @@ volume master {
 
 run_watch quote {
     pidfile = "/home/"
-    format = "JUST DO IT"
+    format = "Als je er niet echt voor gaat, dan mag je er ook niks van verwachten"
 }
