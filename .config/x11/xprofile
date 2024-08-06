@@ -23,4 +23,6 @@ redshift -P &
 # Allow me to stream to my remarkable with: restream -p
 # ssh-agent will (by default) fork and thus does not need to be run with &
 eval $(ssh-agent)
+# NOTE: Generate a new ssh-key just for the remarkable without password.
+# Otherwise it doesn't seem to work.
 [ -f ~/.ssh/remarkable ] && ssh-add ~/.ssh/remarkable

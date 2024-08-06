@@ -11,6 +11,7 @@ export PATH="/usr/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
 # Default programs
 export TERMINAL="alacritty"
@@ -53,6 +54,9 @@ export PSQL_HISTORY="$XDG_CACHE_HOME/pg/psql_history"
 export GOPATH="$XDG_CACHE_HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
+export TEXMFHOME="$XDG_DATA_HOME/texmf"
+export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
+export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 # ---
 # Desktop applications
 # ---
