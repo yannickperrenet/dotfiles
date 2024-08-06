@@ -1,10 +1,13 @@
 #!/bin/sh
 
+# Install Tex Live
+# https://www.tug.org/texlive/quickinstall.html
+
 FILE="$1"
 
 sioyek "$FILE.pdf" &
 
 while inotifywait -e modify -qq "$FILE.tex"; do
-  texfot pdflatex joris-resume.tex \
+  texfot pdflatex "$FILE.tex" \
       ; sioyek --nofocus --execute-command reload > /dev/null 2>&1
 done
