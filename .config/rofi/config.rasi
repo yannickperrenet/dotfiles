@@ -2,7 +2,7 @@ configuration {
 	modi: "combi,ssh";
 /*	font: "mono 12";*/
 	location: 0;
-	yoffset: -400;
+	yoffset: -150;
 /*	xoffset: 0;*/
 	fixed-num-lines: false;
 	show-icons: true;
@@ -37,7 +37,7 @@ configuration {
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
-	dpi: 200;
+	dpi: 220;
 /*	threads: 0;*/
 /*	scroll-method: 0;*/
 	window-format: "{w}    {t}";
@@ -87,7 +87,7 @@ configuration {
 /*	kb-mode-complete: "Control+l";*/
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-	kb-row-up: "Up,Control+p,ISO_Left_Tab,Alt+k";
+/*	kb-row-up: "Up,Control+p,ISO_Left_Tab,Alt+k";*/
 	kb-row-down: "Down,Control+n,Alt+j";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/

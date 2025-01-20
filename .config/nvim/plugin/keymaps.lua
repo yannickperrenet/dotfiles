@@ -25,3 +25,15 @@ local function qf_toggle()
 end
 
 vim.keymap.set("n", "<C-q>", qf_toggle, { desc = "Toggle qf window" })
+
+
+local function zettelkasten_new()
+    print("Don't forget to save the Zettel!")
+
+    -- todo: make vimwiki path into global const
+    local target_path = "~/protondrive/vimwiki/docs/zettelkasten/"
+    local ts = vim.fn.localtime()
+    vim.cmd.edit(target_path .. ts .. ".md")
+end
+
+vim.keymap.set("n", "<leader>zn", zettelkasten_new, { desc = "[Z]ettelkasten [N]ew" })
