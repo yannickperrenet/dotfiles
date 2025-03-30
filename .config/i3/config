@@ -62,11 +62,14 @@ bindsym $mod+b exec "$BROWSER"
 
 bindsym $mod+r exec $term -e ranger
 bindsym $mod+m exec $term -e htop
-bindsym $mod+i exec gnome-screenshot
+bindsym $mod+i exec flameshot
 
 # volume
 bindsym $mod+plus exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
 bindsym $mod+minus exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+
+# Restore layout
+exec --no-startup-id "$XDG_CONFIG_HOME/i3/startup.sh"
 
 ########################################
 # Window focus and movement
@@ -149,9 +152,6 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+z restart
-
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Lock screen, shutdown, exit.
 bindsym $mod+x          exec --no-startup-id i3lock -e -f -c 1d2021

@@ -1,0 +1,53 @@
+// vim:ts=4:sw=4:et
+{
+    // stacked split container with 2 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "stacked",
+    "marks": [],
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 6,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2104,
+               "width": 1908,
+               "x": 1926,
+               "y": 50
+            },
+            "marks": [],
+            "name": "Brave",
+            "percent": 0.5,
+            "swallows": [
+               {
+                  "class": "^Brave\\-browser$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 6,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1968,
+               "width": 2800,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "Mullvad Browser",
+            "percent": 0.5,
+            "swallows": [
+               {
+                  "class": "^Mullvad\\ Browser$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

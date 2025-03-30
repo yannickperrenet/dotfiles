@@ -1,0 +1,22 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 6,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1170,
+       "width": 1590,
+       "x": 48,
+       "y": 48
+    },
+    "marks": [],
+    "name": "Briar",
+    "percent": 1,
+    "swallows": [
+       {
+          "title": "^Briar$"
+       }
+    ],
+    "type": "con"
+}
+
