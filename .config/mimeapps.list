@@ -4,7 +4,12 @@
 # These .desktop entries can also be seen and changed in
 # ~/.local/share/applications/ or in /usr/share/applications/
 
-x-scheme-handler/http=brave-browser.desktop
-x-scheme-handler/https=brave-browser.desktop
+# xdg-settings set default-web-browser mullvad-browser.desktop
+# xdg-settings get default-web-browser
+x-scheme-handler/http=mullvad-browser.desktop
+x-scheme-handler/https=mullvad-browser.desktop
+text/html=mullvad-browser.desktop
+x-scheme-handler/about=mullvad-browser.desktop
+x-scheme-handler/unknown=mullvad-browser.desktop
 
 inode/directory=ranger.desktop;
