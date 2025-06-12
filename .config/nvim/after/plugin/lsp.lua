@@ -58,6 +58,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 end
 
+require("lsp_signature").setup({
+  bind = true,
+  doc_lines = 0,
+  hint_prefix = "  ",
+  padding = "",
+  handler_opts = {
+    border = "rounded"
+  }
+})
+
+
 local cmp = require('cmp')
 cmp.setup {
   snippet = {
@@ -97,7 +108,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'nvim_lsp_signature_help' },
   },
 }
 

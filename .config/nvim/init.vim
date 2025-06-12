@@ -79,30 +79,29 @@ let g:comfortable_motion_no_default_key_mappings = 1
 " packadd! cmp_luasnip
 packadd! lightline.vim
 packadd! rust.vim
+" gcu to uncomment all following lines
+" gcc to toggle: comment <--> uncomment
 packadd! vim-commentary
+" Use `ii` to select within same indentation level.
 packadd! vim-indent-object
+" Jump to text locations within your open windows
 packadd! flash.nvim
-
+" Dependencies of other thrid-party plugins
+packadd! plenary.nvim  " Telescope
 " Telescope fuzzy finder
-packadd! plenary.nvim  " Dependency of telescope
 packadd! telescope.nvim
 packadd! telescope-fzf-native.nvim
-
-" TODO: nvim-treesitter
+" Treesitter
 packadd! nvim-treesitter
 packadd! nvim-treesitter-textobjects
 packadd! playground
-
 " Easy text alignment (e.g. for tables in markdown)
 packadd! tabular
-" Distraction-free writing
-packadd! goyo.vim
 " Smooth scrolling with `<C-d>` and `<C-u>`
 packadd! comfortable-motion.vim
 " Colorschemes
 packadd! peaksea
 packadd! seoul256.vim
-
 " --- LSP config
 " Collection of (quickstart) LSP configs. This way you can easily add new
 " language servers. It is a convenience layer, NOT a requirement.
@@ -119,6 +118,8 @@ packadd! cmp-nvim-lsp
 packadd! nvim-cmp
 " Display function signature while entering parameters
 packadd! cmp-nvim-lsp-signature-help
+
+packadd! lsp_signature.nvim
 
 lua << EOF
 require("yannick.globals")
