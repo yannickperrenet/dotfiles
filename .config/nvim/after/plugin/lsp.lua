@@ -3,40 +3,19 @@
 -- Configure a new Language Server:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
-local lspconfig = require('lspconfig')
-local has_luasnip, luasnip = pcall(require, 'luasnip')
+-- Get the floating windows to stand out!
+vim.o.winborder = "bold"
 
--- Setup defaults
-local settings = {
-  pyright = { },
-  lua_ls = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        -- checkThridParty = false,
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
+vim.lsp.enable({ "pyright", "rust_analyzer" })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true
+    }
+)
+
 
 local opts = { noremap=true, silent=true }
-
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
 
 function get_lsp_references(opts)
     if pcall(require, 'telescope') then
@@ -46,98 +25,105 @@ function get_lsp_references(opts)
     end
 end
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gr', get_lsp_references, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'gr', get_lsp_references, opts)
+vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+
+local has_words_before = function()
+    local col = vim.api.nvim_win_get_cursor(0)[2]
+    if col == 0 then
+        return false
+    end
+    local line = vim.api.nvim_get_current_line()
+    return line:sub(col, col):match("%s") == nil
 end
 
-require("lsp_signature").setup({
-  bind = true,
-  doc_lines = 0,
-  hint_prefix = "  ",
-  padding = "",
-  handler_opts = {
-    border = "rounded"
-  }
+-- Inside the blink.cmp directory run: `cargo build --release` to get
+-- Rust performance.
+local blink = require("blink.cmp")
+local disabled_ftypes = { "markdown" }
+blink.setup({
+		enabled = function() return not vim.tbl_contains(disabled_ftypes, vim.bo.filetype) end,
+
+    keymap = {
+        preset = 'default',
+        ['<Tab>'] = {
+            function(cmp)
+                if has_words_before() then
+                    return cmp.insert_next()
+                end
+            end,
+            'fallback',
+        },
+      -- Navigate to the previous suggestion or cancel completion if currently on the first one.
+      ['<S-Tab>'] = { 'insert_prev' },
+    },
+
+    appearance = {
+      -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- Adjusts spacing to ensure icons are aligned
+      nerd_font_variant = 'mono'
+    },
+
+    completion = {
+        list = {
+            selection = {
+                -- Don't select an item from the menu automatically.
+                preselect = false,
+                -- Insert when selecting an item from the menu
+                auto_insert = true
+            }
+        },
+
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+
+        -- Display a preview of the selected item on the current line
+        ghost_text = { enabled = true },
+
+        menu = {
+          -- Don't automatically show the completion menu
+          auto_show = true,
+
+          -- nvim-cmp style menu
+          draw = {
+            columns = {
+              { "label", "label_description", gap = 1 },
+              -- If you don't yet have a font on your system that
+              -- renders icons, you can choose to download a Nerd Font:
+              -- https://www.nerdfonts.com/font-downloads
+              -- Next, you unzip the directory and place the .ttf files in:
+              -- ~/.local/share/fonts/
+              -- If the font is not found yet, run: `fc-cache -f -v`
+              -- and restart your terminal so it uses the new font.
+              { "kind_icon", "kind", gap = 1 },
+              { "source_name" }
+            },
+
+						-- cursorline_priority = 20000,
+          },
+
+
+        },
+    },
+
+    signature = { enabled = true },
+
+    -- Default list of enabled providers defined so that you can extend it
+    -- elsewhere in your config, without redefining it, due to `opts_extend`
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+
+    -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+    --
+    -- See the fuzzy documentation for more information
+    fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 
-
-local cmp = require('cmp')
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      if has_luasnip then
-        luasnip.lsp_expand(args.body)
-      end
-    end,
-  },
-  preselect = cmp.PreselectMode.None,
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif has_luasnip and luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif has_luasnip and luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
--- Add additional capabilities supported by nvim-cmp
--- Language servers provide different completion results depending on
--- the capabilities of the client. Neovim's default omnifunc has basic
--- support for serving completion candidates. nvim-cmp supports more
--- types of completion candidates, so users must override the
--- capabilities sent to the server such that it can provide these
--- candidates during a completion request.
--- NOTE: adding these capabilities will break the built-in omnifunc
--- support for neovim's language server client
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
---
--- Used in the past: lua_ls, gopls
-local servers = { "pyright", "ts_ls", "rust_analyzer", "clangd" }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    settings = settings[lsp],
-    on_attach = on_attach,
-    capabilities = capabilities,
-    single_file_support = true,
-  }
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true
-    }
-)

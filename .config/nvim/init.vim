@@ -75,8 +75,6 @@ let g:comfortable_motion_no_default_key_mappings = 1
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
 " run the command `:helptags ALL`
-" packadd! LuaSnip
-" packadd! cmp_luasnip
 packadd! lightline.vim
 packadd! rust.vim
 " gcu to uncomment all following lines
@@ -107,19 +105,11 @@ packadd! seoul256.vim
 " language servers. It is a convenience layer, NOT a requirement.
 " `:h lspconfig`
 packadd! nvim-lspconfig
-" Add `nvim-cmp` capabilities to the built-in Nvim LSP client
-" capabilities. This way the language server provides better completion
-" results as the client (which is Nvim) has more capabilities.
-" Basically, on each request to the language server it now adds
-" additional capabilities.
-packadd! cmp-nvim-lsp
-" Autocompletion, see `:help nvim-cmp`
-" Nvim does not support built-in autocompletion so a plugin is needed.
-packadd! nvim-cmp
-" Display function signature while entering parameters
-packadd! cmp-nvim-lsp-signature-help
-
-packadd! lsp_signature.nvim
+" All-in-one LSP package:
+" - Completion
+" - capabilities
+" - signature help
+packadd! blink.cmp
 
 lua << EOF
 require("yannick.globals")

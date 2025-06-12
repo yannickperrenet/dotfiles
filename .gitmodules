@@ -52,21 +52,6 @@
 [submodule ".config/nvim/pack/bundle/opt/vim-indent-object"]
 	path = .config/nvim/pack/bundle/opt/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule ".config/nvim/pack/bundle/opt/cmp-nvim-lsp"]
-	path = .config/nvim/pack/bundle/opt/cmp-nvim-lsp
-	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
-[submodule ".config/nvim/pack/bundle/opt/nvim-cmp"]
-	path = .config/nvim/pack/bundle/opt/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp.git
-[submodule ".config/nvim/pack/bundle/opt/LuaSnip"]
-	path = .config/nvim/pack/bundle/opt/LuaSnip
-	url = https://github.com/L3MON4D3/LuaSnip.git
-[submodule ".config/nvim/pack/bundle/opt/cmp_luasnip"]
-	path = .config/nvim/pack/bundle/opt/cmp_luasnip
-	url = https://github.com/saadparwaiz1/cmp_luasnip.git
-[submodule ".config/nvim/pack/bundle/opt/lsp_signature.nvim"]
-	path = .config/nvim/pack/bundle/opt/lsp_signature.nvim
-	url = https://github.com/ray-x/lsp_signature.nvim.git
 [submodule ".opt/dunst"]
 	path = .opt/dunst
 	url = https://github.com/dunst-project/dunst
@@ -94,3 +79,6 @@
 [submodule ".config/nvim/pack/bundle/opt/flash.nvim"]
 	path = .config/nvim/pack/bundle/opt/flash.nvim
 	url = https://github.com/folke/flash.nvim.git
+[submodule ".config/nvim/pack/bundle/opt/blink.cmp"]
+	path = .config/nvim/pack/bundle/opt/blink.cmp
+	url = https://github.com/Saghen/blink.cmp
