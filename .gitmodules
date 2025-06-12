@@ -49,9 +49,6 @@
 [submodule ".config/nvim/pack/bundle/opt/vim-commentary"]
 	path = .config/nvim/pack/bundle/opt/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule ".config/nvim/pack/bundle/opt/vim-easymotion"]
-	path = .config/nvim/pack/bundle/opt/vim-easymotion
-	url = https://github.com/easymotion/vim-easymotion.git
 [submodule ".config/nvim/pack/bundle/opt/vim-indent-object"]
 	path = .config/nvim/pack/bundle/opt/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
@@ -100,3 +97,6 @@
 [submodule ".config/nvim/pack/bundle/opt/playground"]
 	path = .config/nvim/pack/bundle/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+[submodule ".config/nvim/pack/bundle/opt/flash.nvim"]
+	path = .config/nvim/pack/bundle/opt/flash.nvim
+	url = https://github.com/folke/flash.nvim.git

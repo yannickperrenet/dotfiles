@@ -71,7 +71,6 @@ let g:loaded_2html_plugin = 1
 
 " No default key mappings to prevent it overwriting other mappings.
 let g:comfortable_motion_no_default_key_mappings = 1
-let g:EasyMotion_do_mapping = 0
 
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to
@@ -81,8 +80,8 @@ let g:EasyMotion_do_mapping = 0
 packadd! lightline.vim
 packadd! rust.vim
 packadd! vim-commentary
-packadd! vim-easymotion
 packadd! vim-indent-object
+packadd! flash.nvim
 
 " Telescope fuzzy finder
 packadd! plenary.nvim  " Dependency of telescope
