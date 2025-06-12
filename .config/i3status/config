@@ -16,6 +16,7 @@ order += "volume master"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
+order += "battery home"
 order += "memory"
 order += "tztime local"
 
@@ -34,6 +35,12 @@ battery all {
         status_full = "🔋"
         status_bat = "🔋"
         format = "%status %percentage"
+}
+
+# In case I'm at home I want to know my consumption in Watt.
+battery home {
+        format = "%consumption"
+        path = "/sys/class/power_supply/ucsi-source-psy-USBC000:001/uevent"
 }
 
 memory {
