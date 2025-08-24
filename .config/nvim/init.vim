@@ -71,6 +71,8 @@ let g:loaded_2html_plugin = 1
 
 " No default key mappings to prevent it overwriting other mappings.
 let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_friction = 100
+let g:comfortable_motion_air_drag = 8.0
 
 " Third-party plugins
 " If the help doc tags can't be found, e.g. `:h ctrlp` then you need to

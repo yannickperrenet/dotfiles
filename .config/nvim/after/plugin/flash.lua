@@ -1,7 +1,7 @@
 local flash = require("flash")
 
 flash.setup{
-	labels = "dfjksluig",
+	labels = "dfjksluieghocnzqp",
 	search = {
 		multi_window = true,
 	},
@@ -24,4 +24,3 @@ flash.setup{
 
 
 vim.keymap.set('n', '<leader>j', flash.jump, {desc="[J]ump"})
-vim.keymap.set('n', '<leader>t', flash.treesitter, {desc="[T]reesitter search"})

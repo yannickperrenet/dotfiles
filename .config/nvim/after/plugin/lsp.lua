@@ -6,6 +6,20 @@
 -- Get the floating windows to stand out!
 vim.o.winborder = "bold"
 
+
+-- Not ready to be used yet: https://github.com/astral-sh/ty
+-- Completion doesn't work whatsoever.
+--
+-- vim.lsp.config("ty", {
+--     init_options = {
+--         settings = {
+--             experimental = {
+--                 completions = { enable = true }
+--             },
+--         },
+--     }
+-- })
+
 vim.lsp.enable({ "pyright", "rust_analyzer" })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -13,7 +27,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         virtual_text = true
     }
 )
-
 
 local opts = { noremap=true, silent=true }
 
@@ -34,34 +47,25 @@ vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
 
-local has_words_before = function()
-    local col = vim.api.nvim_win_get_cursor(0)[2]
-    if col == 0 then
-        return false
+function show_and_select(cmp)
+    if not cmp.is_visible() then
+        cmp.show()
     end
-    local line = vim.api.nvim_get_current_line()
-    return line:sub(col, col):match("%s") == nil
+    return cmp.select_next()
 end
 
--- Inside the blink.cmp directory run: `cargo build --release` to get
--- Rust performance.
 local blink = require("blink.cmp")
-local disabled_ftypes = { "markdown" }
+local disabled_ftypes = { }
 blink.setup({
-		enabled = function() return not vim.tbl_contains(disabled_ftypes, vim.bo.filetype) end,
+    enabled = function() return not vim.tbl_contains(disabled_ftypes, vim.bo.filetype) end,
 
     keymap = {
         preset = 'default',
-        ['<Tab>'] = {
-            function(cmp)
-                if has_words_before() then
-                    return cmp.insert_next()
-                end
-            end,
-            'fallback',
-        },
-      -- Navigate to the previous suggestion or cancel completion if currently on the first one.
-      ['<S-Tab>'] = { 'insert_prev' },
+      ['<Tab>'] = { 'select_next', 'fallback' },
+      ['<S-Tab>'] = { 'insert_prev', 'fallback' },
+      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<C-n>'] = { show_and_select },
     },
 
     appearance = {
@@ -72,6 +76,7 @@ blink.setup({
 
     completion = {
         list = {
+            max_items = 20,
             selection = {
                 -- Don't select an item from the menu automatically.
                 preselect = false,
@@ -80,14 +85,29 @@ blink.setup({
             }
         },
 
-        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/
+        -- Computing documentation is expensive, so only do it on items
+        -- in the menu that are selected long enough.
+        documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 150,
+            window = {
+                max_width = 100,
+                -- Put menu above current line, because putting it to the east
+                -- will likely cause unnecessary linewrapping.
+                direction_priority = {
+                    menu_north = { 'n', 's', 'e', 'w' },
+                    menu_south = { 'n', 's', 'e', 'w' },
+                },
+            }
+        },
 
         -- Display a preview of the selected item on the current line
-        ghost_text = { enabled = true },
+        ghost_text = { enabled = false },
 
         menu = {
           -- Don't automatically show the completion menu
-          auto_show = true,
+          auto_show = false,
 
           -- nvim-cmp style menu
           draw = {
@@ -103,8 +123,6 @@ blink.setup({
               { "kind_icon", "kind", gap = 1 },
               { "source_name" }
             },
-
-						-- cursorline_priority = 20000,
           },
 
 
@@ -124,6 +142,21 @@ blink.setup({
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
+    --
+    -- Inside the blink.cmp directory run: `cargo build --release` to get
+    -- Rust performance.
     fuzzy = { implementation = "prefer_rust_with_warning" },
+
+    -- https://github.com/microsoft/pyright/blob/c8fafd81141e8f787bb727bb1244888bc86b04c9/packages/pyright-internal/src/languageServerBase.ts#L602
+    -- config = function()
+    --     local capabilities = {
+    --         completionProvider = { triggerCharacters = {"."} },
+    --     }
+    --     capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    --     local lspconfig = require('lspconfig')
+
+    --     lspconfig['pyright'].setup({ capabilities = capabilities })
+    --   end
 })
 
+-- vim.lsp.completion.enable(true, 1, 0, {autotrigger=true})
