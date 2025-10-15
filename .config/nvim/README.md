@@ -33,6 +33,7 @@ packadd! flash.nvim
 
 # Remove submodule
 dfg submodule deinit -- .config/nvim/pack/bundle/opt/flash.nvim
+dfg rm --cached .config/nvim/pack/bundle/opt/flash.nvim
 
 # If you want to be thorough also delete the listing in the
 # file: `.gitmodules`
