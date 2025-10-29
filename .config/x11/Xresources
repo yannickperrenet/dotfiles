@@ -1,4 +1,4 @@
 ! Settings for my screen
-! - Xft.dpi: 168 for external 4k monitor
-! - Xft.dpi: 192 for internal 4k screen
+! - Xft.dpi: 192 for external 4k monitor
+! - Xft.dpi: 300 for internal 4k screen
 Xft.dpi: 192
