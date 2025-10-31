@@ -1,7 +1,10 @@
 #!/bin/sh
 
+
 # Do not start `xrdb` processes in the background to avoid race conditions.
 xrdb "$XDG_CONFIG_HOME/x11/Xresources"
+# Map caps to escape (vim stuff)
+setxkbmap -option caps:escape &
 
 # Fixes slow startup times of gnome applications
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY

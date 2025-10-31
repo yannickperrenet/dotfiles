@@ -1,5 +1,6 @@
-import = ["~/.config/alacritty/general.toml"]
-
 [colors.primary]
 background = "#585858"
 foreground = "#d0d0d0"
+
+[general]
+import = ["~/.config/alacritty/general.toml"]

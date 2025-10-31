@@ -9,7 +9,7 @@ export PATH="/usr/local/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="/usr/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH";
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
@@ -77,3 +77,4 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 # these dotfiles can be used on servers as well (e.g. when connecting
 # over ssh you don't want to start an X server).
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+. "$HOME/.cargo/env"
