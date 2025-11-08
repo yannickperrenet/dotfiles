@@ -13,5 +13,8 @@ To keep the dotfiles up to date:
 dfg pull
 
 # Update submodules and automatically initialize newly added submodules.
-dfg submodule update --init
+dfg submodule update --init --force
+dfg submodule update --remote --merge --recursive
+# Or hacky:
+# dfg submodule foreach 'git pull origin master || git pull origin main'
 ```
