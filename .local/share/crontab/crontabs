@@ -25,3 +25,6 @@
 # $XDG_RUNTIME_DIR is needed so notify-send can find the `bus` socket
 # in order to communicate with the notification daemon.
 */30 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send -t 10000 "Posture 💥" "Neck: Tucks & Stretches"
+
+# See crontab(5) for the environment variables that are set by cron.
+*/2 * * * * /usr/bin/fdfind --changed-within 2min . "$HOME/Downloads" -X /usr/bin/clamscan {} || ( /usr/bin/nmcli networking off && XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send -t 300000 "VIRUS DETECTED" )
