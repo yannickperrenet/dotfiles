@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# Mirrors the primary and secondary display.
-
 xrandr_out="$(xrandr | grep '\sconnected' | cut -d' ' -f1)"
 primary="$(echo "$xrandr_out" | head -1)"
 secondary="$(echo "$xrandr_out" | tail -1)"
 
-xrandr --output "$secondary" --same-as "$primary"
 xrandr --auto
+
+# Turn off primary if another monitor is connected
+[ "$primary" != "$secondary" ] \
+    && xrandr --output "$primary" --off

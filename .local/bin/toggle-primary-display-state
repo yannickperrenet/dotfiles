@@ -1,0 +1,11 @@
+#!/bin/sh
+
+xrandr_out="$(xrandr | grep '\sconnected' | cut -d' ' -f1)"
+primary="$(echo "$xrandr_out" | head -1)"
+
+is_primary_on="$(xrandr | grep "primary" -A 1 | grep "*" -c)"
+
+[ "$is_primary_on" = "0" ] \
+    && xrandr --output "$primary" --auto
+[ "$is_primary_on" = "1" ] \
+    && xrandr --output "$primary" --off

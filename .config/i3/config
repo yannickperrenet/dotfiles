@@ -61,7 +61,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec "$BROWSER"
 
 bindsym $mod+r exec $term -e ranger
-bindsym $mod+m exec $term -e htop
+bindsym $mod+m exec "toggle-primary-display-state"
 bindsym $mod+i exec flameshot
 
 # volume

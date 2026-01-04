@@ -10,7 +10,7 @@ setxkbmap -option caps:escape &
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 # My custom screen setup.
-mirror-displays
+prefer-external-display
 
 feh --bg-scale ~/.local/share/wall.jpg &
 compton &
