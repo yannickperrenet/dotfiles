@@ -20,7 +20,8 @@ vim.o.winborder = "bold"
 --     }
 -- })
 
-vim.lsp.enable({ "pyright", "rust_analyzer" })
+-- pyright
+vim.lsp.enable({ "ty", "rust_analyzer" })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -129,7 +130,10 @@ blink.setup({
         },
     },
 
-    signature = { enabled = true },
+    signature = {
+        enabled = true,
+        window = { show_documentation = true },
+    },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
