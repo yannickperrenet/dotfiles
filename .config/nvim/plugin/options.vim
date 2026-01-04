@@ -119,7 +119,7 @@ set viewoptions=folds  " Only store folds on :mkview
 set nobackup
 set nowritebackup  " Don't create backups when writing.
 set noswapfile
-set shada+=n$XDG_DATA_HOME/nvim/shada/main.shada  " New viminfo
+set shadafile=$XDG_DATA_HOME/nvim/shada/main.shada
 set undofile       " See 'undo-persistence'
 let g:netrw_home='$XDG_DATA_HOME/nvim'
 " Press `gx` to open the file under the cursor. This actually works by
