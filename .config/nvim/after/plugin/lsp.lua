@@ -6,22 +6,35 @@
 -- Get the floating windows to stand out!
 vim.o.winborder = "bold"
 
+-- npm config get prefix
+-- npm list -g @vue/typescript-plugin
+local function get_global_npm_path()
+    local result = vim.system({'npm', 'root', '-g'}):wait()
+    if result.code == 0 then
+      return vim.trim(result.stdout)
+    end
+    return nil
+  end
+-- local vue_plugin_path = get_global_npm_path() .. '/@vue/typescript-plugin'
+local vue_language_server_path = get_global_npm_path() .. '/@vue/language-server'
+local vue_plugin = {
+  name = '@vue/typescript-plugin',
+  location = vue_language_server_path,
+  languages = { 'vue' },
+  configNamespace = 'typescript',
+}
+local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+local ts_ls_config = {
+  init_options = {
+    plugins = {
+      vue_plugin,
+    },
+  },
+  filetypes = tsserver_filetypes,
+}
+vim.lsp.config('ts_ls', ts_ls_config)
 
--- Not ready to be used yet: https://github.com/astral-sh/ty
--- Completion doesn't work whatsoever.
---
--- vim.lsp.config("ty", {
---     init_options = {
---         settings = {
---             experimental = {
---                 completions = { enable = true }
---             },
---         },
---     }
--- })
-
--- pyright
-vim.lsp.enable({ "ty", "rust_analyzer" })
+vim.lsp.enable({ "ty", "rust_analyzer", "ts_ls", "vue_ls" })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {

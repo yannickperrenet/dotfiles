@@ -76,3 +76,12 @@
 [submodule ".config/nvim/pack/bundle/opt/blink.cmp"]
 	path = .config/nvim/pack/bundle/opt/blink.cmp
 	url = https://github.com/Saghen/blink.cmp
+[submodule ".config/nvim/pack/bundle/opt/nvim-dap-python"]
+	path = .config/nvim/pack/bundle/opt/nvim-dap-python
+	url = https://github.com/mfussenegger/nvim-dap-python
+[submodule ".config/nvim/pack/bundle/opt/nvim-dap-view"]
+	path = .config/nvim/pack/bundle/opt/nvim-dap-view
+	url = https://github.com/igorlfs/nvim-dap-view
+[submodule ".config/nvim/pack/bundle/opt/nvim-dap"]
+	path = .config/nvim/pack/bundle/opt/nvim-dap
+	url = https://github.com/mfussenegger/nvim-dap

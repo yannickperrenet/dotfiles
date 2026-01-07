@@ -112,6 +112,10 @@ packadd! nvim-lspconfig
 " - capabilities
 " - signature help
 packadd! blink.cmp
+" Debugger (Adapter Protocol)
+packadd! nvim-dap
+packadd! nvim-dap-python
+packadd! nvim-dap-view
 
 lua << EOF
 require("yannick.globals")
