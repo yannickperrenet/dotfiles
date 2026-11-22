@@ -94,7 +94,6 @@ packadd! telescope-fzf-native.nvim
 " Treesitter
 packadd! nvim-treesitter
 packadd! nvim-treesitter-textobjects
-packadd! playground
 " Easy text alignment (e.g. for tables in markdown)
 packadd! tabular
 " Smooth scrolling with `<C-d>` and `<C-u>`
@@ -116,6 +115,12 @@ packadd! blink.cmp
 packadd! nvim-dap
 packadd! nvim-dap-python
 packadd! nvim-dap-view
+" Git stuff
+" packadd! git-blame.nvim
+packadd! gitsigns.nvim
+packadd! diffview-plus.nvim
+" AI stuff
+packadd! codecompanion.nvim
 
 lua << EOF
 require("yannick.globals")

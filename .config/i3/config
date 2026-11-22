@@ -1,6 +1,7 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# xdg-open /usr/share/doc/i3-wm/userguide.html
 #
 # To find out what key you are pressing, make use of `xev`
 
@@ -62,7 +63,8 @@ bindsym $mod+b exec "$BROWSER"
 
 bindsym $mod+r exec $term -e ranger
 bindsym $mod+m exec "toggle-primary-display-state"
-bindsym $mod+i exec flameshot
+bindsym $mod+i exec "flameshot gui"
+bindsym $mod+a exec --no-startup-id list-agent-sessions.py
 
 # volume
 bindsym $mod+plus exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
