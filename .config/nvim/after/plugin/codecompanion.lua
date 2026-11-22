@@ -1,3 +1,4 @@
+-- https://codecompanion.olimorris.dev/configuration/adapters-acp
 require("codecompanion").setup({
   interactions = {
     chat = {
