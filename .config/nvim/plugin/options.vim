@@ -70,6 +70,7 @@ set whichwrap=b,h,l,s,<,>,[,],~
 set breakindent   " Visually keep indentation level of wrapped lines
 set showbreak=↳   " Indicate a line is wrapped by adding this char in front
 set linebreak     " Hard break at characters in 'breakat'
+" Try using 88 instead of 100 so it works with splits in `herdr`
 set textwidth=100 " Hard break long lines
 
 set splitbelow  " :split adds window below and follows it
@@ -97,7 +98,7 @@ set hidden
 
 " Open buffer in current window, don't jump to windows that already have
 " the buffer open
-set switchbuf=useopen
+set switchbuf=useopen,uselast
 
 """"""""""""""""""""""""""""""
 " => Searching

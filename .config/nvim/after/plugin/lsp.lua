@@ -36,11 +36,10 @@ vim.lsp.config('ts_ls', ts_ls_config)
 
 vim.lsp.enable({ "ty", "rust_analyzer", "ts_ls", "vue_ls" })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true
-    }
-)
+-- Show diagnostics as virtual text.
+vim.diagnostic.config({
+    virtual_text = true,
+})
 
 local opts = { noremap=true, silent=true }
 

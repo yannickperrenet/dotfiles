@@ -1,85 +1,68 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  -- Can also call it yourself with `:TSInstall python`
-  ensure_installed = { "c", "lua", "python", "rust", "markdown", "query", "vimdoc", "vim", "gitignore" },
+-- Parsers and queries are installed by nvim-treesitter (main branch)
+-- into ~/.local/share/nvim/site, which needs the tree-sitter CLI:
+-- :TSInstall c gitignore hcl javascript lua markdown markdown_inline
+--            python query rust sql typescript vim vimdoc vue
+--
+-- Incremental selection is built into Nvim 0.12: `an` / `in` in
+-- visual mode (see :h treesitter-incremental-selection).
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+-- Start Tree-sitter highlighting for every filetype that has a parser,
+-- whether installed by nvim-treesitter or bundled with Nvim. We check
+-- for the parser first instead of wrapping start() in pcall, so query
+-- errors (e.g. a parser that does not match its queries) still surface.
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if lang and vim.treesitter.language.add(lang) then
+      vim.treesitter.start(args.buf, lang)
+    end
+  end,
+})
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = false,
-
-  highlight = {
-    enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+require("nvim-treesitter-textobjects").setup({
+  select = {
+    lookahead = true,
   },
-
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<C-Space>',
-      node_incremental = '<C-Space>',
-    },
+  move = {
+    set_jumps = true,
   },
+})
 
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['ab'] = '@block.outer',
-        ['ib'] = '@block.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']c'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']C'] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[c'] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[C'] = '@class.outer',
-      },
-    },
-  },
+local select = require("nvim-treesitter-textobjects.select")
+local move = require("nvim-treesitter-textobjects.move")
 
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
-  },
+-- Selection
+local select_objects = {
+  ["ab"] = "@block.outer",
+  ["ib"] = "@block.inner",
+  ["af"] = "@function.outer",
+  ["if"] = "@function.inner",
+  ["ac"] = "@class.outer",
+  ["ic"] = "@class.inner",
 }
+
+for key, query in pairs(select_objects) do
+  vim.keymap.set({ "x", "o" }, key, function()
+    select.select_textobject(query, "textobjects")
+  end)
+end
+
+-- Movement
+local movements = {
+  ["]m"] = { "@function.outer", "next_start" },
+  ["]M"] = { "@function.outer", "next_end" },
+  ["[m"] = { "@function.outer", "previous_start" },
+  ["[M"] = { "@function.outer", "previous_end" },
+  ["]c"] = { "@class.outer", "next_start" },
+  ["]C"] = { "@class.outer", "next_end" },
+  ["[c"] = { "@class.outer", "previous_start" },
+  ["[C"] = { "@class.outer", "previous_end" },
+}
+
+for key, config in pairs(movements) do
+  local query, direction = config[1], config[2]
+
+  vim.keymap.set({ "n", "x", "o" }, key, function()
+    move["goto_" .. direction](query, "textobjects")
+  end)
+end
